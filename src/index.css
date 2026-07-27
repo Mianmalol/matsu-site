@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import 'tailwindcss';
+
+@theme inline {
+  /* ── Palette (from brief) ─────────────────────────────── */
+  --color-abyss: #05101a;     /* near-black */
+  --color-navy: #071a2c;      /* primary dark navy */
+  --color-deepsea: #0a2a43;   /* deep ocean */
+  --color-maritime: #0d5c91;  /* maritime blue */
+  --color-ocean: #167db7;     /* ocean blue */
+  --color-seacyan: #59b7c8;   /* muted cyan */
+  --color-mist: #dcecf2;      /* mist blue */
+  --color-steel: #8797a5;     /* steel gray */
+  --color-fog: #f3f6f7;       /* fog gray */
+  --color-amber: #d9a441;     /* restrained safety amber */
+
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #ffffff;
+  color: #071a2c;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: #167db7; color: #ffffff; }
+
+:focus-visible { outline: 2px solid #167db7; outline-offset: 3px; }
+
+/* ── Scroll reveal ────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* ── Ambient motion ───────────────────────────────────── */
+@keyframes drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(26px); }
+}
+.anim-drift { animation: drift 26s ease-in-out infinite alternate; }
+
+@keyframes bob {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+.anim-bob { animation: bob 7s ease-in-out infinite alternate; }
+
+@keyframes rays {
+  from { transform: skewX(-14deg) translateX(-30px); opacity: 0.5; }
+  to { transform: skewX(-14deg) translateX(30px); opacity: 0.9; }
+}
+.anim-rays { animation: rays 11s ease-in-out infinite alternate; }
+
+@keyframes particle {
+  from { transform: translateY(0); opacity: 0.5; }
+  to { transform: translateY(-46px); opacity: 0; }
+}
+.anim-particle { animation: particle 9s linear infinite; }
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+.anim-pulse-dot { animation: pulseDot 2.6s ease-in-out infinite; }
+
+@keyframes drawPath {
+  from { stroke-dashoffset: var(--path-len, 1200); }
+  to { stroke-dashoffset: 0; }
+}
+.draw-when-in.in path.blueprint {
+  animation: drawPath 2.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+path.blueprint {
+  stroke-dasharray: var(--path-len, 1200);
+  stroke-dashoffset: var(--path-len, 1200);
+}
+
+@keyframes routeDash {
+  to { stroke-dashoffset: -140; }
+}
+.anim-route { animation: routeDash 9s linear infinite; }
+
+/* ── Reduced motion ───────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  path.blueprint { stroke-dashoffset: 0 !important; }
+}
