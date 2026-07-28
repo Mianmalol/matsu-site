@@ -15,9 +15,9 @@ export default function Depths() {
   const resolved = morph > 0.55
 
   return (
-    <section ref={ref} className="relative" style={{ height: '220vh' }}>
+    <section ref={ref} className="relative -mt-px" style={{ height: '220vh' }}>
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center"
-        style={{ background: 'linear-gradient(to bottom, #167db7 -6%, #0a2a43 30%, #071a2c 66%, #05101a 100%)' }}>
+        style={{ background: 'linear-gradient(to bottom, #167db7 0%, #0a2a43 34%, #071a2c 66%, #05101a 100%)' }}>
 
         <div className="relative max-w-[1280px] mx-auto px-6 w-full">
           <div className="grid max-w-3xl">

@@ -13,6 +13,12 @@ export default function Hero() {
   return (
     <header id="top" className="relative h-dvh min-h-[680px] overflow-hidden">
       <HeroScene y={y} reduced={reduced} />
+      {/* pins the hero's bottom edge to the exact blue the next section starts with */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-48 pointer-events-none"
+        style={{ background: 'linear-gradient(to bottom, rgba(22,125,183,0), #167db7)' }}
+        aria-hidden="true"
+      />
       <div
         className="relative h-full max-w-[1280px] mx-auto px-6 flex flex-col justify-center pt-24 md:pt-28 pb-16"
         style={{ opacity: fade, transform: `translateY(-${lift}px)`, pointerEvents: fade < 0.1 ? 'none' : undefined }}

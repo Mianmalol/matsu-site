@@ -18,14 +18,14 @@ export default function Workflow() {
             Translate regulatory requirements into structured workflows that teams can understand, execute, verify, and audit.
           </p>
         </Reveal>
-        <div className="mt-16 grid md:grid-cols-7 gap-y-8 md:gap-0">
+        <div className="mt-16 grid md:grid-cols-6 gap-y-8 md:gap-0">
           {workflow.map((w, i) => (
             <Reveal key={w.step} delay={i * 110} className="relative">
               <div className="md:px-2">
                 <div className="flex items-center gap-3 md:block">
                   <span className="flex items-center justify-center w-9 h-9 rounded-full bg-mist text-maritime text-[13px] font-bold md:mb-4">{i + 1}</span>
                   {i < workflow.length - 1 && (
-                    <span className="hidden md:block absolute top-[18px] left-[calc(50%+26px)] right-[-50%] h-px bg-mist" aria-hidden="true" />
+                    <span className="hidden md:block absolute top-[18px] left-[44px] right-[-8px] h-px bg-ocean/40" aria-hidden="true" />
                   )}
                   <div>
                     <p className="text-sm font-semibold text-navy">{w.step}</p>

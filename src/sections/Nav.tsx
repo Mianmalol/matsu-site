@@ -13,7 +13,7 @@ export default function Nav() {
       <div className="max-w-[1280px] mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#top" aria-label="Matsu home"><Wordmark light={scrolled} /></a>
         <div className={`hidden lg:flex items-center gap-8 text-[13px] font-medium transition-colors ${scrolled ? 'text-mist/80' : 'text-navy/75'}`}>
-          {[['Platform', '#platform'], ['Voyage', '#solutions'], ['Regulations', '#regulations'], ['Security', '#security'], ['Company', '#company']].map(([l, h]) => (
+          {[['Platform', '#platform'], ['Voyage', '#solutions'], ['Regulations', '#regulations'], ['Security', '#security']].map(([l, h]) => (
             <a key={l} href={h} className="hover:opacity-70 transition-opacity">{l}</a>
           ))}
         </div>
