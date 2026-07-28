@@ -105,7 +105,7 @@ function Reveal({ children, delay = 0, className = '' }: { children: React.React
   )
 }
 
-function CountUp({ target, suffix = '', duration = 1600 }: { target: number; suffix?: string; duration?: number }) {
+function CountUp({ target, suffix = '', duration = 1600, plain = false }: { target: number; suffix?: string; duration?: number; plain?: boolean }) {
   const ref = useRef<HTMLSpanElement>(null)
   const [val, setVal] = useState(0)
   const started = useRef(false)
@@ -128,7 +128,7 @@ function CountUp({ target, suffix = '', duration = 1600 }: { target: number; suf
     io.observe(el)
     return () => io.disconnect()
   }, [target, duration])
-  return <span ref={ref}>{val.toLocaleString()}{suffix}</span>
+  return <span ref={ref}>{plain ? String(val) : val.toLocaleString()}{suffix}</span>
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -262,7 +262,6 @@ const security = [
   'Enterprise authentication (SSO)', 'Secure document storage', 'Data export and regulatory reporting',
 ]
 
-const partners = ['NORDWIND CARRIERS', 'MERIDIAN BULK', 'ATLAS TANKERS', 'PELAGIC OFFSHORE', 'HANSA SHIPMANAGEMENT', 'AUSTRAL LINES']
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  Vector scenes
@@ -828,7 +827,7 @@ function Dashboard() {
     <div className="bg-white border border-mist rounded-xl overflow-hidden shadow-[0_30px_80px_-40px_rgba(7,26,44,0.35)]">
       <div className="flex items-center justify-between px-6 py-4 border-b border-fog bg-fog/60">
         <span className="text-sm font-semibold text-navy">Fleet compliance overview</span>
-        <span className="text-xs font-mono text-steel">5 VESSELS · LIVE</span>
+        <span className="text-xs font-mono text-steel">SAMPLE DATA · DEMONSTRATION FLEET</span>
       </div>
       <div className="grid lg:grid-cols-[1.5fr_1fr]">
         <div className="border-r border-fog">
@@ -965,11 +964,12 @@ function Workflow() {
 // ═══════════════════════════════════════════════════════════════════════════
 
 function CommandCenter() {
+  // All figures derived from the shared demonstration-fleet data above.
   const stats = [
-    { label: 'Fleet compliance rate', value: '92%' },
-    { label: 'Certificates expiring ≤ 30 days', value: '13' },
-    { label: 'Open high-risk findings', value: '4' },
-    { label: 'Vessels nearing regulated ports', value: '7' },
+    { label: 'Fleet compliance rate', value: `${Math.round(vessels.reduce((a, b) => a + b.score, 0) / vessels.length)}%` },
+    { label: 'Certificates expiring ≤ 30 days', value: String(vessels.reduce((a, b) => a + b.expiring, 0)) },
+    { label: 'Open follow-up actions', value: String(vessels.reduce((a, b) => a + b.actions, 0)) },
+    { label: 'Vessels needing attention', value: String(vessels.filter(v => v.status !== 'compliant').length) },
   ]
   return (
     <section className="bg-navy py-28 lg:py-36 px-6 relative overflow-hidden">
@@ -1014,6 +1014,7 @@ function CommandCenter() {
               <g fontFamily="'JetBrains Mono', monospace" fontSize="10" fill="#8797a5">
                 <text x="1020" y="252" textAnchor="middle">NORDIC RESOLVE · PSC RISK</text>
                 <text x="180" y="140" textAnchor="middle">ADRIATIC PIONEER</text>
+                <text x="24" y="404" opacity="0.8">SAMPLE DATA · DEMONSTRATION FLEET</text>
               </g>
             </svg>
             <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-white/10">
@@ -1101,8 +1102,8 @@ function Security() {
         <Reveal delay={200}>
           <div className="rounded-xl border border-white/12 bg-white/[0.04] overflow-hidden">
             <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between">
-              <span className="text-sm font-semibold text-mist">Audit history — immutable</span>
-              <span className="text-[10px] font-mono text-seacyan tracking-[0.14em]">SHA-VERIFIED</span>
+              <span className="text-sm font-semibold text-mist">Audit history</span>
+              <span className="text-[10px] font-mono text-seacyan tracking-[0.14em]">SAMPLE RECORD</span>
             </div>
             <div className="p-6 space-y-5">
               {trail.map((r, i) => (
@@ -1130,44 +1131,44 @@ function Security() {
 // ═══════════════════════════════════════════════════════════════════════════
 
 function Credibility() {
+  // Figures verified July 2026: FuelEU Maritime binding since Jan 2025, first
+  // penalties issued from June 2026; EU ETS maritime coverage stepped
+  // 40% (2024) → 70% (2025) → 100% (2026); IMO CII reduction factor 11% in
+  // 2026; IMO 2023 GHG Strategy targets net-zero "by or around" 2050.
   const nums = [
-    { n: 2500, s: '+', label: 'Vessels within reach of the platform model' },
-    { n: 48000, s: '+', label: 'Certificates and documents monitored' },
-    { n: 65, s: '+', label: 'Flag state libraries covered' },
-    { n: 40, s: '%', label: 'Inspection preparation time reduced' },
+    { n: 100, s: '%', label: 'EU ETS coverage of in-scope voyage emissions since January 2026' },
+    { n: 2, s: '%', label: 'GHG-intensity cut FuelEU Maritime enforces today — penalties live since June 2026' },
+    { n: 11, s: '%', label: 'CII reduction factor applied to vessel carbon intensity in 2026' },
+    { n: 2050, s: '', plain: true, label: 'IMO net-zero horizon for international shipping emissions' },
   ]
   return (
     <section id="credibility" className="bg-white py-28 lg:py-36 px-6 border-t border-fog">
       <div className="max-w-[1280px] mx-auto">
         <Reveal>
-          <Label>Industry credibility</Label>
+          <Label>The regulatory wall</Label>
           <h2 className="font-bold text-navy text-4xl md:text-6xl tracking-[-0.02em] leading-[1.03] max-w-3xl">
-            Built for the realities of commercial shipping.
+            The rules have already changed. The tooling hasn't.
           </h2>
         </Reveal>
         <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-10">
           {nums.map((m, i) => (
             <Reveal key={m.label} delay={i * 100}>
               <p className="text-4xl md:text-5xl font-bold text-navy tracking-[-0.02em]">
-                <CountUp target={m.n} suffix={m.s} />
+                <CountUp target={m.n} suffix={m.s} plain={'plain' in m && m.plain} />
               </p>
               <p className="text-[13px] text-steel mt-2.5 leading-snug max-w-[210px]">{m.label}</p>
             </Reveal>
           ))}
         </div>
-        <Reveal delay={150} className="mt-16">
-          <div className="border-y border-fog py-8 flex items-center justify-between flex-wrap gap-x-10 gap-y-4">
-            {partners.map(p => (
-              <span key={p} className="text-[13px] font-semibold tracking-[0.14em] text-steel/70">{p}</span>
-            ))}
-          </div>
-        </Reveal>
         <Reveal delay={100} className="mt-16 max-w-3xl">
-          <blockquote className="text-2xl md:text-[32px] leading-snug font-medium text-navy tracking-[-0.01em]">
-            "Compliance used to live across spreadsheets, inboxes, folders, and individual vessels. Now we have one operational picture across the fleet."
-          </blockquote>
+          <p className="text-2xl md:text-[32px] leading-snug font-medium text-navy tracking-[-0.01em]">
+            FuelEU penalties are live. EU ETS reached full coverage. CII tightens every year. The fleets that stay ahead treat compliance as an operating system, not a filing cabinet.
+          </p>
           <p className="mt-6 text-sm text-steel">
-            Director of Marine Operations · Global vessel management company
+            We're onboarding design-partner fleets now.{' '}
+            <a href="mailto:marco0111ml@gmail.com?subject=Matsu%20design%20partner" className="text-ocean font-medium hover:text-maritime transition-colors">
+              Become a design partner →
+            </a>
           </p>
         </Reveal>
       </div>
