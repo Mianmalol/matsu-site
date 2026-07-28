@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Reveal, Label } from '@/components/ui'
+import { Reveal } from '@/components/ui'
 import { vessels, type Vessel } from '@/data'
 import { MAP_W, MAP_H, LAND_PATH, PORTS, VESSEL_GEO, GRATICULE, CHOKEPOINTS } from '@/components/mapGeo'
 
@@ -226,9 +226,8 @@ export default function CommandDeck() {
     <section id="platform" className="bg-fog py-28 lg:py-36 px-6">
       <div className="max-w-[1280px] mx-auto">
         <Reveal>
-          <Label>The command deck</Label>
-          <h2 className="font-bold text-navy text-4xl md:text-6xl tracking-[-0.02em] max-w-2xl leading-[1.03]">
-            One command deck. Total compliance visibility.
+          <h2 className="font-bold text-navy text-4xl md:text-6xl tracking-[-0.02em] leading-[1.03]">
+            Total compliance visibility.
           </h2>
           <p className="mt-6 text-lg text-navy/60 max-w-xl leading-relaxed">
             Connect shore teams, vessel crews, operational records, and regulatory requirements through a single source of truth. See risk before it becomes disruption.

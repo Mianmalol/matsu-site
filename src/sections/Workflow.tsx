@@ -15,7 +15,7 @@ export default function Workflow() {
             From regulation to verified action.
           </h2>
           <p className="mt-6 text-lg text-navy/60 max-w-xl leading-relaxed">
-            Translate regulatory requirements into structured workflows that teams can understand, execute, verify, and audit.
+            AI agents translate regulatory requirements into structured workflows that teams can understand, execute, verify, and audit.
           </p>
         </Reveal>
         <div className="mt-16 grid md:grid-cols-6 gap-y-8 md:gap-0">

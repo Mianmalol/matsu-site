@@ -1,7 +1,6 @@
 import Nav from '@/sections/Nav'
 import Hero from '@/sections/Hero'
 import Depths from '@/sections/Depths'
-import Walkthrough from '@/sections/Walkthrough'
 import CommandDeck from '@/sections/CommandDeck'
 import Workflow from '@/sections/Workflow'
 import Regulatory from '@/sections/Regulatory'
@@ -23,7 +22,6 @@ export default function App() {
       <Nav />
       <Hero />
       <Depths />
-      <Walkthrough />
       <CommandDeck />
       <Workflow />
       <Regulatory />
