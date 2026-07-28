@@ -7,18 +7,14 @@ import { Wordmark } from '@/components/ui'
 export default function Footer() {
   const cols: { h: string; l: [string, string][] }[] = [
     {
-      h: 'Explore',
-      l: [['Platform', '#platform'], ['Aboard the vessel', '#solutions'], ['Regulations', '#regulations'], ['Security', '#security']],
-    },
-    {
       h: 'Get in touch',
-      l: [['Request a demonstration', 'mailto:marco0111ml@gmail.com?subject=Matsu%20demo%20request'], ['Contact', 'mailto:marco0111ml@gmail.com']],
+      l: [['Book a demo', 'mailto:alexander.m.zhao@columbia.edu?subject=Matsu%20demo%20request'], ['Contact', 'mailto:alexander.m.zhao@columbia.edu']],
     },
   ]
   return (
     <footer id="company" className="bg-abyss border-t border-white/8">
       <div className="max-w-[1280px] mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-14">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-10 mb-14">
           <div className="col-span-2">
             <Wordmark light />
             <p className="mt-4 text-sm text-steel leading-relaxed max-w-xs">
