@@ -17,7 +17,7 @@ export default function Hero() {
         className="relative h-full max-w-[1280px] mx-auto px-6 flex flex-col justify-center pt-24 md:pt-28 pb-16"
         style={{ opacity: fade, transform: `translateY(-${lift}px)`, pointerEvents: fade < 0.1 ? 'none' : undefined }}
       >
-        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-maritime mb-6">Maritime compliance platform</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-maritime mb-6">AI Agents for Maritime Compliance</p>
         <h1 className="font-bold text-navy text-[40px] md:text-[64px] lg:text-[80px] leading-[0.98] tracking-[-0.03em] max-w-4xl">
           Navigate compliance.<br />Sail with confidence.
         </h1>
