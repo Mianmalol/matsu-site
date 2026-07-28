@@ -230,7 +230,7 @@ export default function CommandDeck() {
             Total compliance visibility.
           </h2>
           <p className="mt-6 text-lg text-navy/60 max-w-xl leading-relaxed">
-            Connect shore teams, vessel crews, operational records, and regulatory requirements through a single source of truth. See risk before it becomes disruption.
+            Connect shore teams, vessel crews, operational records, and regulatory requirements through a single source of truth.
           </p>
         </Reveal>
         <Reveal delay={150} className="mt-16">
