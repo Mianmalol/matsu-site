@@ -541,12 +541,13 @@ function Nav() {
       <div className="max-w-[1280px] mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#top" aria-label="Matsu home"><Wordmark light={scrolled} /></a>
         <div className={`hidden lg:flex items-center gap-8 text-[13px] font-medium transition-colors ${scrolled ? 'text-mist/80' : 'text-navy/75'}`}>
-          {[['Platform', '#platform'], ['Solutions', '#solutions'], ['Regulations', '#regulations'], ['Security', '#security'], ['Resources', '#credibility'], ['Company', '#company']].map(([l, h]) => (
+          {[['Platform', '#platform'], ['Voyage', '#solutions'], ['Regulations', '#regulations'], ['Security', '#security'], ['Company', '#company']].map(([l, h]) => (
             <a key={l} href={h} className="hover:opacity-70 transition-opacity">{l}</a>
           ))}
         </div>
-        <a href="#cta" className={`text-[13px] font-semibold px-5 py-2.5 rounded-md transition-all ${scrolled ? 'bg-ocean text-white hover:bg-maritime' : 'bg-navy text-white hover:bg-deepsea'}`}>
-          Request a demonstration
+        <a href="#cta" className={`text-[13px] font-semibold px-4 sm:px-5 py-2.5 rounded-md transition-all ${scrolled ? 'bg-ocean text-white hover:bg-maritime' : 'bg-navy text-white hover:bg-deepsea'}`}>
+          <span className="sm:hidden">Request demo</span>
+          <span className="hidden sm:inline">Request a demonstration</span>
         </a>
       </div>
     </nav>
@@ -563,10 +564,10 @@ function Hero() {
   const fade = reduced ? 1 : 1 - clamp01(y / 340)
   const lift = reduced ? 0 : clamp01(y / 340) * 40
   return (
-    <header id="top" className="relative h-screen min-h-[680px] overflow-hidden">
+    <header id="top" className="relative h-dvh min-h-[680px] overflow-hidden">
       <HeroScene y={y} reduced={reduced} />
       <div
-        className="relative h-full max-w-[1280px] mx-auto px-6 flex flex-col justify-center pb-24"
+        className="relative h-full max-w-[1280px] mx-auto px-6 flex flex-col justify-center pt-24 md:pt-28 pb-16"
         style={{ opacity: fade, transform: `translateY(-${lift}px)`, pointerEvents: fade < 0.1 ? 'none' : undefined }}
       >
         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-maritime mb-6">Maritime compliance platform</p>
@@ -580,7 +581,7 @@ function Hero() {
           <a href="#platform" className="bg-navy text-white text-[15px] font-semibold px-7 py-4 rounded-md hover:bg-deepsea transition-colors">
             Explore the platform
           </a>
-          <a href="#cta" className="text-[15px] font-medium text-navy border border-navy/25 px-7 py-4 rounded-md hover:border-navy/60 transition-colors">
+          <a href="#cta" className="text-[15px] font-medium text-navy bg-white/85 backdrop-blur-sm border border-navy/15 px-7 py-4 rounded-md hover:bg-white transition-colors">
             Request a demonstration →
           </a>
         </div>
@@ -720,7 +721,7 @@ function Walkthrough() {
             <p className="mt-6 text-mist/75 text-base md:text-lg leading-relaxed">
               {scenes[idx].copy}
             </p>
-            <div className="mt-10 flex gap-2" role="tablist" aria-label="Vessel walkthrough progress">
+            <div className="mt-10 flex gap-2" aria-hidden="true">
               {scenes.map((s, i) => (
                 <span key={s.key} className="h-[3px] rounded-full transition-all duration-500" style={{ width: idx === i ? 44 : 20, background: idx === i ? '#59b7c8' : 'rgba(220,236,242,0.25)' }} />
               ))}
@@ -1214,7 +1215,7 @@ function Harbor() {
             </g>
           </svg>
         )}
-        <div className="absolute inset-0 bg-navy/35" />
+        <div className="absolute inset-0 bg-navy/55" />
       </div>
       <div className="relative max-w-[1280px] mx-auto px-6 py-40 lg:py-52 text-center">
         <Reveal>
@@ -1225,7 +1226,7 @@ function Harbor() {
             Bring clarity, control, and confidence to maritime compliance.
           </p>
           <div className="mt-11 flex items-center justify-center gap-4 flex-wrap">
-            <a href="#" className="bg-white text-navy text-[15px] font-semibold px-8 py-4 rounded-md hover:bg-mist transition-colors">
+            <a href="mailto:marco0111ml@gmail.com?subject=Matsu%20demo%20request" className="bg-white text-navy text-[15px] font-semibold px-8 py-4 rounded-md hover:bg-mist transition-colors">
               Request a demonstration
             </a>
             <a href="#platform" className="text-[15px] font-medium text-white border border-white/40 px-8 py-4 rounded-md hover:border-white transition-colors">
@@ -1243,16 +1244,20 @@ function Harbor() {
 // ═══════════════════════════════════════════════════════════════════════════
 
 function Footer() {
-  const cols = [
-    { h: 'Platform', l: ['Fleet compliance', 'Document management', 'Inspections', 'Regulatory intelligence', 'Risk management', 'Reporting'] },
-    { h: 'Solutions', l: ['Shipowners', 'Vessel managers', 'Compliance teams', 'Marine operations', 'Safety teams'] },
-    { h: 'Resources', l: ['Maritime regulations', 'Compliance guides', 'Industry insights', 'Documentation'] },
-    { h: 'Company', l: ['About', 'Careers', 'Contact', 'Security'] },
+  const cols: { h: string; l: [string, string][] }[] = [
+    {
+      h: 'Explore',
+      l: [['Platform', '#platform'], ['Aboard the vessel', '#solutions'], ['Regulations', '#regulations'], ['Security', '#security']],
+    },
+    {
+      h: 'Get in touch',
+      l: [['Request a demonstration', 'mailto:marco0111ml@gmail.com?subject=Matsu%20demo%20request'], ['Contact', 'mailto:marco0111ml@gmail.com']],
+    },
   ]
   return (
     <footer id="company" className="bg-abyss border-t border-white/8">
       <div className="max-w-[1280px] mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-10 mb-14">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-14">
           <div className="col-span-2">
             <Wordmark light />
             <p className="mt-4 text-sm text-steel leading-relaxed max-w-xs">
@@ -1263,20 +1268,15 @@ function Footer() {
             <div key={c.h}>
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-mist/70 mb-4">{c.h}</p>
               <ul className="space-y-2.5">
-                {c.l.map(x => (
-                  <li key={x}><a href="#" className="text-[13px] text-steel hover:text-mist transition-colors">{x}</a></li>
+                {c.l.map(([x, h]) => (
+                  <li key={x}><a href={h} className="text-[13px] text-steel hover:text-mist transition-colors">{x}</a></li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-        <div className="border-t border-white/8 pt-7 flex items-center justify-between flex-wrap gap-4">
-          <span className="text-xs text-steel/70 font-mono">© 2026 MATSU AI, INC.</span>
-          <div className="flex gap-6">
-            {['Privacy', 'Terms', 'Cookies'].map(l => (
-              <a key={l} href="#" className="text-xs text-steel/70 hover:text-mist transition-colors">{l}</a>
-            ))}
-          </div>
+        <div className="border-t border-white/8 pt-7">
+          <span className="text-xs text-steel/70 font-mono">© 2026 MATSU AI</span>
         </div>
       </div>
     </footer>
