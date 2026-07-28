@@ -68,7 +68,7 @@ export function Wordmark({ light = false }: { light?: boolean }) {
         <path d="M4 20 Q8 15, 12 20 Q15 23.5, 18 20 Q22 15, 26 20" stroke={light ? '#ffffff' : '#0d5c91'} strokeWidth="2.4" strokeLinecap="round" />
         <path d="M4 13 Q8 8, 12 13 Q15 16.5, 18 13 Q22 8, 26 13" stroke={light ? '#59b7c8' : '#167db7'} strokeWidth="2.4" strokeLinecap="round" />
       </svg>
-      <span className={`font-semibold text-[15px] tracking-[0.26em] ${light ? 'text-white' : 'text-navy'}`}>MATSU</span>
+      <span className={`font-semibold text-[15px] tracking-[0.26em] ${light ? 'text-white' : 'text-navy'}`}>MATSU AI</span>
     </span>
   )
 }
