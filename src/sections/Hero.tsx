@@ -23,7 +23,7 @@ export default function Hero() {
         </h1>
         <div className="mt-9 flex items-center gap-4 flex-wrap">
           <a href="#cta" className="bg-navy text-white text-[15px] font-semibold px-7 py-4 rounded-md hover:bg-deepsea transition-colors">
-            Request a demonstration →
+            Book a demo →
           </a>
         </div>
       </div>
