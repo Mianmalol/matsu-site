@@ -36,7 +36,7 @@ export default function Credibility() {
         </div>
         <Reveal delay={100} className="mt-16 max-w-3xl">
           <p className="text-2xl md:text-[32px] leading-snug font-medium text-navy tracking-[-0.01em]">
-            FuelEU penalties are live. EU ETS reached full coverage. CII tightens every year. The fleets that stay ahead treat compliance as an operating system, not a filing cabinet.
+            FuelEU penalties are live. EU ETS reached full coverage. CII tightens every year. Most fleets still track all of this in spreadsheets and inboxes.
           </p>
           <p className="mt-6 text-sm text-steel">
             We're onboarding design-partner fleets now.{' '}
