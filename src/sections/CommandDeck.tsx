@@ -101,8 +101,8 @@ function FleetMap({ sel, onSelect }: { sel: string; onSelect: (id: string) => vo
       <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className="w-full block" role="img" aria-label="Demonstration fleet chart — Mercator map from northwest Europe to Singapore with vessel positions and routes; selection follows the fleet table">
         <defs>
           <radialGradient id="seaDepth" cx="0.5" cy="0.42" r="0.9">
-            <stop offset="0" stopColor="#0a2a43" />
-            <stop offset="1" stopColor="#05101a" />
+            <stop offset="0" stopColor="#155a8a" />
+            <stop offset="1" stopColor="#0d3d5f" />
           </radialGradient>
         </defs>
         <rect width={MAP_W} height={MAP_H} fill="url(#seaDepth)" />
@@ -114,7 +114,7 @@ function FleetMap({ sel, onSelect }: { sel: string; onSelect: (id: string) => vo
           {GRATICULE.v.map(g => <text key={`vl${g.x}`} x={g.x + 4} y={MAP_H - 8}>{g.label}</text>)}
           {GRATICULE.h.map(g => <text key={`hl${g.y}`} x={MAP_W - 8} y={g.y - 4} textAnchor="end">{g.label}</text>)}
         </g>
-        <path d={LAND_PATH} fill="#0d3d5f" opacity="0.85" stroke="#59b7c8" strokeWidth="0.6" strokeOpacity="0.35" />
+        <path d={LAND_PATH} fill="#071a2c" opacity="0.95" stroke="#59b7c8" strokeWidth="0.7" strokeOpacity="0.4" />
         <g fontFamily="'JetBrains Mono', monospace" fontSize="8.5" fill="#59b7c8" opacity="0.5">
           {CHOKEPOINTS.map(c => (
             <g key={c.name}>
@@ -148,8 +148,8 @@ function FleetMap({ sel, onSelect }: { sel: string; onSelect: (id: string) => vo
                 strokeWidth={active ? 2 : 1.3}
                 strokeDasharray="4 8"
                 className="anim-route"
-                stroke={active ? '#59b7c8' : '#167db7'}
-                style={{ opacity: active ? 0.95 : 0.35, transition: 'opacity 0.4s ease' }}
+                stroke={active ? '#9fdcea' : '#bcd9e6'}
+                style={{ opacity: active ? 0.95 : 0.4, transition: 'opacity 0.4s ease' }}
               />
               <circle cx={geo.x} cy={geo.y} r="16" fill="transparent" />
               <circle className="anim-pulse-dot" cx={geo.x} cy={geo.y} r={active ? 17 : 13} fill={color} opacity={active ? 0.22 : 0.1} style={{ transition: 'opacity 0.4s ease', animationDelay: `${Number(v.id) * 0.5}s` }} />
