@@ -18,8 +18,7 @@ export default function Nav() {
           ))}
         </div>
         <a href="#cta" className={`text-[13px] font-semibold px-4 sm:px-5 py-2.5 rounded-md transition-all ${scrolled ? 'bg-ocean text-white hover:bg-maritime' : 'bg-navy text-white hover:bg-deepsea'}`}>
-          <span className="sm:hidden">Request demo</span>
-          <span className="hidden sm:inline">Request a demonstration</span>
+          Book a demo
         </a>
       </div>
     </nav>
