@@ -208,7 +208,7 @@ export function DocsScene() {
   const rows = [
     { name: 'Safety Management Certificate', ok: true },
     { name: 'IOPP Certificate (MARPOL)', ok: true },
-    { name: 'Class Survey — Annual', ok: false },
+    { name: 'Annual Class Survey', ok: false },
     { name: 'Minimum Safe Manning', ok: true },
   ]
   return (

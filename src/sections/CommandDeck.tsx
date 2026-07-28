@@ -98,7 +98,7 @@ function FleetMap({ sel, onSelect }: { sel: string; onSelect: (id: string) => vo
     : { dx: 0, dy: -10, anchor: 'middle' }
   return (
     <div className="relative">
-      <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className="w-full block" role="img" aria-label="Demonstration fleet chart — Mercator map from northwest Europe to Singapore with vessel positions and routes; selection follows the fleet table">
+      <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className="w-full block" role="img" aria-label="Demonstration fleet chart: Mercator map from northwest Europe to Singapore with vessel positions and routes; selection follows the fleet table">
         <defs>
           <radialGradient id="seaDepth" cx="0.5" cy="0.42" r="0.9">
             <stop offset="0" stopColor="#155a8a" />
@@ -208,7 +208,7 @@ export default function CommandDeck() {
             One command deck. Total compliance visibility.
           </h2>
           <p className="mt-6 text-lg text-navy/60 max-w-xl leading-relaxed">
-            Connect shore teams, vessel crews, operational records, and regulatory requirements through a single source of truth — and see risk before it becomes disruption.
+            Connect shore teams, vessel crews, operational records, and regulatory requirements through a single source of truth. See risk before it becomes disruption.
           </p>
         </Reveal>
         <Reveal delay={150} className="mt-16">
@@ -268,7 +268,7 @@ export default function CommandDeck() {
                   </div>
                 </div>
                 <div className="pt-5">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel mb-3">Selected — {v.name}</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel mb-3">Selected · {v.name}</p>
                   <div className="space-y-2.5 text-[13px]">
                     <div className="flex justify-between"><span className="text-navy/60">Status</span>
                       <span className="text-[11px] font-semibold px-2 py-0.5 rounded" style={{ color: statusTint(v.status).text, background: statusTint(v.status).bg }}>{statusTint(v.status).label}</span></div>

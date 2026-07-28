@@ -11,7 +11,7 @@ export default function Credibility() {
   // 2026; IMO 2023 GHG Strategy targets net-zero "by or around" 2050.
   const nums = [
     { n: 100, s: '%', label: 'EU ETS coverage of in-scope voyage emissions since January 2026' },
-    { n: 2, s: '%', label: 'GHG-intensity cut FuelEU Maritime enforces today — penalties live since June 2026' },
+    { n: 2, s: '%', label: 'GHG-intensity cut FuelEU Maritime enforces today. Penalties live since June 2026' },
     { n: 11, s: '%', label: 'CII reduction factor applied to vessel carbon intensity in 2026' },
     { n: 2050, s: '', plain: true, label: 'IMO net-zero horizon for international shipping emissions' },
   ]

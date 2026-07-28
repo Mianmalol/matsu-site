@@ -8,11 +8,11 @@ import { security } from '@/data'
 
 export default function Security() {
   const trail: LedgerRow[] = [
-    { t: '14:02:11Z', who: 'CHIEF OFFICER', e: 'Certificate uploaded — IOPP, MV Coral Meridian', verdict: 'VALID → 2027-03', cite: 'MARPOL I reg. 7' },
-    { t: '14:02:38Z', who: 'MATSU ENGINE', e: 'Deterministic check — certificate window vs renewal survey cycle', verdict: 'PASS', cite: 'MARPOL I reg. 6' },
-    { t: '14:03:02Z', who: 'MATSU ENGINE', e: 'GHG intensity computed — 88.9 vs 89.3 gCO₂e/MJ limit', verdict: 'PASS', cite: 'FuelEU Art. 4' },
+    { t: '14:02:11Z', who: 'CHIEF OFFICER', e: 'Certificate uploaded: IOPP, MV Coral Meridian', verdict: 'VALID → 2027-03', cite: 'MARPOL I reg. 7' },
+    { t: '14:02:38Z', who: 'MATSU ENGINE', e: 'Deterministic check: certificate window vs renewal survey cycle', verdict: 'PASS', cite: 'MARPOL I reg. 6' },
+    { t: '14:03:02Z', who: 'MATSU ENGINE', e: 'GHG intensity computed: 88.9 vs 89.3 gCO₂e/MJ limit', verdict: 'PASS', cite: 'FuelEU Art. 4' },
     { t: '15:11:07Z', who: 'MASTER', e: 'Corrective action NC-014 marked complete', verdict: 'EVIDENCE ATTACHED', cite: 'ISM Code 9.2' },
-    { t: '15:40:52Z', who: 'DPA', e: 'Evidence approved — audit record sealed', verdict: 'SEALED', cite: 'ISM Code 12' },
+    { t: '15:40:52Z', who: 'DPA', e: 'Evidence approved, audit record sealed', verdict: 'SEALED', cite: 'ISM Code 12' },
   ]
   return (
     <section id="security" className="py-28 lg:py-36 px-6" style={{ background: 'linear-gradient(to bottom, #05101a, #0a2a43)' }}>

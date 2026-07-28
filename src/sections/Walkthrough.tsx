@@ -77,7 +77,7 @@ export default function Walkthrough() {
                   aria-hidden={idx !== i}
                 >
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-seacyan mb-6">
-                    Aboard the vessel · {String(i + 1).padStart(2, '0')} / {String(scenes.length).padStart(2, '0')} — {s.kicker}
+                    Aboard the vessel · {String(i + 1).padStart(2, '0')} / {String(scenes.length).padStart(2, '0')} · {s.kicker}
                   </p>
                   <h2 className="font-bold text-white text-3xl md:text-[44px] leading-[1.06] tracking-[-0.02em]">
                     {s.title}

@@ -60,7 +60,7 @@ export default function ComplianceLedger({ rows }: { rows: LedgerRow[] }) {
   return (
     <div ref={ref} className="rounded-xl border border-white/12 bg-white/[0.04] overflow-hidden">
       <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between">
-        <span className="text-sm font-semibold text-mist">Audit ledger — every verdict cited</span>
+        <span className="text-sm font-semibold text-mist">Audit ledger · every verdict cited</span>
         <span className="text-[10px] font-mono text-seacyan tracking-[0.14em]">SAMPLE RECORD</span>
       </div>
 
@@ -68,7 +68,7 @@ export default function ComplianceLedger({ rows }: { rows: LedgerRow[] }) {
       <ul className="sr-only">
         {rows.map(r => (
           <li key={r.t}>
-            {r.t}, {r.who}: {r.e} — {r.verdict}, per {r.cite}.
+            {r.t}, {r.who}: {r.e}. {r.verdict}, per {r.cite}.
           </li>
         ))}
       </ul>

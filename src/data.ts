@@ -36,13 +36,13 @@ export const vessels: Vessel[] = [
 
 export const floatingDocs = [
   { title: 'Safety Management Certificate', meta: 'Expires in 21 days' },
-  { title: 'PSC Inspection — Paris MOU', meta: '2 open deficiencies' },
+  { title: 'PSC Inspection · Paris MOU', meta: '2 open deficiencies' },
   { title: 'ISM Internal Audit', meta: 'Finding NC-014 unresolved' },
   { title: 'Crew STCW Certification', meta: '3 renewals due' },
   { title: 'MARPOL IOPP Certificate', meta: 'Survey window open' },
-  { title: 'Class Survey — Annual', meta: 'Evidence incomplete' },
+  { title: 'Annual Class Survey', meta: 'Evidence incomplete' },
   { title: 'Flag State Circular 04/26', meta: 'Applicability unreviewed' },
-  { title: 'CII Trajectory', meta: 'Rating at risk — band D' },
+  { title: 'CII Trajectory', meta: 'Rating at risk: band D' },
 ]
 
 export const scatter = [
@@ -95,7 +95,7 @@ export const workflow = [
 
 export const regs = [
   { name: 'IMO', desc: 'Conventions, circulars, and MEPC / MSC resolutions, tracked at the source.' },
-  { name: 'SOLAS', desc: 'Safety of life at sea — construction, equipment, and operational chapters.' },
+  { name: 'SOLAS', desc: 'Safety of life at sea: construction, equipment, and operational chapters.' },
   { name: 'MARPOL', desc: 'All six annexes, including Annex VI air emissions and EEXI / CII.' },
   { name: 'ISM Code', desc: 'Safety management systems, audits, and non-conformity handling.' },
   { name: 'ISPS Code', desc: 'Ship and port facility security assessments and plans.' },
