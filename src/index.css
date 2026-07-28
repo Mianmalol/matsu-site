@@ -103,6 +103,12 @@ path.blueprint {
 }
 .anim-radar { animation: radarSpin 7s linear infinite; }
 
+@keyframes caretBlink {
+  0%, 55% { opacity: 1; }
+  56%, 100% { opacity: 0; }
+}
+.anim-caret { animation: caretBlink 0.9s step-end infinite; }
+
 /* ── Reduced motion ───────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

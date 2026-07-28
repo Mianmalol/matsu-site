@@ -1,4 +1,5 @@
 import { Reveal, Label } from '@/components/ui'
+import ComplianceLedger, { type LedgerRow } from '@/components/ComplianceLedger'
 import { security } from '@/data'
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -6,11 +7,12 @@ import { security } from '@/data'
 // ═══════════════════════════════════════════════════════════════════════════
 
 export default function Security() {
-  const trail = [
-    { t: '14:02:11Z', e: 'Certificate uploaded — IOPP, MV Coral Meridian', who: 'Chief Officer' },
-    { t: '14:02:38Z', e: 'Validity verified against class records', who: 'System' },
-    { t: '15:11:07Z', e: 'Corrective action NC-014 marked complete', who: 'Master' },
-    { t: '15:40:52Z', e: 'Evidence approved — audit record sealed', who: 'DPA' },
+  const trail: LedgerRow[] = [
+    { t: '14:02:11Z', who: 'CHIEF OFFICER', e: 'Certificate uploaded — IOPP, MV Coral Meridian', verdict: 'VALID → 2027-03', cite: 'MARPOL I reg. 7' },
+    { t: '14:02:38Z', who: 'MATSU ENGINE', e: 'Deterministic check — certificate window vs renewal survey cycle', verdict: 'PASS', cite: 'MARPOL I reg. 6' },
+    { t: '14:03:02Z', who: 'MATSU ENGINE', e: 'GHG intensity computed — 88.9 vs 89.3 gCO₂e/MJ limit', verdict: 'PASS', cite: 'FuelEU Art. 4' },
+    { t: '15:11:07Z', who: 'MASTER', e: 'Corrective action NC-014 marked complete', verdict: 'EVIDENCE ATTACHED', cite: 'ISM Code 9.2' },
+    { t: '15:40:52Z', who: 'DPA', e: 'Evidence approved — audit record sealed', verdict: 'SEALED', cite: 'ISM Code 12' },
   ]
   return (
     <section id="security" className="py-28 lg:py-36 px-6" style={{ background: 'linear-gradient(to bottom, #05101a, #0a2a43)' }}>
@@ -37,26 +39,7 @@ export default function Security() {
           </div>
         </div>
         <Reveal delay={200}>
-          <div className="rounded-xl border border-white/12 bg-white/[0.04] overflow-hidden">
-            <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between">
-              <span className="text-sm font-semibold text-mist">Audit history</span>
-              <span className="text-[10px] font-mono text-seacyan tracking-[0.14em]">SAMPLE RECORD</span>
-            </div>
-            <div className="p-6 space-y-5">
-              {trail.map((r, i) => (
-                <div key={i} className="flex gap-4">
-                  <div className="flex flex-col items-center" aria-hidden="true">
-                    <span className="w-2 h-2 rounded-full bg-ocean mt-1.5" />
-                    {i < trail.length - 1 && <span className="w-px flex-1 bg-white/12 mt-1" />}
-                  </div>
-                  <div className="pb-1">
-                    <p className="text-[11px] font-mono text-steel">{r.t} · {r.who}</p>
-                    <p className="text-[13.5px] text-mist mt-1">{r.e}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ComplianceLedger rows={trail} />
         </Reveal>
       </div>
     </section>
