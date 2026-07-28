@@ -2,9 +2,8 @@ import Nav from '@/sections/Nav'
 import Hero from '@/sections/Hero'
 import Depths from '@/sections/Depths'
 import Walkthrough from '@/sections/Walkthrough'
-import PlatformReveal from '@/sections/PlatformReveal'
+import CommandDeck from '@/sections/CommandDeck'
 import Workflow from '@/sections/Workflow'
-import CommandCenter from '@/sections/CommandCenter'
 import Regulatory from '@/sections/Regulatory'
 import Security from '@/sections/Security'
 import Credibility from '@/sections/Credibility'
@@ -25,9 +24,8 @@ export default function App() {
       <Hero />
       <Depths />
       <Walkthrough />
-      <PlatformReveal />
+      <CommandDeck />
       <Workflow />
-      <CommandCenter />
       <Regulatory />
       <Security />
       <Credibility />

@@ -93,6 +93,16 @@ path.blueprint {
 }
 .anim-route { animation: routeDash 9s linear infinite; }
 
+@keyframes tabTimer {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes radarSpin {
+  to { transform: rotate(360deg); }
+}
+.anim-radar { animation: radarSpin 7s linear infinite; }
+
 /* ── Reduced motion ───────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

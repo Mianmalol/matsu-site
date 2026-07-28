@@ -11,11 +11,11 @@ export default function Depths() {
   const ref = useRef<HTMLElement>(null)
   const raw = useProgress(ref)
   const reduced = useReducedMotion()
-  const morph = reduced ? 1 : easeOut(clamp01((raw - 0.28) / 0.44))
+  const morph = reduced ? 1 : easeOut(clamp01((raw - 0.22) / 0.5))
   const resolved = morph > 0.55
 
   return (
-    <section ref={ref} className="relative" style={{ height: '320vh' }}>
+    <section ref={ref} className="relative" style={{ height: '220vh' }}>
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center"
         style={{ background: 'linear-gradient(to bottom, #167db7 -6%, #0a2a43 30%, #071a2c 66%, #05101a 100%)' }}>
 
@@ -38,8 +38,8 @@ export default function Depths() {
         </div>
 
         <div className="relative max-w-[1280px] mx-auto px-6 w-full">
-          <div className="relative min-h-[190px] md:min-h-[210px] max-w-3xl">
-            <div className="absolute inset-0 transition-opacity duration-700" style={{ opacity: resolved ? 0 : 1 }}>
+          <div className="grid max-w-3xl">
+            <div className="col-start-1 row-start-1 transition-opacity duration-700" style={{ opacity: resolved ? 0 : 1 }} aria-hidden={resolved}>
               <Label tone="cyan">Beneath the surface</Label>
               <h2 className="font-bold text-white text-3xl md:text-[52px] leading-[1.05] tracking-[-0.02em]">
                 Maritime compliance is not one document.
@@ -48,7 +48,7 @@ export default function Depths() {
                 It is a continuously changing system of regulations, evidence, deadlines, inspections, people, and operational risk.
               </p>
             </div>
-            <div className="absolute inset-0 transition-opacity duration-700" style={{ opacity: resolved ? 1 : 0 }}>
+            <div className="col-start-1 row-start-1 transition-opacity duration-700" style={{ opacity: resolved ? 1 : 0 }} aria-hidden={!resolved}>
               <Label tone="cyan">One intelligent system</Label>
               <h2 className="font-bold text-white text-3xl md:text-[52px] leading-[1.05] tracking-[-0.02em]">
                 Turn complexity into operational clarity.
