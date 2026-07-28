@@ -13,6 +13,10 @@ export default function Depths() {
   const reduced = useReducedMotion()
   const morph = reduced ? 1 : easeOut(clamp01((raw - 0.22) / 0.5))
   const resolved = morph > 0.55
+  // Scroll-driven headline crossfade with disjoint windows: the first
+  // headline is fully out before the second begins, so they never overlap.
+  const fadeOut = reduced ? 0 : 1 - clamp01((morph - 0.3) / 0.18)
+  const fadeIn = reduced ? 1 : clamp01((morph - 0.56) / 0.18)
 
   return (
     <section ref={ref} className="relative -mt-px" style={{ height: '220vh' }}>
@@ -21,7 +25,7 @@ export default function Depths() {
 
         <div className="relative max-w-[1280px] mx-auto px-6 w-full">
           <div className="grid max-w-3xl">
-            <div className="col-start-1 row-start-1 transition-opacity duration-700" style={{ opacity: resolved ? 0 : 1 }} aria-hidden={resolved}>
+            <div className="col-start-1 row-start-1" style={{ opacity: fadeOut }} aria-hidden={fadeOut < 0.5}>
               <Label tone="cyan">Beneath the surface</Label>
               <h2 className="font-bold text-white text-3xl md:text-[52px] leading-[1.05] tracking-[-0.02em]">
                 Maritime compliance is not one document.
@@ -30,7 +34,7 @@ export default function Depths() {
                 It is a continuously changing system of regulations, evidence, deadlines, inspections, people, and operational risk.
               </p>
             </div>
-            <div className="col-start-1 row-start-1 transition-opacity duration-700" style={{ opacity: resolved ? 1 : 0 }} aria-hidden={!resolved}>
+            <div className="col-start-1 row-start-1" style={{ opacity: fadeIn }} aria-hidden={fadeIn < 0.5}>
               <Label tone="cyan">One intelligent system</Label>
               <h2 className="font-bold text-white text-3xl md:text-[52px] leading-[1.05] tracking-[-0.02em]">
                 Turn complexity into operational clarity.
