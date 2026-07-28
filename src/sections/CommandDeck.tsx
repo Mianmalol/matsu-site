@@ -17,53 +17,101 @@ function Blueprint() {
     io.observe(el)
     return () => io.disconnect()
   }, [])
+  // Profile / general-arrangement drawing of a geared bulk carrier, bow right.
+  // Baseline y=230, main deck y=140, design waterline y=205.
+  const holdBounds = [262, 360, 458, 556, 654, 752]
   return (
     <div ref={ref} className={`draw-when-in ${inView ? 'in' : ''}`} aria-hidden="true">
-      <svg viewBox="0 0 960 300" className="w-full">
+      <svg viewBox="0 0 960 310" className="w-full">
         <defs>
           <marker id="dimArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
             <path d="M0 0 L10 5 L0 10" fill="none" stroke="#8797a5" strokeWidth="1.4" />
           </marker>
         </defs>
 
-        <g stroke="#8797a5" strokeWidth="1" strokeDasharray="3 6" opacity="0.22">
-          {[240, 330, 420, 510, 600, 690, 780].map(x => (
-            <line key={x} x1={x} y1="150" x2={x} y2="232" />
-          ))}
+        {/* hold bulkheads (watertight transverse) */}
+        <g stroke="#8797a5" strokeWidth="1" strokeDasharray="3 5" opacity="0.35">
+          {holdBounds.map(x => <line key={x} x1={x} y1="142" x2={x} y2="228" />)}
+        </g>
+        {/* double bottom / tank top */}
+        <line x1="170" y1="216" x2="836" y2="216" stroke="#8797a5" strokeWidth="1" strokeDasharray="6 4" opacity="0.45" />
+
+        {/* design waterline (dash-dot) */}
+        <g stroke="#59b7c8" strokeWidth="1.1" opacity="0.65">
+          <line x1="62" y1="205" x2="912" y2="205" strokeDasharray="14 5 2 5" />
         </g>
 
         <g fill="none" stroke="#167db7" strokeWidth="1.7" strokeLinejoin="round" strokeLinecap="round">
-          <path className="blueprint" style={{ ['--path-len' as string]: 2600 }}
-            d="M100 141 C300 137 560 136 776 134 L826 125 L872 214 C892 219 901 228 888 234 L138 235 C113 235 92 207 88 177 L100 141"
+          {/* hull: transom stern -> keel -> bulbous bow -> raked stem -> sheer line */}
+          <path className="blueprint" style={{ ['--path-len' as string]: 2400 }}
+            d="M128 140 L120 168 Q116 186 128 196 L134 200 L134 222 Q140 230 152 230 L838 230 Q866 230 878 222 Q888 214 882 204 Q876 196 864 198 L858 176 L846 140 M846 140 L774 140 L774 132 L846 132 Z M774 140 L128 140"
           />
-          <path className="blueprint" style={{ ['--path-len' as string]: 1100 }}
-            d="M154 139 L154 82 L238 82 L238 139 M146 82 L246 82 L246 66 L146 66 L146 82 M156 73 L236 73 M194 66 L194 44 M186 44 L202 44 M256 139 L261 90 L288 93 L292 139 M258 96 L290 99"
+          {/* rudder + propeller */}
+          <path className="blueprint" style={{ ['--path-len' as string]: 420, opacity: 0.85 }} strokeWidth="1.3"
+            d="M112 196 L128 196 L130 226 L114 226 Z M121 196 L121 190 M134 206 Q141 198 148 206 Q141 226 134 218 Z"
           />
-          <path className="blueprint" style={{ ['--path-len' as string]: 1400 }}
-            d="M318 133 L318 118 L392 118 L392 133 M410 133 L410 118 L484 118 L484 133 M502 133 L502 118 L576 118 L576 133 M594 133 L594 118 L668 118 L668 133 M686 133 L686 118 L760 118 L760 133 M401 133 L401 80 L436 100 M585 133 L585 80 L620 100 M792 130 L792 103 M786 103 L798 103"
+          {/* aft accommodation block, bridge deck, wheelhouse, bridge wing */}
+          <path className="blueprint" style={{ ['--path-len' as string]: 1200 }}
+            d="M152 140 L152 92 L224 92 L224 140 M152 128 L224 128 M152 116 L224 116 M152 104 L224 104 M158 92 L158 78 L218 78 L218 92 M162 78 L162 62 L214 62 L214 78 M156 70 L162 70 M214 70 L222 70"
           />
-          <path className="blueprint" style={{ ['--path-len' as string]: 700, opacity: 0.75 }} strokeWidth="1.3"
-            d="M96 218 L96 236 L110 236 L110 220 M114 226 a9 9 0 1 0 18 0 a9 9 0 1 0 -18 0 M846 206 L858 206 M846 196 L858 196 M846 186 L858 186"
+          {/* radar mast + funnel with cap */}
+          <path className="blueprint" style={{ ['--path-len' as string]: 460, opacity: 0.9 }} strokeWidth="1.3"
+            d="M186 62 L186 40 M180 46 L192 46 M178 40 L194 40 M232 140 L232 96 L254 96 L254 140 M232 104 L254 100 M238 96 L238 88 L248 88 L248 96"
+          />
+          {/* hatch coamings + covers, holds 1-5 */}
+          <path className="blueprint" style={{ ['--path-len' as string]: 1500 }}
+            d="M272 140 L272 128 L350 128 L350 140 M268 128 L354 128 M370 140 L370 128 L448 128 L448 140 M366 128 L452 128 M468 140 L468 128 L546 128 L546 140 M464 128 L550 128 M566 140 L566 128 L644 128 L644 140 M562 128 L646 128 M664 140 L664 128 L742 128 L742 140 M660 128 L746 128"
+          />
+          {/* deck cranes between holds */}
+          <path className="blueprint" style={{ ['--path-len' as string]: 620, opacity: 0.9 }} strokeWidth="1.3"
+            d="M358 128 L358 96 L390 112 M354 96 L362 96 M556 128 L556 96 L588 112 M552 96 L560 96 M750 128 L750 100 L778 114 M746 100 L754 100"
+          />
+          {/* forecastle: mast, anchor + hawse, chain locker line */}
+          <path className="blueprint" style={{ ['--path-len' as string]: 360, opacity: 0.9 }} strokeWidth="1.3"
+            d="M812 132 L812 108 M806 114 L818 114 M852 168 L862 172 M854 172 L858 182 L850 180 Z"
           />
         </g>
 
-        <g stroke="#8797a5" opacity="0.55">
-          <line x1="30" y1="214" x2="930" y2="214" strokeWidth="1.4" />
-          <line x1="70" y1="246" x2="420" y2="246" strokeWidth="1" opacity="0.5" />
-          <line x1="520" y1="252" x2="880" y2="252" strokeWidth="1" opacity="0.4" />
+        {/* frame station ticks along baseline */}
+        <g stroke="#8797a5" strokeWidth="1" opacity="0.5">
+          {Array.from({ length: 18 }, (_, i) => 170 + i * 38).map(x => <line key={x} x1={x} y1="230" x2={x} y2="236" />)}
+        </g>
+        <g fontFamily="'JetBrains Mono', monospace" fontSize="8" fill="#8797a5" opacity="0.7">
+          <text x="170" y="245">FR 0</text>
+          <text x="474" y="245">FR 120</text>
+          <text x="808" y="245">FR 255</text>
         </g>
 
+        {/* dimensions: LOA + draft */}
         <g stroke="#8797a5" strokeWidth="1">
-          <line x1="88" y1="274" x2="888" y2="274" markerStart="url(#dimArrow)" markerEnd="url(#dimArrow)" />
-          <line x1="88" y1="240" x2="88" y2="280" opacity="0.4" />
-          <line x1="888" y1="240" x2="888" y2="280" opacity="0.4" />
+          <line x1="112" y1="272" x2="888" y2="272" markerStart="url(#dimArrow)" markerEnd="url(#dimArrow)" />
+          <line x1="112" y1="200" x2="112" y2="278" opacity="0.4" strokeDasharray="2 3" />
+          <line x1="888" y1="210" x2="888" y2="278" opacity="0.4" strokeDasharray="2 3" />
+          <line x1="912" y1="205" x2="912" y2="230" markerStart="url(#dimArrow)" markerEnd="url(#dimArrow)" />
+          <line x1="884" y1="230" x2="920" y2="230" opacity="0.4" />
+        </g>
+        <g fontFamily="'JetBrains Mono', monospace" fontSize="10" fill="#8797a5">
+          <text x="500" y="266" textAnchor="middle">LOA 229.0 M</text>
+          <text x="918" y="222" textAnchor="start">T 14.5 M</text>
+          <text x="66" y="201">DWL</text>
+          <text x="66" y="227" opacity="0.7">BL</text>
+          {[1, 2, 3, 4, 5].map(n => (
+            <text key={n} x={311 + (n - 1) * 98} y="180" textAnchor="middle" opacity="0.6">HOLD {6 - n}</text>
+          ))}
         </g>
 
-        <g fontFamily="'JetBrains Mono', monospace" fontSize="10.5" fill="#8797a5">
-          <text x="452" y="292" textAnchor="middle">LOA 229.0 M</text>
-          <text x="866" y="180" textAnchor="start">DRAFT</text>
-          <text x="480" y="34" textAnchor="middle" fontSize="11.5" fill="#0d5c91" letterSpacing="2">MV ADRIATIC PIONEER · BULK CARRIER · IMO 9876543</text>
-          <text x="930" y="292" textAnchor="end">DWT 82,000</text>
+        {/* title block */}
+        <g stroke="#8797a5" strokeWidth="1" fill="none" opacity="0.8">
+          <rect x="676" y="252" width="254" height="50" />
+          <line x1="676" y1="268" x2="930" y2="268" />
+          <line x1="676" y1="285" x2="930" y2="285" />
+          <line x1="836" y1="285" x2="836" y2="302" />
+        </g>
+        <g fontFamily="'JetBrains Mono', monospace" fill="#8797a5">
+          <text x="684" y="263" fontSize="8.5" fill="#0d5c91" letterSpacing="1">GENERAL ARRANGEMENT · PROFILE</text>
+          <text x="684" y="280" fontSize="9">MV ADRIATIC PIONEER · IMO 9876543</text>
+          <text x="684" y="297" fontSize="8.5">BULK CARRIER · DWT 82,000</text>
+          <text x="844" y="297" fontSize="8.5">SCALE 1:1000</text>
         </g>
       </svg>
     </div>
