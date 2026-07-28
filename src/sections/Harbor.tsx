@@ -36,9 +36,11 @@ export default function Harbor() {
             {[1050, 1140, 1230, 1300, 1390].map((x, i) => (
               <circle key={i} cx={x} cy={i % 2 ? 508 : 496} r="3" fill="#d9a441" className="anim-pulse-dot" />
             ))}
-            <g transform="translate(300 512)" className="anim-drift">
-              <CargoShip scale={1.05} />
-              <ellipse cx="110" cy="48" rx="150" ry="8" fill="#dcecf2" opacity="0.25" />
+            <g transform="translate(300 512)">
+              <g className="anim-drift">
+                <CargoShip scale={1.05} />
+                <ellipse cx="110" cy="48" rx="150" ry="8" fill="#dcecf2" opacity="0.25" />
+              </g>
             </g>
           </svg>
         )}

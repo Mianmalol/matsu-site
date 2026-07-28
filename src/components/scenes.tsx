@@ -78,9 +78,20 @@ export function HeroScene({ y, reduced }: { y: number; reduced: boolean }) {
             <line x1="0" y1="790" x2="1440" y2="790" strokeWidth="2" opacity="0.16" />
           </g>
           <rect x="330" y="545" width="180" height="330" fill="#ffffff" opacity="0.10" transform="skewX(-6)" />
-          <g transform={`translate(${790 + sceneShift} 546)`} className={reduced ? '' : 'anim-drift'}>
-            <CargoShip scale={shipScale} />
-            <ellipse cx={104 * shipScale} cy={44 * shipScale} rx={130 * shipScale} ry="7" fill="#f3f6f7" opacity="0.3" />
+          <g transform="translate(1080 541)" opacity="0.9">
+            <path d="M0 5 Q 42 -24, 96 -7 Q 132 -19, 178 3 Q 214 -9, 252 5 L252 9 L0 9 Z" fill="#6ea9c8" />
+            <path d="M34 5 Q 84 -13, 142 1 Q 192 -11, 240 5 Z" fill="#4f86a6" opacity="0.55" />
+            <rect x="150" y="-32" width="6.5" height="25" fill="#f3f6f7" />
+            <rect x="150" y="-32" width="6.5" height="5" fill="#0d5c91" />
+            <rect x="148" y="-36" width="10.5" height="4" fill="#0a2a43" />
+            <circle cx="153.2" cy="-39" r="2.2" fill="#d9a441" className="anim-pulse-dot" />
+            <ellipse cx="126" cy="13" rx="118" ry="5.5" fill="#dcecf2" opacity="0.2" />
+          </g>
+          <g transform={`translate(${810 + sceneShift} 550)`}>
+            <g className={reduced ? '' : 'anim-drift'}>
+              <CargoShip scale={shipScale * 1.12} />
+              <ellipse cx={104 * shipScale * 1.12} cy={44 * shipScale * 1.12} rx={130 * shipScale * 1.12} ry="7" fill="#f3f6f7" opacity="0.3" />
+            </g>
           </g>
         </svg>
       )}
@@ -254,8 +265,10 @@ export function PortScene() {
       {[150, 260, 410, 500, 640, 720, 820].map((x, i) => (
         <circle key={i} cx={x} cy={i % 2 ? 356 : 344} r="3" fill="#d9a441" className="anim-pulse-dot" opacity="0.9" />
       ))}
-      <g transform="translate(140 420) scale(1.15)" className="anim-drift">
-        <CargoShip />
+      <g transform="translate(140 420) scale(1.15)">
+        <g className="anim-drift">
+          <CargoShip />
+        </g>
       </g>
       <ellipse cx="380" cy="480" rx="240" ry="10" fill="#59b7c8" opacity="0.2" />
       <rect y="360" width="900" height="26" fill="#dcecf2" opacity="0.12" />

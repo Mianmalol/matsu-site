@@ -18,7 +18,7 @@ export default function Hero() {
         style={{ opacity: fade, transform: `translateY(-${lift}px)`, pointerEvents: fade < 0.1 ? 'none' : undefined }}
       >
         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-maritime mb-6">Maritime compliance platform</p>
-        <h1 className="font-bold text-navy text-[44px] md:text-[72px] lg:text-[92px] leading-[0.98] tracking-[-0.03em] max-w-4xl">
+        <h1 className="font-bold text-navy text-[40px] md:text-[64px] lg:text-[80px] leading-[0.98] tracking-[-0.03em] max-w-4xl">
           Navigate compliance.<br />Sail with confidence.
         </h1>
         <p className="mt-7 text-lg md:text-xl text-navy/70 max-w-xl leading-relaxed">
