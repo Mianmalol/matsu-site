@@ -19,24 +19,6 @@ export default function Depths() {
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center"
         style={{ background: 'linear-gradient(to bottom, #167db7 -6%, #0a2a43 30%, #071a2c 66%, #05101a 100%)' }}>
 
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
-          style={{ opacity: 1 - morph * 0.7 }}>
-          {[12, 34, 58, 78].map((left, i) => (
-            <div key={i} className={reduced ? '' : 'anim-rays'} style={{
-              position: 'absolute', top: '-8%', left: `${left}%`, width: '90px', height: '65%',
-              background: 'linear-gradient(to bottom, rgba(220,236,242,0.16), rgba(220,236,242,0))',
-              transform: 'skewX(-14deg)', animationDelay: `${i * 1.4}s`,
-            }} />
-          ))}
-          {Array.from({ length: 14 }).map((_, i) => (
-            <span key={i} className={reduced ? '' : 'anim-particle'} style={{
-              position: 'absolute', left: `${(i * 61) % 97}%`, top: `${18 + (i * 37) % 70}%`,
-              width: i % 3 ? 2 : 3, height: i % 3 ? 2 : 3, borderRadius: '50%',
-              background: 'rgba(220,236,242,0.5)', animationDelay: `${i * 0.7}s`, display: 'inline-block',
-            }} />
-          ))}
-        </div>
-
         <div className="relative max-w-[1280px] mx-auto px-6 w-full">
           <div className="grid max-w-3xl">
             <div className="col-start-1 row-start-1 transition-opacity duration-700" style={{ opacity: resolved ? 0 : 1 }} aria-hidden={resolved}>
