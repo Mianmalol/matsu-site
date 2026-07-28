@@ -22,7 +22,7 @@ export default function Footer() {
           <div className="col-span-2">
             <Wordmark light />
             <p className="mt-4 text-sm text-steel leading-relaxed max-w-xs">
-              The operating system for maritime compliance: vessels, documents, inspections, and regulation in one operational picture.
+              AI Agents for Maritime Compliance
             </p>
           </div>
           {cols.map(c => (
