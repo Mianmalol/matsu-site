@@ -49,14 +49,11 @@ export default function Harbor() {
       <div className="relative max-w-[1280px] mx-auto px-6 py-40 lg:py-52 text-center">
         <Reveal>
           <h2 className="font-bold text-white text-5xl md:text-7xl tracking-[-0.03em] leading-[1.02]">
-            Ready for every inspection.<br />Prepared for every voyage.
+            Prepared for every voyage.
           </h2>
-          <p className="mt-7 text-lg md:text-xl text-mist/85 max-w-xl mx-auto">
-            Bring clarity, control, and confidence to maritime compliance.
-          </p>
           <div className="mt-11 flex items-center justify-center gap-4 flex-wrap">
             <a href="mailto:marco0111ml@gmail.com?subject=Matsu%20demo%20request" className="bg-white text-navy text-[15px] font-semibold px-8 py-4 rounded-md hover:bg-mist transition-colors">
-              Request a demonstration
+              Book a demo
             </a>
           </div>
         </Reveal>
