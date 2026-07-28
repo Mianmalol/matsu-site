@@ -58,9 +58,6 @@ export default function Harbor() {
             <a href="mailto:marco0111ml@gmail.com?subject=Matsu%20demo%20request" className="bg-white text-navy text-[15px] font-semibold px-8 py-4 rounded-md hover:bg-mist transition-colors">
               Request a demonstration
             </a>
-            <a href="#platform" className="text-[15px] font-medium text-white border border-white/40 px-8 py-4 rounded-md hover:border-white transition-colors">
-              Explore the platform →
-            </a>
           </div>
         </Reveal>
       </div>

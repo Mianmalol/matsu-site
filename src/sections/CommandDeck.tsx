@@ -71,10 +71,28 @@ function Blueprint() {
 }
 
 function statusTint(s: Vessel['status']) {
-  return s === 'compliant' ? { text: '#0d5c91', bg: '#dcecf2', label: 'Compliant' }
-    : s === 'attention' ? { text: '#8a6410', bg: '#f7ecd2', label: 'Attention' }
-    : { text: '#9a3d12', bg: '#f6ddd0', label: 'At risk' }
+  return s === 'compliant' ? { text: '#0d5c91', bg: '#dcecf2', bar: '#167db7', label: 'Complete' }
+    : s === 'attention' ? { text: '#506170', bg: '#eef1f4', bar: '#8797a5', label: 'In Progress' }
+    : { text: '#8a6410', bg: '#f7ecd2', bar: '#d9a441', label: 'Needs Review' }
 }
+
+const flagNames: Record<string, string> = { MT: 'Malta', PA: 'Panama', NO: 'Norway', LR: 'Liberia', BS: 'Bahamas' }
+
+// pipeline stages a vessel has cleared in the demo, derived from its score
+function stagesDone(x: Vessel) {
+  return x.score >= 95 ? 6 : x.score >= 85 ? 5 : x.score >= 75 ? 4 : 3
+}
+
+const PIPELINE = ['Scanning', 'Extraction', 'Assignment', 'Actions', 'Evidence', 'Approval']
+
+const agentEvents = [
+  { t: '14:29', vessel: 'Coral Meridian', stage: 'Evidence', e: 'Bunker delivery notes received, routing to DPA' },
+  { t: '14:25', vessel: 'Nordic Resolve', stage: 'Actions', e: 'PSC deficiency follow-up escalated as critical' },
+  { t: '14:22', vessel: 'Pacific Endeavour', stage: 'Evidence', e: 'Fuel sample flagged: sulphur 0.52% vs 0.49% declared' },
+  { t: '14:18', vessel: 'Strait Albatross', stage: 'Approval', e: 'DPA approved annual audit cycle, zero deficiencies' },
+]
+
+const actionsPerHour = [24, 32, 41, 36, 52, 58, 66]
 
 // Small top-down vessel glyph, drawn pointing east (+x); rotated per heading.
 function ShipMarker({ color, active }: { color: string; active: boolean }) {
@@ -188,15 +206,20 @@ function FleetMap({ sel, onSelect }: { sel: string; onSelect: (id: string) => vo
 
 export default function CommandDeck() {
   const [sel, setSel] = useState<string>('3')
-  const v = vessels.find(x => x.id === sel)!
-  const fleetRate = Math.round(vessels.reduce((a, b) => a + b.score, 0) / vessels.length)
-  const circ = 2 * Math.PI * 54
   // All figures below derive from the shared demonstration-fleet data.
-  const stats: { label: string; value: string; amber?: boolean }[] = [
+  const compliant = vessels.filter(x => x.status === 'compliant').length
+  const kpis: { label: string; value: string; amber?: boolean }[] = [
+    { label: 'Vessels compliant', value: `${compliant} / ${vessels.length}` },
+    { label: 'Regulations indexed', value: '2,847' },
+    { label: 'Actions in flight', value: String(vessels.reduce((a, b) => a + b.actions, 0)) },
+    { label: 'Needs review', value: String(vessels.filter(x => x.status !== 'compliant').length), amber: true },
+  ]
+  const pipelineDone = PIPELINE.map((_, i) => vessels.filter(x => stagesDone(x) >= i + 1).length)
+  const stats: { label: string; value: string }[] = [
     { label: 'Vessels tracked', value: String(vessels.length) },
     { label: 'Certificates expiring ≤ 30 days', value: String(vessels.reduce((a, b) => a + b.expiring, 0)) },
-    { label: 'Open follow-up actions', value: String(vessels.reduce((a, b) => a + b.actions, 0)), amber: true },
-    { label: 'Vessels needing attention', value: String(vessels.filter(x => x.status !== 'compliant').length) },
+    { label: 'Flag states', value: String(new Set(vessels.map(x => x.flag)).size) },
+    { label: 'Ports monitored', value: String(new Set(vessels.map(x => x.port)).size) },
   ]
 
   return (
@@ -216,65 +239,121 @@ export default function CommandDeck() {
         </Reveal>
         <Reveal delay={100} className="mt-4">
           <div className="bg-white border border-mist rounded-xl overflow-hidden shadow-[0_30px_80px_-40px_rgba(7,26,44,0.35)]">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-fog bg-fog/60">
-              <span className="text-sm font-semibold text-navy">Fleet compliance overview</span>
-              <span className="text-xs font-mono text-steel">SAMPLE DATA · DEMONSTRATION FLEET</span>
+            <div className="flex items-center justify-between px-6 py-4 border-b border-fog bg-fog/60 flex-wrap gap-2">
+              <span className="text-sm font-semibold text-navy">Fleet Overview · Demonstration Fleet</span>
+              <span className="flex items-center gap-5">
+                <span className="flex items-center gap-2 text-xs font-medium text-navy/70">
+                  <span className="w-2 h-2 rounded-full bg-ocean anim-pulse-dot" aria-hidden="true" />
+                  Agent running
+                </span>
+                <span className="text-xs font-mono text-steel">SAMPLE DATA</span>
+              </span>
             </div>
-            <div className="grid lg:grid-cols-[1.5fr_1fr]">
-              <div className="border-r border-fog">
-                <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-3 px-6 py-2.5 border-b border-fog">
-                  {['Vessel', 'Score', 'Expiring', 'Actions'].map(h => (
-                    <span key={h} className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel">{h}</span>
+            <div className="grid grid-cols-2 lg:grid-cols-4 border-b border-fog">
+              {kpis.map((k, i) => (
+                <div key={k.label} className={`px-6 py-5 ${i > 0 ? 'border-l border-fog' : ''}`}>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel">{k.label}</p>
+                  <p className="mt-1.5 text-2xl font-bold tracking-[-0.01em]" style={{ color: k.amber ? '#8a6410' : '#071a2c' }}>{k.value}</p>
+                </div>
+              ))}
+            </div>
+            <div className="grid lg:grid-cols-[1.6fr_1fr]">
+              <div className="lg:border-r border-fog">
+                <p className="px-6 pt-5 pb-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-steel">Demonstration fleet · {vessels.length} vessels</p>
+                <div className="overflow-x-auto">
+                  <div className="min-w-[620px]">
+                    <div className="grid grid-cols-[1.8fr_0.9fr_1fr_1.1fr_1.1fr] gap-3 px-6 py-2.5 border-b border-fog">
+                      {['Vessel', 'Flag', 'Type', 'Stages', 'Status'].map(h => (
+                        <span key={h} className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel">{h}</span>
+                      ))}
+                    </div>
+                    {vessels.map(x => {
+                      const t = statusTint(x.status)
+                      const done = stagesDone(x)
+                      return (
+                        <button key={x.id} onClick={() => setSel(x.id)}
+                          className={`w-full grid grid-cols-[1.8fr_0.9fr_1fr_1.1fr_1.1fr] gap-3 px-6 py-4 text-left border-b border-fog transition-colors hover:bg-fog/70 ${sel === x.id ? 'bg-mist/40' : ''}`}
+                          style={{ boxShadow: sel === x.id ? 'inset 3px 0 0 #167db7' : undefined }}>
+                          <span>
+                            <span className="block text-sm font-semibold text-navy">{x.name}</span>
+                            <span className="block text-[11px] font-mono text-steel mt-0.5">IMO {x.imo}</span>
+                          </span>
+                          <span className="self-center text-[13px] text-navy/70">{flagNames[x.flag]}</span>
+                          <span className="self-center text-[13px] text-navy/70">{x.type}</span>
+                          <span className="self-center flex gap-1" aria-label={`${done} of ${PIPELINE.length} stages complete`}>
+                            {PIPELINE.map((_, i) => (
+                              <span key={i} className="h-[4px] flex-1 max-w-[16px] rounded-full" style={{ background: i < done ? (x.status === 'risk' && i === done - 1 ? '#d9a441' : '#167db7') : '#e5ecf0' }} />
+                            ))}
+                          </span>
+                          <span className="self-center justify-self-start text-[11px] font-semibold px-2 py-1 rounded" style={{ color: t.text, background: t.bg }}>{t.label}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+                <p className="px-6 pt-5 pb-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-steel">Agent event log</p>
+                <div className="pb-4">
+                  {agentEvents.map(ev => (
+                    <div key={ev.t} className="flex items-baseline gap-3 px-6 py-2 text-[12.5px]">
+                      <span className="font-mono text-steel shrink-0">{ev.t}</span>
+                      <span className="font-semibold text-navy shrink-0">{ev.vessel}</span>
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-ocean shrink-0">{ev.stage}</span>
+                      <span className="text-navy/70 truncate">{ev.e}</span>
+                    </div>
                   ))}
                 </div>
-                {vessels.map(x => {
-                  const t = statusTint(x.status)
-                  return (
-                    <button key={x.id} onClick={() => setSel(x.id)}
-                      className={`w-full grid grid-cols-[2fr_1fr_1fr_1fr] gap-3 px-6 py-4 text-left border-b border-fog transition-colors hover:bg-fog/70 ${sel === x.id ? 'bg-mist/40' : ''}`}
-                      style={{ boxShadow: sel === x.id ? 'inset 3px 0 0 #167db7' : undefined }}>
-                      <span>
-                        <span className="block text-sm font-semibold text-navy">{x.name}</span>
-                        <span className="block text-[11px] font-mono text-steel mt-0.5">IMO {x.imo} · {x.type}</span>
-                      </span>
-                      <span className="self-center text-sm font-semibold" style={{ color: t.text }}>{x.score}</span>
-                      <span className="self-center text-sm text-navy/70">{x.expiring}</span>
-                      <span className="self-center text-sm text-navy/70">{x.actions}</span>
-                    </button>
-                  )
-                })}
               </div>
-              <div className="p-6">
-                <div className="flex items-center gap-5 pb-5 border-b border-fog">
-                  <svg width="128" height="128" viewBox="0 0 128 128" role="img" aria-label={`Fleet compliance rate ${fleetRate} percent`}>
-                    <circle cx="64" cy="64" r="54" fill="none" stroke="#f3f6f7" strokeWidth="11" />
-                    <circle cx="64" cy="64" r="54" fill="none" stroke="#167db7" strokeWidth="11" strokeLinecap="round"
-                      strokeDasharray={`${(fleetRate / 100) * circ} ${circ}`} transform="rotate(-90 64 64)" />
-                    <text x="64" y="60" textAnchor="middle" fontSize="26" fontWeight="700" fill="#071a2c" fontFamily="Inter, sans-serif">{fleetRate}%</text>
-                    <text x="64" y="80" textAnchor="middle" fontSize="10" fill="#8797a5" fontFamily="Inter, sans-serif">fleet rate</text>
+              <div className="p-6 space-y-7">
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel mb-3">Actions processed / hr</p>
+                  <svg viewBox="0 0 280 84" className="w-full" role="img" aria-label="Actions processed per hour, rising from 24 to 66 across the afternoon">
+                    <g stroke="#f3f6f7" strokeWidth="1">
+                      <line x1="24" y1="10" x2="272" y2="10" /><line x1="24" y1="66" x2="272" y2="66" />
+                    </g>
+                    <g fontFamily="'JetBrains Mono', monospace" fontSize="8.5" fill="#8797a5">
+                      <text x="18" y="70" textAnchor="end">20</text>
+                      <text x="18" y="14" textAnchor="end">70</text>
+                      {actionsPerHour.map((_, i) => <text key={i} x={30 + i * 40} y="82" textAnchor="middle">{String(8 + i).padStart(2, '0')}</text>)}
+                    </g>
+                    <polyline
+                      points={actionsPerHour.map((a, i) => `${30 + i * 40},${66 - ((a - 20) / 50) * 56}`).join(' ')}
+                      fill="none" stroke="#167db7" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"
+                    />
                   </svg>
-                  <div className="space-y-2 text-[13px]">
+                </div>
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel mb-3">Fleet compliance status</p>
+                  <div className="space-y-3.5">
                     {(['compliant', 'attention', 'risk'] as const).map(s => {
                       const t = statusTint(s)
                       const n = vessels.filter(x => x.status === s).length
                       return (
-                        <div key={s} className="flex items-center gap-2.5">
-                          <span className="w-2.5 h-2.5 rounded-sm" style={{ background: t.text }} />
-                          <span className="text-navy/70">{t.label}</span>
-                          <span className="ml-auto font-semibold text-navy">{n}</span>
+                        <div key={s}>
+                          <div className="flex items-center justify-between text-[13px] mb-1.5">
+                            <span className="text-navy/70">{t.label}</span>
+                            <span className="font-semibold text-navy">{n}</span>
+                          </div>
+                          <div className="h-[5px] rounded-full bg-fog">
+                            <div className="h-full rounded-full" style={{ width: `${(n / vessels.length) * 100}%`, background: t.bar }} />
+                          </div>
                         </div>
                       )
                     })}
                   </div>
                 </div>
-                <div className="pt-5">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel mb-3">Selected · {v.name}</p>
-                  <div className="space-y-2.5 text-[13px]">
-                    <div className="flex justify-between"><span className="text-navy/60">Status</span>
-                      <span className="text-[11px] font-semibold px-2 py-0.5 rounded" style={{ color: statusTint(v.status).text, background: statusTint(v.status).bg }}>{statusTint(v.status).label}</span></div>
-                    <div className="flex justify-between"><span className="text-navy/60">Next port</span><span className="font-medium text-navy">{v.port}</span></div>
-                    <div className="flex justify-between"><span className="text-navy/60">Certificates expiring ≤ 30 d</span><span className="font-medium text-navy">{v.expiring}</span></div>
-                    <div className="flex justify-between"><span className="text-navy/60">Open corrective actions</span><span className="font-medium text-navy">{v.actions}</span></div>
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel mb-3">Pipeline stage breakdown</p>
+                  <div className="space-y-3">
+                    {PIPELINE.map((stage, i) => (
+                      <div key={stage} className="flex items-center gap-3 text-[13px]">
+                        <span className="w-4 text-[11px] font-mono text-steel">{i + 1}</span>
+                        <span className="text-navy/70 w-24">{stage}</span>
+                        <div className="flex-1 h-[5px] rounded-full bg-fog">
+                          <div className="h-full rounded-full bg-ocean" style={{ width: `${(pipelineDone[i] / vessels.length) * 100}%` }} />
+                        </div>
+                        <span className="font-mono text-[11px] text-steel w-8 text-right">{pipelineDone[i]}/{vessels.length}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -283,7 +362,7 @@ export default function CommandDeck() {
             <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-white/10 bg-navy">
               {stats.map((s, i) => (
                 <div key={s.label} className={`px-6 py-6 ${i > 0 ? 'border-l border-white/10' : ''}`}>
-                  <p className="text-3xl font-bold" style={{ color: s.amber ? '#d9a441' : '#ffffff' }}>{s.value}</p>
+                  <p className="text-3xl font-bold text-white">{s.value}</p>
                   <p className="text-[12px] text-mist/60 mt-1.5 leading-snug">{s.label}</p>
                 </div>
               ))}

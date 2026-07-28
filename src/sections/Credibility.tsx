@@ -38,12 +38,6 @@ export default function Credibility() {
           <p className="text-2xl md:text-[32px] leading-snug font-medium text-navy tracking-[-0.01em]">
             FuelEU penalties are live. EU ETS reached full coverage. CII tightens every year. Most fleets still track all of this in spreadsheets and inboxes.
           </p>
-          <p className="mt-6 text-sm text-steel">
-            We're onboarding design-partner fleets now.{' '}
-            <a href="mailto:marco0111ml@gmail.com?subject=Matsu%20design%20partner" className="text-ocean font-medium hover:text-maritime transition-colors">
-              Become a design partner →
-            </a>
-          </p>
         </Reveal>
       </div>
     </section>

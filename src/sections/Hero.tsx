@@ -21,14 +21,8 @@ export default function Hero() {
         <h1 className="font-bold text-navy text-[40px] md:text-[64px] lg:text-[80px] leading-[0.98] tracking-[-0.03em] max-w-4xl">
           Navigate compliance.<br />Sail with confidence.
         </h1>
-        <p className="mt-7 text-lg md:text-xl text-navy/70 max-w-xl leading-relaxed">
-          One intelligent platform for vessel compliance, documentation, inspections, regulatory readiness, and fleet-wide risk management.
-        </p>
         <div className="mt-9 flex items-center gap-4 flex-wrap">
-          <a href="#platform" className="bg-navy text-white text-[15px] font-semibold px-7 py-4 rounded-md hover:bg-deepsea transition-colors">
-            Explore the platform
-          </a>
-          <a href="#cta" className="text-[15px] font-medium text-navy bg-white/85 backdrop-blur-sm border border-navy/15 px-7 py-4 rounded-md hover:bg-white transition-colors">
+          <a href="#cta" className="bg-navy text-white text-[15px] font-semibold px-7 py-4 rounded-md hover:bg-deepsea transition-colors">
             Request a demonstration →
           </a>
         </div>

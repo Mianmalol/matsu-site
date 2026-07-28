@@ -71,12 +71,6 @@ export function HeroScene({ y, reduced }: { y: number; reduced: boolean }) {
           <circle cx="420" cy="330" r="190" fill="url(#sun)" />
           <rect y="540" width="1440" height="360" fill="url(#sea)" />
           <rect y="520" width="1440" height="70" fill="url(#mistBand)" />
-          <g opacity="0.5" stroke="#f3f6f7">
-            <line x1="0" y1="600" x2="1440" y2="600" strokeWidth="1" opacity="0.35" />
-            <line x1="0" y1="650" x2="1440" y2="650" strokeWidth="1.2" opacity="0.28" />
-            <line x1="0" y1="712" x2="1440" y2="712" strokeWidth="1.5" opacity="0.22" />
-            <line x1="0" y1="790" x2="1440" y2="790" strokeWidth="2" opacity="0.16" />
-          </g>
           <rect x="330" y="545" width="180" height="330" fill="#ffffff" opacity="0.10" transform="skewX(-6)" />
           <g transform="translate(1080 541)" opacity="0.9">
             <path d="M0 5 Q 42 -24, 96 -7 Q 132 -19, 178 3 Q 214 -9, 252 5 L252 9 L0 9 Z" fill="#6ea9c8" />

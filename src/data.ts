@@ -90,7 +90,6 @@ export const workflow = [
   { step: 'Assigned action', example: 'Audit + close NC-014' },
   { step: 'Evidence', example: 'Report, photos, records' },
   { step: 'Approval', example: 'DPA sign-off' },
-  { step: 'Audit record', example: 'Immutable, time-stamped' },
 ]
 
 export const regs = [
