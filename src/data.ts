@@ -23,16 +23,15 @@ export interface Vessel {
   id: string; name: string; type: string; flag: string; imo: string
   score: number; expiring: number; actions: number; port: string
   status: 'compliant' | 'attention' | 'risk'
-  /** position + inbound route on the demonstration fleet map (1180×420 viewBox) */
-  map: { x: number; y: number; route: string }
 }
 
+// Chart positions/routes for these vessels live in components/mapGeo.ts (keyed by id).
 export const vessels: Vessel[] = [
-  { id: '1', name: 'MV Adriatic Pioneer', type: 'Bulk Carrier', flag: 'MT', imo: '9876543', score: 96, expiring: 1, actions: 0, port: 'Rotterdam', status: 'compliant', map: { x: 180, y: 160, route: 'M60 240 Q 110 190, 180 160' } },
-  { id: '2', name: 'MV Pacific Endeavour', type: 'Container', flag: 'PA', imo: '9654321', score: 81, expiring: 4, actions: 2, port: 'Singapore', status: 'attention', map: { x: 620, y: 180, route: 'M430 100 Q 520 150, 620 180' } },
-  { id: '3', name: 'MV Nordic Resolve', type: 'Tanker', flag: 'NO', imo: '9432109', score: 62, expiring: 6, actions: 5, port: 'Hamburg', status: 'risk', map: { x: 1020, y: 220, route: 'M780 140 Q 910 190, 1020 220' } },
-  { id: '4', name: 'MV Strait Albatross', type: 'Bulk Carrier', flag: 'LR', imo: '9210987', score: 98, expiring: 0, actions: 0, port: 'Antwerp', status: 'compliant', map: { x: 300, y: 330, route: 'M130 370 Q 210 345, 300 330' } },
-  { id: '5', name: 'MV Coral Meridian', type: 'Container', flag: 'BS', imo: '9109876', score: 87, expiring: 2, actions: 1, port: 'Dubai', status: 'attention', map: { x: 760, y: 300, route: 'M550 360 Q 650 325, 760 300' } },
+  { id: '1', name: 'MV Adriatic Pioneer', type: 'Bulk Carrier', flag: 'MT', imo: '9876543', score: 96, expiring: 1, actions: 0, port: 'Rotterdam', status: 'compliant' },
+  { id: '2', name: 'MV Pacific Endeavour', type: 'Container', flag: 'PA', imo: '9654321', score: 81, expiring: 4, actions: 2, port: 'Singapore', status: 'attention' },
+  { id: '3', name: 'MV Nordic Resolve', type: 'Tanker', flag: 'NO', imo: '9432109', score: 62, expiring: 6, actions: 5, port: 'Hamburg', status: 'risk' },
+  { id: '4', name: 'MV Strait Albatross', type: 'Bulk Carrier', flag: 'LR', imo: '9210987', score: 98, expiring: 0, actions: 0, port: 'Antwerp', status: 'compliant' },
+  { id: '5', name: 'MV Coral Meridian', type: 'Container', flag: 'BS', imo: '9109876', score: 87, expiring: 2, actions: 1, port: 'Dubai', status: 'attention' },
 ]
 
 export const floatingDocs = [

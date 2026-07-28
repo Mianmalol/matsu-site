@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Reveal, Label } from '@/components/ui'
 import { vessels, type Vessel } from '@/data'
+import { MAP_W, MAP_H, LAND_PATH, PORTS, VESSEL_GEO, GRATICULE, CHOKEPOINTS } from '@/components/mapGeo'
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  5 · Command deck (blueprint → fleet table ↔ live map)
@@ -75,55 +76,102 @@ function statusTint(s: Vessel['status']) {
     : { text: '#9a3d12', bg: '#f6ddd0', label: 'At risk' }
 }
 
+// Small top-down vessel glyph, drawn pointing east (+x); rotated per heading.
+function ShipMarker({ color, active }: { color: string; active: boolean }) {
+  const s = active ? 1.25 : 1
+  return (
+    <g transform={`scale(${s})`}>
+      <path d="M-12 -4 L6 -4 L13 0 L6 4 L-12 4 Z" fill={color} stroke="#05101a" strokeWidth="0.8" />
+      <rect x="-9" y="-2.2" width="9" height="4.4" fill="#05101a" opacity="0.35" />
+      <rect x="2" y="-1.6" width="3.4" height="3.2" fill="#f3f6f7" opacity="0.9" />
+    </g>
+  )
+}
+
 function FleetMap({ sel, onSelect }: { sel: string; onSelect: (id: string) => void }) {
+  // Rotterdam & Antwerp sit ~8px apart on this chart; anchor their labels apart.
+  const portLabel = (name: string): { dx: number; dy: number; anchor: 'start' | 'middle' | 'end' } =>
+    name === 'ROTTERDAM' ? { dx: 8, dy: -4, anchor: 'start' }
+    : name === 'ANTWERP' ? { dx: 8, dy: 10, anchor: 'start' }
+    : name === 'HAMBURG' ? { dx: 8, dy: -6, anchor: 'start' }
+    : name === 'SINGAPORE' ? { dx: 0, dy: -10, anchor: 'middle' }
+    : { dx: 0, dy: -10, anchor: 'middle' }
   return (
     <div className="relative">
-      <svg viewBox="0 0 1180 420" className="w-full block" role="img" aria-label="Demonstration fleet map — vessel positions and routes; selection follows the fleet table">
-        <rect width="1180" height="420" fill="#071a2c" />
-        <g stroke="#dcecf2" opacity="0.07">
-          {Array.from({ length: 12 }).map((_, i) => <line key={`v${i}`} x1={i * 100} y1="0" x2={i * 100} y2="420" strokeWidth="1" />)}
-          {Array.from({ length: 5 }).map((_, i) => <line key={`h${i}`} x1="0" y1={i * 100} x2="1180" y2={i * 100} strokeWidth="1" />)}
+      <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className="w-full block" role="img" aria-label="Demonstration fleet chart — Mercator map from northwest Europe to Singapore with vessel positions and routes; selection follows the fleet table">
+        <defs>
+          <radialGradient id="seaDepth" cx="0.5" cy="0.42" r="0.9">
+            <stop offset="0" stopColor="#0a2a43" />
+            <stop offset="1" stopColor="#05101a" />
+          </radialGradient>
+        </defs>
+        <rect width={MAP_W} height={MAP_H} fill="url(#seaDepth)" />
+        <g stroke="#dcecf2" opacity="0.06">
+          {GRATICULE.v.map(g => <line key={`v${g.x}`} x1={g.x} y1="0" x2={g.x} y2={MAP_H} strokeWidth="1" />)}
+          {GRATICULE.h.map(g => <line key={`h${g.y}`} x1="0" y1={g.y} x2={MAP_W} y2={g.y} strokeWidth="1" />)}
         </g>
-        <g fill="#0d5c91" opacity="0.35">
-          <path d="M80 90 q60 -40 150 -20 q70 16 60 70 q-8 46 -80 40 q-100 -8 -130 -90 Z" />
-          <path d="M420 40 q120 -20 200 30 q60 40 20 90 q-50 60 -150 30 q-90 -28 -70 -150 Z" />
-          <path d="M760 130 q100 -50 220 -10 q90 30 60 100 q-30 70 -160 50 q-130 -20 -120 -140 Z" />
-          <path d="M240 280 q80 -10 120 40 q30 40 -10 70 q-60 40 -120 0 q-50 -36 10 -110 Z" />
+        <g fontFamily="'JetBrains Mono', monospace" fontSize="8.5" fill="#8797a5" opacity="0.55">
+          {GRATICULE.v.map(g => <text key={`vl${g.x}`} x={g.x + 4} y={MAP_H - 8}>{g.label}</text>)}
+          {GRATICULE.h.map(g => <text key={`hl${g.y}`} x={MAP_W - 8} y={g.y - 4} textAnchor="end">{g.label}</text>)}
+        </g>
+        <path d={LAND_PATH} fill="#0d3d5f" opacity="0.85" stroke="#59b7c8" strokeWidth="0.6" strokeOpacity="0.35" />
+        <g fontFamily="'JetBrains Mono', monospace" fontSize="8.5" fill="#59b7c8" opacity="0.5">
+          {CHOKEPOINTS.map(c => (
+            <g key={c.name}>
+              <circle cx={c.x} cy={c.y} r="1.6" fill="#59b7c8" />
+              <text x={c.x + 6} y={c.y + 3}>{c.name}</text>
+            </g>
+          ))}
+        </g>
+        <g>
+          {PORTS.map(p => {
+            const l = portLabel(p.name)
+            return (
+              <g key={p.name}>
+                <rect x={p.x - 3} y={p.y - 3} width="6" height="6" fill="#dcecf2" opacity="0.9" transform={`rotate(45 ${p.x} ${p.y})`} />
+                <text x={p.x + l.dx} y={p.y + l.dy} textAnchor={l.anchor} fontFamily="'JetBrains Mono', monospace" fontSize="9.5" fill="#dcecf2" opacity="0.75">
+                  {p.name}
+                </text>
+              </g>
+            )
+          })}
         </g>
         {vessels.map(v => {
           const active = v.id === sel
-          const dotColor = v.status === 'compliant' ? '#59b7c8' : '#d9a441'
+          const geo = VESSEL_GEO[v.id]
+          const color = v.status === 'compliant' ? '#59b7c8' : '#d9a441'
           return (
             <g key={v.id} onClick={() => onSelect(v.id)} className="cursor-pointer">
               <path
-                d={v.map.route}
+                d={geo.d}
                 fill="none"
-                strokeWidth={active ? 2 : 1.4}
+                strokeWidth={active ? 2 : 1.3}
                 strokeDasharray="4 8"
                 className="anim-route"
                 stroke={active ? '#59b7c8' : '#167db7'}
-                style={{ opacity: active ? 0.95 : 0.3, transition: 'opacity 0.4s ease' }}
+                style={{ opacity: active ? 0.95 : 0.35, transition: 'opacity 0.4s ease' }}
               />
-              <g className="anim-pulse-dot" style={{ animationDelay: `${Number(v.id) * 0.5}s` }}>
-                <circle cx={v.map.x} cy={v.map.y} r={active ? 13 : 10} fill={dotColor} opacity={active ? 0.3 : 0.16} style={{ transition: 'opacity 0.4s ease' }} />
-                <circle cx={v.map.x} cy={v.map.y} r={active ? 5 : 4} fill={dotColor} />
+              <circle cx={geo.x} cy={geo.y} r="16" fill="transparent" />
+              <circle className="anim-pulse-dot" cx={geo.x} cy={geo.y} r={active ? 17 : 13} fill={color} opacity={active ? 0.22 : 0.1} style={{ transition: 'opacity 0.4s ease', animationDelay: `${Number(v.id) * 0.5}s` }} />
+              <g transform={`translate(${geo.x} ${geo.y}) rotate(${geo.heading})`}>
+                <ShipMarker color={color} active={active} />
               </g>
               <text
-                x={v.map.x}
-                y={v.map.y - 18}
+                x={geo.x}
+                y={geo.y - 20}
                 textAnchor="middle"
                 fontFamily="'JetBrains Mono', monospace"
                 fontSize="10"
                 fill={active ? '#dcecf2' : '#8797a5'}
                 style={{ opacity: active ? 1 : 0, transition: 'opacity 0.4s ease' }}
               >
-                {v.name.replace('MV ', '').toUpperCase()}{v.status === 'risk' ? ' · PSC RISK' : ''}
+                {v.name.replace('MV ', '').toUpperCase()}{v.status === 'risk' ? ' · PSC RISK' : ''} → {v.port.toUpperCase()}
               </text>
             </g>
           )
         })}
-        <text x="24" y="404" fontFamily="'JetBrains Mono', monospace" fontSize="10" fill="#8797a5" opacity="0.8">
-          SAMPLE DATA · DEMONSTRATION FLEET
+        <text x="24" y={MAP_H - 16} fontFamily="'JetBrains Mono', monospace" fontSize="10" fill="#8797a5" opacity="0.8">
+          SAMPLE DATA · DEMONSTRATION FLEET · MERCATOR
         </text>
       </svg>
       <div
