@@ -1,0 +1,27 @@
+import { useScrollY } from '@/lib/hooks'
+import { Wordmark } from '@/components/ui'
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  Navigation
+// ═══════════════════════════════════════════════════════════════════════════
+
+export default function Nav() {
+  const y = useScrollY()
+  const scrolled = y > 40
+  return (
+    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? 'bg-navy/85 backdrop-blur-md border-b border-white/10' : 'bg-transparent'}`}>
+      <div className="max-w-[1280px] mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="#top" aria-label="Matsu home"><Wordmark light={scrolled} /></a>
+        <div className={`hidden lg:flex items-center gap-8 text-[13px] font-medium transition-colors ${scrolled ? 'text-mist/80' : 'text-navy/75'}`}>
+          {[['Platform', '#platform'], ['Voyage', '#solutions'], ['Regulations', '#regulations'], ['Security', '#security'], ['Company', '#company']].map(([l, h]) => (
+            <a key={l} href={h} className="hover:opacity-70 transition-opacity">{l}</a>
+          ))}
+        </div>
+        <a href="#cta" className={`text-[13px] font-semibold px-4 sm:px-5 py-2.5 rounded-md transition-all ${scrolled ? 'bg-ocean text-white hover:bg-maritime' : 'bg-navy text-white hover:bg-deepsea'}`}>
+          <span className="sm:hidden">Request demo</span>
+          <span className="hidden sm:inline">Request a demonstration</span>
+        </a>
+      </div>
+    </nav>
+  )
+}
