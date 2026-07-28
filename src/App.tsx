@@ -5,7 +5,6 @@ import CommandDeck from '@/sections/CommandDeck'
 import Workflow from '@/sections/Workflow'
 import Regulatory from '@/sections/Regulatory'
 import Security from '@/sections/Security'
-import Credibility from '@/sections/Credibility'
 import Harbor from '@/sections/Harbor'
 import Footer from '@/sections/Footer'
 
@@ -26,7 +25,6 @@ export default function App() {
       <Workflow />
       <Regulatory />
       <Security />
-      <Credibility />
       <Harbor />
       <Footer />
     </div>
