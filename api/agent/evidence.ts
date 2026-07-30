@@ -29,7 +29,13 @@ import { CORPUS_BY_ID } from '../../shared/corpus.js'
 import { FLEET_BY_ID } from '../../shared/fleet.js'
 import { HttpError, fail, rateLimit, requirePost, requireUser } from '../_lib/auth.js'
 import { LIMITS } from '../_lib/guard.js'
-import { CALL_TIMEOUT_MS, MAX_OUTPUT_TOKENS, MODEL, abortAfter } from '../_lib/model.js'
+import {
+  CALL_TIMEOUT_MS,
+  MAX_OUTPUT_TOKENS,
+  MODEL,
+  PAGE_LIMIT_MESSAGE,
+  abortAfter,
+} from '../_lib/model.js'
 import { uploadVerdictSchema } from '../_lib/schemas.js'
 
 export const config = { maxDuration: 60 }
@@ -92,6 +98,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       (mediaType === 'image/webp' && looksWebp)
 
     if (!matches) throw new HttpError(400, 'File contents do not match the declared type.')
+
+    // A PDF over Anthropic's 100-page ceiling is a guaranteed 400, and it is not
+    // a cheap one: the Gateway falls back through all four providers before
+    // giving up, which cost about 11 seconds the first time this happened.
+    //
+    // The count is deliberately conservative. PDFs written with object streams
+    // keep their page objects inside compressed streams where this cannot see
+    // them, so a low count proves nothing and must not be treated as a pass.
+    // Only a positive count over the limit rejects here; everything this misses
+    // is still caught by describeModelError when the provider refuses it. This
+    // is a shortcut, not the guarantee.
+    if (mediaType === 'application/pdf') {
+      const pages = bytes.toString('latin1').match(/\/Type\s*\/Page(?!s)/g)?.length ?? 0
+      if (pages > LIMITS.maxPdfPages) throw new HttpError(400, PAGE_LIMIT_MESSAGE)
+    }
 
     const documentPart =
       declared === 'image'

@@ -15,6 +15,7 @@
 
 import { verifyToken } from '@clerk/backend'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
+import { describeModelError } from './model.js'
 
 export interface AuthedUser {
   userId: string
@@ -95,12 +96,31 @@ export function rateLimit(userId: string, max: number, windowMs: number): void {
   }
 }
 
-/** Uniform error responder so every route fails the same shape. */
+/**
+ * Uniform error responder so every route fails the same shape.
+ *
+ * The middle branch is the one that earns its place. A failed model call used
+ * to land here as an unrecognised object and become "Agent run failed." — the
+ * same sentence whether the operator had uploaded a 300-page PDF, which they
+ * could fix immediately, or the Gateway had run out of credits, which they
+ * could not diagnose at all. describeModelError separates those; anything it
+ * does not recognise still falls through to a loud log and a generic 500,
+ * because an unknown fault should stay visible rather than be explained away.
+ */
 export function fail(res: VercelResponse, err: unknown): void {
   if (err instanceof HttpError) {
     res.status(err.status).json({ error: err.message })
     return
   }
+
+  const known = describeModelError(err)
+  if (known) {
+    // Still logged: the operator gets the short version, we keep the whole thing.
+    console.error('[agent] model call failed', err)
+    res.status(known.status).json({ error: known.message })
+    return
+  }
+
   console.error('[agent] unhandled', err)
   res.status(500).json({ error: 'Agent run failed.' })
 }

@@ -1483,9 +1483,9 @@ function UploadControl({ vessel, run, dispatch, getToken, actionId, onActionChan
         </p>
       )}
       <p className="text-[10px] text-[#9ca3af] leading-relaxed">
-        PDF, PNG, JPEG or WebP, up to {Math.round(MAX_UPLOAD_BYTES / 1_000_000)} MB. The document is read by the
-        validator and judged against the linked obligation. Do not upload real crew, certificate or commercially
-        sensitive records — this is a demo and the file is sent to a model provider.
+        PDF, PNG, JPEG or WebP, up to {Math.round(MAX_UPLOAD_BYTES / 1_000_000)} MB, and PDFs up to 100 pages.
+        The document is read by the validator and judged against the linked obligation. Do not upload real crew,
+        certificate or commercially sensitive records — this is a demo and the file is sent to a model provider.
         {error && <span className="block text-red-600 mt-1">{error}</span>}
       </p>
     </div>
