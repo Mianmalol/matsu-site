@@ -3,7 +3,7 @@ import { Reveal } from '@/components/ui'
 import { vessels, type Vessel } from '@/data'
 import { MAP_W, MAP_H, LAND_PATH, PORTS, VESSEL_GEO, GRATICULE, CHOKEPOINTS } from '@/components/mapGeo'
 import { FLEET_SOURCE, FLEET_COUNT, pilFleet } from '@/data/pilFleet'
-import { applicabilityFor, REGULATIONS_INDEXED } from '@/data/scenario'
+import { applicabilityFor, REGULATIONS_INDEXED } from '@/data/applicability'
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  5 · Command deck (blueprint → fleet roster + scenario cycles ↔ live map)
