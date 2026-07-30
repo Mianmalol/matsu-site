@@ -179,3 +179,30 @@ export const Stamp = (p: IconProps) => (
     <line x1="4" y1="20" x2="20" y2="20" />
   </Svg>
 )
+
+/* ── Added for the working demo ─────────────────────────────────────────────
+   Same 24x24 / 1.7-stroke convention as everything above. These three exist
+   because the demo grew controls the aesthetic mock had no need for: a run
+   trigger, a file upload, and a way to close the evidence viewer.            */
+
+export const Upload = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15" />
+    <polyline points="8 8 12 4 16 8" />
+    <line x1="12" y1="4" x2="12" y2="15" />
+  </Svg>
+)
+
+export const RotateCw = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M20 12a8 8 0 1 1-2.34-5.66" />
+    <polyline points="20 4 20 9 15 9" />
+  </Svg>
+)
+
+export const X = (p: IconProps) => (
+  <Svg {...p}>
+    <line x1="6" y1="6" x2="18" y2="18" />
+    <line x1="18" y1="6" x2="6" y2="18" />
+  </Svg>
+)

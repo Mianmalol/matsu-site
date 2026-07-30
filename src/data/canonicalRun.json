@@ -1,0 +1,3732 @@
+{
+  "schemaVersion": 1,
+  "seeded": true,
+  "corpusVersion": "2026.07.1",
+  "corpusHash": "a8227c0c6115",
+  "completedAt": "2026-07-30T08:42:12.453Z",
+  "model": "anthropic/claude-haiku-4.5",
+  "scan": {
+    "recordsIndexed": 55,
+    "instrumentsInForce": [
+      "Anti-fouling Systems Convention 2001",
+      "Ballast Water Management Convention 2004",
+      "Bunker Oil Pollution Damage Convention 2001",
+      "EU Regulation 2015/757 (MRV), as amended",
+      "Hong Kong Convention 2009",
+      "International Convention on Load Lines 1966",
+      "International Convention on Tonnage Measurement 1969",
+      "MARPOL 73/78 Annex I",
+      "MARPOL 73/78 Annex II",
+      "MARPOL 73/78 Annex IV",
+      "MARPOL 73/78 Annex V",
+      "MARPOL 73/78 Annex VI",
+      "Maritime Labour Convention 2006",
+      "Nairobi International Convention on the Removal of Wrecks 2007",
+      "Paris Memorandum of Understanding on Port State Control",
+      "SOLAS 1974 (as amended)",
+      "SOLAS 1974 (as amended) / IGF Code",
+      "SOLAS 1974 (as amended) / ISM Code",
+      "SOLAS Chapter XI-2 / ISPS Code",
+      "STCW Convention 1978 (as amended)",
+      "Singapore MPA Shipping Circular",
+      "Tokyo Memorandum of Understanding on Port State Control"
+    ],
+    "changedSince": [
+      {
+        "id": "MARPOL-V-10",
+        "reference": "MARPOL 73/78 Annex V — Regulation 10",
+        "amendedAt": "2026-05-01"
+      },
+      {
+        "id": "MARPOL-VI-26",
+        "reference": "MARPOL 73/78 Annex VI — Regulation 26",
+        "amendedAt": "2026-06-12"
+      },
+      {
+        "id": "MARPOL-VI-28",
+        "reference": "MARPOL 73/78 Annex VI — Regulation 28",
+        "amendedAt": "2026-06-12"
+      },
+      {
+        "id": "PARIS-MOU-PSC",
+        "reference": "Paris Memorandum of Understanding on Port State Control — Section 3, inspection regime",
+        "amendedAt": "2026-07-01"
+      },
+      {
+        "id": "TOKYO-MOU-PSC",
+        "reference": "Tokyo Memorandum of Understanding on Port State Control — Section 3, inspection regime",
+        "amendedAt": "2026-07-01"
+      },
+      {
+        "id": "MPA-SG-CIRCULAR",
+        "reference": "Singapore MPA Shipping Circular — Flag administration guidance",
+        "amendedAt": "2026-05-18"
+      }
+    ],
+    "summary": "The indexed corpus contains 55 records covering 22 IMO and regional maritime instruments, including SOLAS, MARPOL, STCW, MLC, ballast water management, anti-fouling, load lines, tonnage measurement, wreck removal, and port state control memoranda. Since the previous version (2026-04-15), six records have been amended: three MARPOL regulations (Annex V Regulation 10, and Annex VI Regulations 26 and 28), both Paris and Tokyo MOU port state control inspection regimes, and Singapore MPA flag administration guidance, all effective between May and July 2026."
+  },
+  "vessels": [
+    {
+      "vesselId": "matsu-meridian",
+      "overallStatus": "needs-review",
+      "stages": [
+        {
+          "id": 1,
+          "status": "complete",
+          "summary": "55 corpus records indexed. 49 apply to this hull on flag, type, tonnage, fuel and trading area.",
+          "count": 55,
+          "countLabel": "records indexed"
+        },
+        {
+          "id": 2,
+          "status": "complete",
+          "summary": "31 discrete obligations extracted, each traced to a corpus record.",
+          "count": 31,
+          "countLabel": "requirements extracted"
+        },
+        {
+          "id": 3,
+          "status": "complete",
+          "summary": "The Matsu Meridian draws this comprehensive 31-obligation set primarily because it is a large container ship (92,400 GT, 8,200 TEU) built in 2019 operating on long-haul international routes (Singapore–Rotterdam) on HFO/VLSFO fuel. This profile triggers obligations across all major maritime regimes: SOLAS and ISPS-A due to size and international service; MARPOL Annexes I, IV, V, and VI due to fuel type, operational areas covering multiple jurisdictions, and built-year proximity to stringent post-2015 NOx and post-2020 sulphur regulations; BWM requirements due to international trading across ballast water regions; MLC as a cargo vessel; and international certificates (Load Line, Tonnage, AFS, Bunkers, Nairobi, IHM). The Asia–Europe trading pattern is especially determinative, as it triggers both Paris MoU and Tokyo MoU PSC regimes and subjects the vessel to EU-MRV carbon reporting. The 2019 build year places it firmly under modern IMO 2030 carbon intensity (CII) and SEEMP Phase III regimes, while HFO/VLSFO fuel carriage mandates the full MARPOL-VI pollution prevention suite including fuel consumption data collection (DCS/CII). No exemptions or reduced requirements apply to this large, modern, internationally-trading container vessel.",
+          "count": 31,
+          "countLabel": "requirements assigned"
+        },
+        {
+          "id": 4,
+          "status": "needs-review",
+          "summary": "2 of 19 actions complete. 1 past their due date.",
+          "count": 2,
+          "countLabel": "of 19 actions done"
+        },
+        {
+          "id": 5,
+          "status": "needs-review",
+          "summary": "6 items accepted, 5 rejected and awaiting resubmission.",
+          "count": 5,
+          "countLabel": "items flagged"
+        },
+        {
+          "id": 6,
+          "status": "active",
+          "summary": "6 items awaiting DPA sign-off. Every one needs a human decision.",
+          "count": 6,
+          "countLabel": "awaiting DPA"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "REQ-759F",
+          "sourceId": "SOLAS-I-07",
+          "obligation": "Matsu Meridian must hold valid Safety Construction, Safety Equipment and Safety Radio certificates, with annual surveys and renewal every 5 years.",
+          "category": "Safety",
+          "periodicity": "Annual survey; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-D4A1",
+          "sourceId": "SOLAS-II-2-10",
+          "obligation": "Fire mains, pumps, hydrants, hoses and portable extinguishers on Matsu Meridian must be surveyed annually and kept ready for immediate use.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-EEB8",
+          "sourceId": "SOLAS-II-2-14",
+          "obligation": "Matsu Meridian's fire protection and detection systems must be maintained under a documented plan and tested at scheduled intervals.",
+          "category": "Safety",
+          "periodicity": "Continuous with scheduled tests",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "REQ-55BA",
+          "sourceId": "SOLAS-III-19",
+          "obligation": "Matsu Meridian crew must conduct an abandon ship drill and fire drill each month, or within 24 hours if more than a quarter of crew has changed.",
+          "category": "Safety",
+          "periodicity": "Monthly",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "REQ-8BFA",
+          "sourceId": "SOLAS-III-20",
+          "obligation": "Life-saving appliances on Matsu Meridian must be inspected weekly and monthly; lifeboat engines must run regularly; davit-launched liferaft release gear serviced per schedule.",
+          "category": "Safety",
+          "periodicity": "Weekly and monthly",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "REQ-FFEF",
+          "sourceId": "SOLAS-IV-15",
+          "obligation": "Matsu Meridian must maintain GMDSS radio installations for the sea areas traded (NE3) with required redundancy and annual certification.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-AE6F",
+          "sourceId": "SOLAS-V-19",
+          "obligation": "Matsu Meridian must carry and maintain operational ECDIS, AIS, voyage data recorder and bridge navigational watch alarm arrangements, verified annually.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-8561",
+          "sourceId": "SOLAS-V-34",
+          "obligation": "Before each departure, Matsu Meridian must prepare a berth-to-berth passage plan accounting for routeing, under-keel clearance and contingency anchorages.",
+          "category": "Safety",
+          "periodicity": "Every voyage",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-5DB1",
+          "sourceId": "SOLAS-IX-03",
+          "obligation": "Matsu Meridian must hold a valid Safety Management Certificate and comply with the ISM safety management system, including annual internal audits and management review.",
+          "category": "Safety",
+          "periodicity": "Annual audit; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-6E73",
+          "sourceId": "SOLAS-XI-1-05",
+          "obligation": "Matsu Meridian must maintain an unbroken Continuous Synopsis Record covering flag, ownership, class and ISM history, updated on any change.",
+          "category": "Technical",
+          "periodicity": "On change of particulars",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-FB55",
+          "sourceId": "ISPS-A-09",
+          "obligation": "Matsu Meridian must carry an approved Ship Security Plan, designate a Ship Security Officer, and conduct security drills quarterly and an annual company security exercise.",
+          "category": "Security",
+          "periodicity": "Quarterly drills; annual exercise",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "REQ-D75C",
+          "sourceId": "ISPS-A-19",
+          "obligation": "Matsu Meridian must hold a valid International Ship Security Certificate, maintained through the initial, intermediate and renewal verification cycle.",
+          "category": "Security",
+          "periodicity": "Intermediate verification; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-7395",
+          "sourceId": "MARPOL-I-06",
+          "obligation": "Matsu Meridian must hold a valid International Oil Pollution Prevention certificate, kept current through annual and renewal surveys, with Supplement matching fitted equipment.",
+          "category": "Environmental",
+          "periodicity": "Annual; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-4483",
+          "sourceId": "MARPOL-I-14",
+          "obligation": "Matsu Meridian's machinery space bilge discharge must pass through 15 ppm oil filtering equipment with alarm and automatic stopping, verified annually.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-A02F",
+          "sourceId": "MARPOL-I-17",
+          "obligation": "Every machinery space oil transfer, bilge discharge, sludge disposal and tank cleaning operation on Matsu Meridian must be recorded in Oil Record Book Part I without delay and signed.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-3CBE",
+          "sourceId": "MARPOL-I-37",
+          "obligation": "Matsu Meridian must carry an approved Shipboard Oil Pollution Emergency Plan listing reporting contacts, reviewed annually, and crew must be exercised against it.",
+          "category": "Environmental",
+          "periodicity": "Reviewed annually",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-181F",
+          "sourceId": "MARPOL-IV-05",
+          "obligation": "Matsu Meridian must hold a valid International Sewage Pollution Prevention certificate and maintain an approved treatment system or holding tank sized for Asia-Europe trading.",
+          "category": "Environmental",
+          "periodicity": "Renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-48F3",
+          "sourceId": "MARPOL-V-10",
+          "obligation": "Matsu Meridian must carry a Garbage Management Plan, display placards, and record all discharge and incineration in Garbage Record Book with date, position and category.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-7DE7",
+          "sourceId": "MARPOL-VI-06",
+          "obligation": "Matsu Meridian must hold valid International Air Pollution Prevention and International Energy Efficiency certificates, with annual renewal every 5 years.",
+          "category": "Environmental",
+          "periodicity": "Annual; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-F11C",
+          "sourceId": "MARPOL-VI-12",
+          "obligation": "Equipment on Matsu Meridian containing ozone depleting substances must be listed, with recharges, repairs and discharges recorded.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-B36B",
+          "sourceId": "MARPOL-VI-13",
+          "obligation": "Matsu Meridian's diesel engines above 130 kW must hold an EIAPP certificate and Technical File, complying with NOx tier for the keel-laying date and trading areas.",
+          "category": "Environmental",
+          "periodicity": "Survey-linked",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-CC76",
+          "sourceId": "MARPOL-VI-14",
+          "obligation": "Matsu Meridian's fuel oil sulphur content must not exceed 0.50% by mass globally, verified at each bunkering by Bunker Delivery Note and analysis.",
+          "category": "Environmental",
+          "periodicity": "Per bunkering, continuous compliance",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-682C",
+          "sourceId": "MARPOL-VI-18",
+          "obligation": "Matsu Meridian must retain each Bunker Delivery Note for three years and the accompanying MARPOL sample until fuel is substantially consumed or for twelve months minimum.",
+          "category": "Environmental",
+          "periodicity": "Per bunkering",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-ECE4",
+          "sourceId": "MARPOL-VI-22A",
+          "obligation": "Matsu Meridian must collect annual fuel oil consumption, distance travelled and hours under way data and report to Singapore administration for Statement of Compliance.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-03CD",
+          "sourceId": "MARPOL-VI-28",
+          "obligation": "Matsu Meridian must calculate annual operational carbon intensity indicator; a D rating in three consecutive years or single E rating triggers corrective action plan.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-4EE8",
+          "sourceId": "BWM-E-01",
+          "obligation": "Matsu Meridian must hold a valid International Ballast Water Management Certificate, maintained through initial, annual, intermediate and renewal survey cycle.",
+          "category": "Environmental",
+          "periodicity": "Annual; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-F5C8",
+          "sourceId": "STCW-I-04",
+          "obligation": "Every seafarer on Matsu Meridian must hold a certificate of competency appropriate to their rank and ship type, endorsed by Singapore flag administration.",
+          "category": "Crew",
+          "periodicity": "Per crew change; revalidated every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-1803",
+          "sourceId": "STCW-VI-01",
+          "obligation": "All seafarers on Matsu Meridian must hold basic safety training certificates (personal survival, fire, first aid, personal safety), refreshed every 5 years.",
+          "category": "Crew",
+          "periodicity": "Refreshed every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-637C",
+          "sourceId": "STCW-VIII-01",
+          "obligation": "Matsu Meridian must maintain records confirming all watchkeepers receive at least 10 hours rest in 24 hours and 77 hours in 7 days, recorded and countersigned monthly.",
+          "category": "Crew",
+          "periodicity": "Continuous, recorded monthly",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-0D76",
+          "sourceId": "MLC-1-2",
+          "obligation": "Each seafarer on Matsu Meridian must hold a valid medical certificate attesting fitness for their assigned duties, issued by an approved practitioner.",
+          "category": "Labour",
+          "periodicity": "Valid up to 2 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-BB65",
+          "sourceId": "MLC-5-1",
+          "obligation": "Matsu Meridian must hold a valid Maritime Labour Certificate and Declaration of Maritime Labour Compliance Parts I and II, with intermediate inspection and renewal every 5 years.",
+          "category": "Labour",
+          "periodicity": "Intermediate inspection; renewal every 5 years",
+          "evidenceType": "Certificate"
+        }
+      ],
+      "actions": [
+        {
+          "id": "ACT-82AC",
+          "requirementId": "REQ-759F",
+          "action": "Schedule annual Safety Construction and Equipment survey with class surveyor",
+          "due": "2026-09-13",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-0F46",
+          "requirementId": "REQ-D4A1",
+          "action": "Conduct annual survey of fire mains, pumps, hydrants, hoses and portable extinguishers",
+          "due": "2026-08-29",
+          "status": "in-progress",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-D57F",
+          "requirementId": "REQ-EEB8",
+          "action": "Test fire detection systems in engine room and cargo holds per maintenance schedule",
+          "due": "2026-08-06",
+          "status": "open",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "ACT-2151",
+          "requirementId": "REQ-55BA",
+          "action": "Conduct monthly fire drill and abandon ship drill; record in drill report",
+          "due": "2026-08-04",
+          "status": "open",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "ACT-3C0E",
+          "requirementId": "REQ-8BFA",
+          "action": "Perform weekly inspection of life-saving appliances and lifeboat davits",
+          "due": "2026-08-01",
+          "status": "in-progress",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "ACT-1D98",
+          "requirementId": "REQ-FFEF",
+          "action": "Arrange annual GMDSS radio installation certification for NE3 sea areas",
+          "due": "2026-09-28",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-5817",
+          "requirementId": "REQ-AE6F",
+          "action": "Verify ECDIS, AIS, VDR and bridge alarm systems function and arrange annual survey",
+          "due": "2026-09-18",
+          "status": "in-progress",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-DCF0",
+          "requirementId": "REQ-8561",
+          "action": "Prepare berth-to-berth passage plan for next voyage including routing and UKC analysis",
+          "due": "2026-08-02",
+          "status": "open",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "ACT-1607",
+          "requirementId": "REQ-5DB1",
+          "action": "Schedule annual ISM internal audit and management review with external auditor",
+          "due": "2026-10-28",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-78C7",
+          "requirementId": "REQ-FB55",
+          "action": "Conduct quarterly ship security drill and record participation and findings",
+          "due": "2026-08-11",
+          "status": "open",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "ACT-60B0",
+          "requirementId": "REQ-7395",
+          "action": "Schedule MARPOL IOPP annual survey and ensure Supplement matches current equipment",
+          "due": "2026-10-13",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-F53C",
+          "requirementId": "REQ-4483",
+          "action": "Verify 15 ppm oil filtering equipment in machinery space; test alarm and auto-stop function",
+          "due": "2026-09-08",
+          "status": "open",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-1636",
+          "requirementId": "REQ-A02F",
+          "action": "Record all bilge discharge and oil transfer operations in Oil Record Book Part I with signatures",
+          "due": "2026-07-31",
+          "status": "done",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "ACT-73DC",
+          "requirementId": "REQ-3CBE",
+          "action": "Review Shipboard Oil Pollution Emergency Plan and conduct crew exercise against it",
+          "due": "2026-10-23",
+          "status": "open",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "ACT-8FB1",
+          "requirementId": "REQ-CC76",
+          "action": "Verify fuel oil sulphur content at next bunkering via sample analysis and Bunker Delivery Note",
+          "due": "2026-08-07",
+          "status": "in-progress",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "ACT-4C58",
+          "requirementId": "REQ-682C",
+          "action": "File and store latest Bunker Delivery Notes and MARPOL samples per three-year retention rule",
+          "due": "2026-07-30",
+          "status": "done",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "ACT-40C9",
+          "requirementId": "REQ-ECE4",
+          "action": "Collect annual fuel consumption, distance and hours data for Singapore Statement of Compliance",
+          "due": "2026-11-27",
+          "status": "open",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "ACT-E166",
+          "requirementId": "REQ-F5C8",
+          "action": "Verify all watchkeepers hold current certificates of competency endorsed by Singapore MPA",
+          "due": "2026-07-25",
+          "status": "overdue",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-D672",
+          "requirementId": "REQ-0D76",
+          "action": "Check that all seafarers hold valid medical certificates issued within two years",
+          "due": "2026-08-19",
+          "status": "in-progress",
+          "evidenceType": "Certificate"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-8B91",
+          "actionId": "ACT-E166",
+          "label": "Crew Certificate of Competency Register (Singapore MPA endorsements)",
+          "type": "Certificate",
+          "verdict": "rejected",
+          "reason": "Action is overdue (due 2026-07-25). Submission date is past due. Current status shows no evidence provided yet; overdue actions require immediate remediation before approval."
+        },
+        {
+          "id": "EV-C803",
+          "actionId": "ACT-1636",
+          "label": "Oil Record Book Part I - July 2026 entries with crew signatures",
+          "type": "Record book",
+          "verdict": "accepted",
+          "reason": "All bilge discharge and oil transfer operations documented with required signatures. Covers required period and meets MARPOL Annex I Part I recording standards for machinery space operations."
+        },
+        {
+          "id": "EV-B4B7",
+          "actionId": "ACT-4C58",
+          "label": "Bunker Delivery Notes archive and MARPOL samples storage record",
+          "type": "Record book",
+          "verdict": "accepted",
+          "reason": "Latest Bunker Delivery Notes and MARPOL samples filed and indexed per three-year retention rule. Storage location and retention timeline verified; complies with record-keeping obligations."
+        },
+        {
+          "id": "EV-0DE6",
+          "actionId": "ACT-3C0E",
+          "label": "Weekly life-saving appliances inspection log (July-August 2026)",
+          "type": "Log",
+          "verdict": "accepted",
+          "reason": "Weekly inspections of lifeboats, davits, lifebuoys, and immersion suits documented with dates, defects, and corrective actions. Status marked in-progress; log entries current through August."
+        },
+        {
+          "id": "EV-CCDD",
+          "actionId": "ACT-D672",
+          "label": "Medical certificate register - all crew valid within two years",
+          "type": "Certificate",
+          "verdict": "accepted",
+          "reason": "All seafarers' medical certificates verified valid and issued within two-year validity period. Copy attached to crew list; status in-progress reflects ongoing monitoring during voyage."
+        },
+        {
+          "id": "EV-08D5",
+          "actionId": "ACT-5817",
+          "label": "ECDIS, AIS, VDR and bridge alarm annual survey report",
+          "type": "Survey report",
+          "verdict": "accepted",
+          "reason": "Class surveyor certified all bridge navigation and recording systems functional. ECDIS chart database current, AIS transponder operational, VDR tested, bridge alarms responding. Status in-progress acceptable."
+        },
+        {
+          "id": "EV-A80E",
+          "actionId": "ACT-8FB1",
+          "label": "Fuel oil sulphur content analysis report with Bunker Delivery Note",
+          "type": "Analysis report",
+          "verdict": "pending",
+          "reason": "Status marked in-progress. Analysis report expected at next bunkering (due 2026-08-07). Pending receipt of certified sample analysis and corresponding BDN; cannot finalize verdict until fuel tested."
+        },
+        {
+          "id": "EV-3BCE",
+          "actionId": "ACT-F53C",
+          "label": "15 ppm oil filtering equipment verification and functional test report",
+          "type": "Survey report",
+          "verdict": "rejected",
+          "reason": "No submission received yet. Action due 2026-09-08 and status remains open. This is a future deadline; cannot assess evidence that has not yet been submitted for evaluation."
+        },
+        {
+          "id": "EV-E992",
+          "actionId": "ACT-0F46",
+          "label": "Annual fire main, pump, hydrant, hose and portable extinguisher survey report",
+          "type": "Survey report",
+          "verdict": "accepted",
+          "reason": "Class surveyor conducted full inspection of all fire suppression systems. Pressure tests passed, nozzle flows verified, extinguisher charges current. Status in-progress reflects ongoing certification."
+        },
+        {
+          "id": "EV-B581",
+          "actionId": "ACT-DCF0",
+          "label": "Berth-to-berth passage plan Singapore to Rotterdam with routing and UKC analysis",
+          "type": "Plan",
+          "verdict": "rejected",
+          "reason": "Action due 2026-08-02 (imminent) with status open. No passage plan submitted yet. This document must be prepared prior to voyage commencement; cannot validate without actual plan data."
+        },
+        {
+          "id": "EV-049A",
+          "actionId": "ACT-2151",
+          "label": "Monthly fire drill and abandon ship drill report with participation roster",
+          "type": "Drill report",
+          "verdict": "rejected",
+          "reason": "Due 2026-08-04. No drill report evidence submitted. Document must record date, crew participation, muster station assignments, deficiencies found, and corrective actions taken. Submission absent."
+        },
+        {
+          "id": "EV-FB50",
+          "actionId": "ACT-78C7",
+          "label": "Quarterly ship security drill report with crew participation and findings",
+          "type": "Drill report",
+          "verdict": "pending",
+          "reason": "Due 2026-08-11. Status open. Submission not yet available for assessment. Must record drill execution, participation, response times, and findings per ISM/ISPS; pending receipt."
+        },
+        {
+          "id": "EV-D91F",
+          "actionId": "ACT-D57F",
+          "label": "Fire detection system test log - engine room and cargo holds",
+          "type": "Log",
+          "verdict": "rejected",
+          "reason": "Due 2026-08-06. No test log provided. Documentation must show specific test dates, system responses, any failures, repairs, and maintenance schedule compliance. Evidence not yet supplied."
+        },
+        {
+          "id": "EV-F96F",
+          "actionId": "ACT-82AC",
+          "label": "Class survey appointment confirmation for Safety Construction and Equipment survey",
+          "type": "Certificate",
+          "verdict": "pending",
+          "reason": "Due 2026-09-13. Status open. Certificate of completion expected after annual survey. Deadline is future; submission pending. Validate once survey completed and certificate issued."
+        },
+        {
+          "id": "EV-2161",
+          "actionId": "ACT-1D98",
+          "label": "GMDSS radio installation annual certification for NE3 sea areas",
+          "type": "Certificate",
+          "verdict": "pending",
+          "reason": "Due 2026-09-28. Status open. Certificate not yet issued. Surveyor must verify MF/HF, VHF, EPIRB, SART and DSC functionality for Asia-Europe route; pending certification completion."
+        }
+      ],
+      "approvals": [
+        {
+          "id": "APR-C803",
+          "evidenceId": "EV-C803",
+          "summary": "Oil Record Book Part I - July 2026 entries with crew signatures — Record all bilge discharge and oil transfer operations in Oil Record Book Part I with signatures",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-B4B7",
+          "evidenceId": "EV-B4B7",
+          "summary": "Bunker Delivery Notes archive and MARPOL samples storage record — File and store latest Bunker Delivery Notes and MARPOL samples per three-year retention rule",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-0DE6",
+          "evidenceId": "EV-0DE6",
+          "summary": "Weekly life-saving appliances inspection log (July-August 2026) — Perform weekly inspection of life-saving appliances and lifeboat davits",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-CCDD",
+          "evidenceId": "EV-CCDD",
+          "summary": "Medical certificate register - all crew valid within two years — Check that all seafarers hold valid medical certificates issued within two years",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-08D5",
+          "evidenceId": "EV-08D5",
+          "summary": "ECDIS, AIS, VDR and bridge alarm annual survey report — Verify ECDIS, AIS, VDR and bridge alarm systems function and arrange annual survey",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-E992",
+          "evidenceId": "EV-E992",
+          "summary": "Annual fire main, pump, hydrant, hose and portable extinguisher survey report — Conduct annual survey of fire mains, pumps, hydrants, hoses and portable extinguishers",
+          "state": "awaiting"
+        }
+      ]
+    },
+    {
+      "vesselId": "matsu-kestrel",
+      "overallStatus": "needs-review",
+      "stages": [
+        {
+          "id": 1,
+          "status": "complete",
+          "summary": "55 corpus records indexed. 48 apply to this hull on flag, type, tonnage, fuel and trading area.",
+          "count": 55,
+          "countLabel": "records indexed"
+        },
+        {
+          "id": 2,
+          "status": "complete",
+          "summary": "33 discrete obligations extracted, each traced to a corpus record.",
+          "count": 33,
+          "countLabel": "requirements extracted"
+        },
+        {
+          "id": 3,
+          "status": "complete",
+          "summary": "Matsu Kestrel draws this comprehensive 33-obligation set primarily as a container ship of 13,760 GT operating in international waters on the Asia-Pacific intra-regional trade lane. The vessel's Post-Panamax size, general cargo container design, and 2008 build year trigger the full suite of SOLAS, MARPOL, and specialized maritime conventions. Its MGO fuel type and capacity to carry hazardous materials as containers engage pollution prevention rules across all MARPOL Annexes including VI emissions controls, ballast water management, and operational carbon intensity schemes. The vessel's international Panama flag, cargo-carrying classification, and continued trading activity after 2008 activate mandatory statutory surveys, security protocols, labour standards, anti-fouling certification, load line provisions, and modern environmental accountability instruments such as EEXI, CII, and fuel consumption reporting that would not apply uniformly across a mixed fleet.",
+          "count": 33,
+          "countLabel": "requirements assigned"
+        },
+        {
+          "id": 4,
+          "status": "active",
+          "summary": "1 of 20 actions complete.",
+          "count": 1,
+          "countLabel": "of 20 actions done"
+        },
+        {
+          "id": 5,
+          "status": "needs-review",
+          "summary": "10 items accepted, 6 rejected and awaiting resubmission.",
+          "count": 6,
+          "countLabel": "items flagged"
+        },
+        {
+          "id": 6,
+          "status": "active",
+          "summary": "10 items awaiting DPA sign-off. Every one needs a human decision.",
+          "count": 10,
+          "countLabel": "awaiting DPA"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "REQ-AAFC",
+          "sourceId": "SOLAS-I-07",
+          "obligation": "Matsu Kestrel must hold valid Safety Construction, Safety Equipment and Safety Radio certificates, maintained through annual surveys with renewal every 5 years.",
+          "category": "Safety",
+          "periodicity": "Annual, renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-D14F",
+          "sourceId": "SOLAS-II-2-10",
+          "obligation": "Fire mains, pumps, hydrants, hoses and portable extinguishers must be provided and kept ready for immediate use on Matsu Kestrel.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-7C6B",
+          "sourceId": "SOLAS-II-2-14",
+          "obligation": "Fire protection and detection systems on Matsu Kestrel must be maintained under a documented plan and tested at required intervals.",
+          "category": "Safety",
+          "periodicity": "Continuous with scheduled tests",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "REQ-1CB0",
+          "sourceId": "SOLAS-III-19",
+          "obligation": "Every crew member on Matsu Kestrel must participate in an abandon ship drill and fire drill each month.",
+          "category": "Safety",
+          "periodicity": "Monthly",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "REQ-C277",
+          "sourceId": "SOLAS-III-20",
+          "obligation": "Life-saving appliances on Matsu Kestrel must be inspected weekly and monthly, with lifeboat engines run regularly.",
+          "category": "Safety",
+          "periodicity": "Weekly and monthly",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "REQ-3A5A",
+          "sourceId": "SOLAS-IV-15",
+          "obligation": "Radio installations for the sea areas Matsu Kestrel trades in must be maintained available with required redundancy.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-7377",
+          "sourceId": "SOLAS-V-19",
+          "obligation": "Matsu Kestrel must carry and maintain operational ECDIS, AIS, voyage data recorder and bridge watch alarm systems.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-EEB4",
+          "sourceId": "SOLAS-V-34",
+          "obligation": "A berth-to-berth passage plan accounting for routeing, under-keel clearance and anchorages must be prepared before each departure of Matsu Kestrel.",
+          "category": "Safety",
+          "periodicity": "Every voyage",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-2E76",
+          "sourceId": "SOLAS-IX-03",
+          "obligation": "Matsu Kestrel must hold a Safety Management Certificate supported by annual internal audits and a 5-yearly renewal.",
+          "category": "Safety",
+          "periodicity": "Annual audit, renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-9D14",
+          "sourceId": "SOLAS-XI-1-05",
+          "obligation": "Matsu Kestrel must carry an unbroken Continuous Synopsis Record of flag, ownership, class and ISM history.",
+          "category": "Technical",
+          "periodicity": "On change of particulars",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-A5F9",
+          "sourceId": "ISPS-A-09",
+          "obligation": "Matsu Kestrel must carry an approved Ship Security Plan, designate a Ship Security Officer, and conduct security drills quarterly.",
+          "category": "Security",
+          "periodicity": "Quarterly drills",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "REQ-9EC2",
+          "sourceId": "ISPS-A-19",
+          "obligation": "Matsu Kestrel must hold a valid International Ship Security Certificate renewed every 5 years.",
+          "category": "Security",
+          "periodicity": "Renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-7D1D",
+          "sourceId": "MARPOL-I-06",
+          "obligation": "Matsu Kestrel must hold a valid International Oil Pollution Prevention certificate with annual surveys and renewal every 5 years.",
+          "category": "Environmental",
+          "periodicity": "Annual, renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-BB3B",
+          "sourceId": "MARPOL-I-14",
+          "obligation": "Machinery space bilge discharge on Matsu Kestrel must pass through oil filtering equipment meeting the 15 ppm standard.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-AD5D",
+          "sourceId": "MARPOL-I-17",
+          "obligation": "Every machinery space oil operation on Matsu Kestrel must be recorded in the Oil Record Book Part I without delay and signed by the officer and master.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-8FC7",
+          "sourceId": "MARPOL-I-37",
+          "obligation": "Matsu Kestrel must carry an approved Shipboard Oil Pollution Emergency Plan reviewed annually with crew exercises.",
+          "category": "Environmental",
+          "periodicity": "Reviewed annually",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-BA21",
+          "sourceId": "MARPOL-IV-05",
+          "obligation": "Matsu Kestrel must hold an International Sewage Pollution Prevention certificate and approved treatment or holding tank system.",
+          "category": "Environmental",
+          "periodicity": "Renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-0D93",
+          "sourceId": "MARPOL-V-10",
+          "obligation": "Matsu Kestrel must carry a Garbage Management Plan and record every discharge or incineration in the Garbage Record Book.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-1D6E",
+          "sourceId": "MARPOL-VI-06",
+          "obligation": "Matsu Kestrel must hold an International Air Pollution Prevention certificate, renewed every 5 years.",
+          "category": "Environmental",
+          "periodicity": "Annual, renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-2E9A",
+          "sourceId": "MARPOL-VI-14",
+          "obligation": "Fuel oil supplied to Matsu Kestrel must not exceed 0.50% sulphur content by mass; compliance must be verified per bunkering.",
+          "category": "Environmental",
+          "periodicity": "Per bunkering, continuous",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-E52D",
+          "sourceId": "MARPOL-VI-18",
+          "obligation": "Bunker Delivery Notes and representative MARPOL fuel samples must be retained on board for at least 3 years and 12 months respectively.",
+          "category": "Environmental",
+          "periodicity": "Per bunkering",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-6F3F",
+          "sourceId": "MARPOL-VI-22A",
+          "obligation": "Fuel oil consumption, distance and hours under way must be collected for Matsu Kestrel across the calendar year and reported to the flag administration.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-F705",
+          "sourceId": "MARPOL-VI-28",
+          "obligation": "Matsu Kestrel must calculate an annual operational carbon intensity indicator and receive a rating from A to E.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-6729",
+          "sourceId": "BWM-B-02",
+          "obligation": "Ballast uptake, circulation, treatment and discharge on Matsu Kestrel must be recorded in the Ballast Water Record Book, signed by the officer.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-88D6",
+          "sourceId": "BWM-E-01",
+          "obligation": "Matsu Kestrel must hold a valid International Ballast Water Management Certificate, renewed every 5 years.",
+          "category": "Environmental",
+          "periodicity": "Annual, renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-F218",
+          "sourceId": "STCW-I-04",
+          "obligation": "Every seafarer on Matsu Kestrel must hold a valid certificate of competency appropriate to their rank, endorsed by the flag administration.",
+          "category": "Crew",
+          "periodicity": "Per crew change, revalidated every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-5A78",
+          "sourceId": "STCW-I-14",
+          "obligation": "Each newly joined seafarer on Matsu Kestrel must receive documented familiarisation with safety duties before assignment.",
+          "category": "Crew",
+          "periodicity": "Per crew change",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-F78D",
+          "sourceId": "STCW-VI-01",
+          "obligation": "All seafarers on Matsu Kestrel must hold basic safety training in survival, fire, first aid and safety, refreshed every 5 years.",
+          "category": "Crew",
+          "periodicity": "Refreshed every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-2FF7",
+          "sourceId": "STCW-VIII-01",
+          "obligation": "Watchkeepers on Matsu Kestrel must receive at least 10 hours rest in 24 hours and 77 hours in 7 days; rest records must be maintained.",
+          "category": "Crew",
+          "periodicity": "Continuous, recorded monthly",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-08A2",
+          "sourceId": "MLC-1-2",
+          "obligation": "Each seafarer on Matsu Kestrel must hold a valid medical certificate attesting fitness for their assigned duties.",
+          "category": "Labour",
+          "periodicity": "Valid up to 2 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-A286",
+          "sourceId": "MLC-2-1",
+          "obligation": "Each seafarer on Matsu Kestrel must hold a signed employment agreement in English, carried on board.",
+          "category": "Labour",
+          "periodicity": "Per engagement",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-2A8A",
+          "sourceId": "MLC-2-5",
+          "obligation": "Matsu Kestrel must carry a valid certificate evidencing financial security for seafarer repatriation and abandonment.",
+          "category": "Labour",
+          "periodicity": "Annual",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-ACE9",
+          "sourceId": "MLC-5-1",
+          "obligation": "Matsu Kestrel must hold a Maritime Labour Certificate with Declaration of Maritime Labour Compliance, renewed every 5 years.",
+          "category": "Labour",
+          "periodicity": "Renewal every 5 years",
+          "evidenceType": "Certificate"
+        }
+      ],
+      "actions": [
+        {
+          "id": "ACT-7DF3",
+          "requirementId": "REQ-AAFC",
+          "action": "Schedule and conduct annual Safety Construction certificate survey with classification society",
+          "due": "2026-09-13",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-956A",
+          "requirementId": "REQ-D14F",
+          "action": "Inspect fire mains, pumps, hydrants, hoses and portable extinguishers; document readiness",
+          "due": "2026-08-11",
+          "status": "in-progress",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-FF2D",
+          "requirementId": "REQ-7C6B",
+          "action": "Test fire detection and protection systems per schedule; record in maintenance log",
+          "due": "2026-08-07",
+          "status": "in-progress",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "ACT-FA6D",
+          "requirementId": "REQ-1CB0",
+          "action": "Conduct monthly abandon ship and fire drills with full crew participation",
+          "due": "2026-08-02",
+          "status": "open",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "ACT-AEC7",
+          "requirementId": "REQ-C277",
+          "action": "Complete weekly inspection of life-saving appliances and monthly lifeboat engine run",
+          "due": "2026-08-01",
+          "status": "open",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "ACT-FEA3",
+          "requirementId": "REQ-3A5A",
+          "action": "Verify radio installation maintenance and redundancy for IA2 sea areas",
+          "due": "2026-08-27",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-76FD",
+          "requirementId": "REQ-7377",
+          "action": "Annual survey of ECDIS, AIS, voyage data recorder and bridge alarm systems",
+          "due": "2026-09-03",
+          "status": "open",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-1B08",
+          "requirementId": "REQ-EEB4",
+          "action": "Prepare berth-to-berth passage plan for next voyage from Port Klang",
+          "due": "2026-07-31",
+          "status": "open",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "ACT-88E2",
+          "requirementId": "REQ-2E76",
+          "action": "Complete annual internal ISM audit and document findings",
+          "due": "2026-09-28",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-3C79",
+          "requirementId": "REQ-A5F9",
+          "action": "Conduct quarterly ship security drill with all personnel; document participation",
+          "due": "2026-08-04",
+          "status": "in-progress",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "ACT-4B70",
+          "requirementId": "REQ-7D1D",
+          "action": "Schedule annual International Oil Pollution Prevention certificate survey",
+          "due": "2026-09-08",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-FA50",
+          "requirementId": "REQ-BB3B",
+          "action": "Annual inspection of bilge oil filtering equipment for 15 ppm standard compliance",
+          "due": "2026-09-06",
+          "status": "open",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-91F7",
+          "requirementId": "REQ-8FC7",
+          "action": "Review Shipboard Oil Pollution Emergency Plan with crew and conduct exercise",
+          "due": "2026-10-28",
+          "status": "open",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "ACT-C19D",
+          "requirementId": "REQ-2E9A",
+          "action": "Verify fuel oil sulphur content ≤0.50% prior to next bunkering event",
+          "due": "2026-08-06",
+          "status": "in-progress",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "ACT-023E",
+          "requirementId": "REQ-6F3F",
+          "action": "Collect and compile annual fuel consumption, distance and hours data for flag report",
+          "due": "2026-11-27",
+          "status": "open",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "ACT-1A44",
+          "requirementId": "REQ-F705",
+          "action": "Calculate annual operational carbon intensity indicator and obtain A–E rating",
+          "due": "2026-12-02",
+          "status": "open",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "ACT-2A90",
+          "requirementId": "REQ-88D6",
+          "action": "Schedule annual International Ballast Water Management Certificate survey",
+          "due": "2026-09-18",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-182E",
+          "requirementId": "REQ-F218",
+          "action": "Verify all crew hold valid certificates of competency; update endorsements as needed",
+          "due": "2026-08-13",
+          "status": "in-progress",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-D6D8",
+          "requirementId": "REQ-2FF7",
+          "action": "Review and audit watchkeeper rest records for past month compliance",
+          "due": "2026-08-03",
+          "status": "done",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "ACT-DADE",
+          "requirementId": "REQ-2A8A",
+          "action": "Renew financial security certificate for seafarer repatriation and abandonment",
+          "due": "2026-08-24",
+          "status": "open",
+          "evidenceType": "Certificate"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-1C19",
+          "actionId": "ACT-D6D8",
+          "label": "Rest Hours Log - July 2026",
+          "type": "Record book",
+          "verdict": "accepted",
+          "reason": "Monthly watchkeeper rest records compiled and audited. All watchkeepers met minimum 10 hours rest in 24-hour period requirement for July 2026."
+        },
+        {
+          "id": "EV-D322",
+          "actionId": "ACT-182E",
+          "label": "Crew Certificate Verification & Endorsement Register",
+          "type": "Certificate",
+          "verdict": "accepted",
+          "reason": "All 23 crew members hold valid Certificates of Competency. Masters and officers current with required SOLAS endorsements; ratings current within validity periods."
+        },
+        {
+          "id": "EV-EF6B",
+          "actionId": "ACT-C19D",
+          "label": "Fuel Oil Analysis Report - Bunkering July 2026",
+          "type": "Analysis report",
+          "verdict": "accepted",
+          "reason": "MGO fuel analysis confirms sulphur content 0.48% wt/wt, compliant with 0.50% limit. Testing performed by ISO 17025 accredited laboratory immediately upon bunkering."
+        },
+        {
+          "id": "EV-4725",
+          "actionId": "ACT-956A",
+          "label": "Fire Main System Inspection Report",
+          "type": "Survey report",
+          "verdict": "rejected",
+          "reason": "Report lacks pressure test results for main and backup fire pumps. Hydrant flow testing documented but hose integrity certificates expired (last renewal 2024-06-15). Portable extinguisher distribution plan missing."
+        },
+        {
+          "id": "EV-E61E",
+          "actionId": "ACT-FF2D",
+          "label": "Fire Detection System Maintenance Log",
+          "type": "Log",
+          "verdict": "rejected",
+          "reason": "Log entries present but incomplete. Smoke detectors tested but heat detectors not recorded since March 2026. Sprinkler system inspection missing entirely. Does not comply with quarterly test schedule requirement."
+        },
+        {
+          "id": "EV-7B7C",
+          "actionId": "ACT-FA6D",
+          "label": "Monthly Abandon Ship and Fire Drill Report - July 2026",
+          "type": "Drill report",
+          "verdict": "accepted",
+          "reason": "Drill conducted 2026-07-28 with full crew participation (23/23). Muster list verified, assembly times recorded, lifeboat lowering exercise completed. No deficiencies noted."
+        },
+        {
+          "id": "EV-D656",
+          "actionId": "ACT-AEC7",
+          "label": "Life-Saving Appliance Log - July 2026",
+          "type": "Log",
+          "verdict": "accepted",
+          "reason": "Weekly LSA inspections completed for all four lifeboats and davits. Monthly lifeboat engine runs documented (2026-07-15, 2026-07-22, 2026-07-29). All systems operational."
+        },
+        {
+          "id": "EV-1E59",
+          "actionId": "ACT-3C79",
+          "label": "Ship Security Drill Report - Q3 2026",
+          "type": "Drill report",
+          "verdict": "accepted",
+          "reason": "Security drill conducted 2026-07-30 with 22 of 23 crew present (one on shore leave). Personnel assignments verified, response times recorded, communication systems tested. Satisfies quarterly requirement."
+        },
+        {
+          "id": "EV-8F06",
+          "actionId": "ACT-1B08",
+          "label": "Passage Plan - Port Klang to Ho Chi Minh",
+          "type": "Plan",
+          "verdict": "rejected",
+          "reason": "Plan submitted but lacks required safety contours for designated ship route IA2. Pilot boarding arrangements not specified. ECDIS route verification not documented. Incomplete per passage planning requirements."
+        },
+        {
+          "id": "EV-66ED",
+          "actionId": "ACT-FEA3",
+          "label": "Radio Installation Certificate & Maintenance Record",
+          "type": "Certificate",
+          "verdict": "accepted",
+          "reason": "Radio station Certificate valid (expires 2027-03-22). GMDSS maintenance log shows primary HF transceiver, backup VHF, and satellite EPIRB all functional and redundant for IA2 area operations."
+        },
+        {
+          "id": "EV-54CA",
+          "actionId": "ACT-76FD",
+          "label": "Bridge Navigation Systems Annual Survey Report",
+          "type": "Survey report",
+          "verdict": "rejected",
+          "reason": "Survey covers ECDIS and AIS functionality but voyage data recorder inspection incomplete; recorder last serviced 2024-11-10. Bridge alarm system testing not included. Does not satisfy full scope of annual requirement."
+        },
+        {
+          "id": "EV-C403",
+          "actionId": "ACT-DADE",
+          "label": "Financial Security Certificate - Repatriation & Abandonment",
+          "type": "Certificate",
+          "verdict": "rejected",
+          "reason": "Certificate valid until 2026-08-24 but renewal application not yet submitted. Must renew before expiry; providing evidence of valid certificate approaching expiration does not discharge action."
+        },
+        {
+          "id": "EV-5597",
+          "actionId": "ACT-88E2",
+          "label": "Annual ISM Internal Audit Report 2026",
+          "type": "Certificate",
+          "verdict": "accepted",
+          "reason": "Internal audit conducted 2026-07-18 by designated DPA. Non-conformities identified in garbage management procedures; corrective actions assigned with completion target 2026-08-15. Complies with ISM audit requirement."
+        },
+        {
+          "id": "EV-D2EF",
+          "actionId": "ACT-4B70",
+          "label": "IOPP Certificate & Survey Scheduling Letter",
+          "type": "Certificate",
+          "verdict": "rejected",
+          "reason": "Current IOPP certificate valid until 2027-09-08. Action asks for survey to be scheduled; submission shows scheduled survey 2026-10-15 but due date suggests immediate scheduling required for 2026-09-08 compliance. Insufficient lead time."
+        },
+        {
+          "id": "EV-5D9D",
+          "actionId": "ACT-FA50",
+          "label": "Bilge Oil Filter Unit Inspection Certificate",
+          "type": "Survey report",
+          "verdict": "accepted",
+          "reason": "Annual inspection completed 2026-07-20 confirms 15 ppm oily water separator and bilge filter unit functional and correctly calibrated. Complies with MARPOL Annex I standard."
+        },
+        {
+          "id": "EV-8461",
+          "actionId": "ACT-2A90",
+          "label": "IBWM Certificate & Survey Appointment Confirmation",
+          "type": "Certificate",
+          "verdict": "accepted",
+          "reason": "Current Ballast Water Management Certificate valid until 2027-09-18. Classification society survey confirmed for 2026-09-17 (day before expiry). Meets advance scheduling requirement for annual survey."
+        }
+      ],
+      "approvals": [
+        {
+          "id": "APR-1C19",
+          "evidenceId": "EV-1C19",
+          "summary": "Rest Hours Log - July 2026 — Review and audit watchkeeper rest records for past month compliance",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-D322",
+          "evidenceId": "EV-D322",
+          "summary": "Crew Certificate Verification & Endorsement Register — Verify all crew hold valid certificates of competency; update endorsements as needed",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-EF6B",
+          "evidenceId": "EV-EF6B",
+          "summary": "Fuel Oil Analysis Report - Bunkering July 2026 — Verify fuel oil sulphur content ≤0.50% prior to next bunkering event",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-7B7C",
+          "evidenceId": "EV-7B7C",
+          "summary": "Monthly Abandon Ship and Fire Drill Report - July 2026 — Conduct monthly abandon ship and fire drills with full crew participation",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-D656",
+          "evidenceId": "EV-D656",
+          "summary": "Life-Saving Appliance Log - July 2026 — Complete weekly inspection of life-saving appliances and monthly lifeboat engine run",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-1E59",
+          "evidenceId": "EV-1E59",
+          "summary": "Ship Security Drill Report - Q3 2026 — Conduct quarterly ship security drill with all personnel; document participation",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-66ED",
+          "evidenceId": "EV-66ED",
+          "summary": "Radio Installation Certificate & Maintenance Record — Verify radio installation maintenance and redundancy for IA2 sea areas",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-5597",
+          "evidenceId": "EV-5597",
+          "summary": "Annual ISM Internal Audit Report 2026 — Complete annual internal ISM audit and document findings",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-5D9D",
+          "evidenceId": "EV-5D9D",
+          "summary": "Bilge Oil Filter Unit Inspection Certificate — Annual inspection of bilge oil filtering equipment for 15 ppm standard compliance",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-8461",
+          "evidenceId": "EV-8461",
+          "summary": "IBWM Certificate & Survey Appointment Confirmation — Schedule annual International Ballast Water Management Certificate survey",
+          "state": "awaiting"
+        }
+      ]
+    },
+    {
+      "vesselId": "matsu-solace",
+      "overallStatus": "needs-review",
+      "stages": [
+        {
+          "id": 1,
+          "status": "complete",
+          "summary": "55 corpus records indexed. 50 apply to this hull on flag, type, tonnage, fuel and trading area.",
+          "count": 55,
+          "countLabel": "records indexed"
+        },
+        {
+          "id": 2,
+          "status": "complete",
+          "summary": "47 discrete obligations extracted, each traced to a corpus record.",
+          "count": 47,
+          "countLabel": "requirements extracted"
+        },
+        {
+          "id": 3,
+          "status": "complete",
+          "summary": "Matsu Solace is assigned a comprehensive regulatory obligation set driven primarily by its classification as a chemical/products tanker operating internationally under Marshall Islands flag. The 2021 build year places it under current SOLAS, MARPOL, and IMO 2030+ frameworks requiring modern safety, security, pollution prevention, and energy efficiency systems. As a tanker carrying hazardous cargo (noxious liquid substances and oil products), it triggers Annex I, II, and VI MARPOL obligations including oil record books, NLS certificates, and cargo documentation. The vessel's size (29,900 GT) and international trading pattern (Middle East–India) necessitate comprehensive statutory surveys, GMDSS equipment, navigational systems, ballast water management, and ship security protocols. Its dual fuel capability (HFO/VLSFO) and recent construction mandate sulphur compliance, fuel oil data reporting, CII ratings, and SEEMP implementation. Additional requirements for maritime labour certification, load line compliance, tonnage certification, insurance documentation, and hazardous materials inventory complete the profile expected of a modern, internationally-trading tanker.",
+          "count": 47,
+          "countLabel": "requirements assigned"
+        },
+        {
+          "id": 4,
+          "status": "active",
+          "summary": "4 of 20 actions complete.",
+          "count": 4,
+          "countLabel": "of 20 actions done"
+        },
+        {
+          "id": 5,
+          "status": "needs-review",
+          "summary": "10 items accepted, 1 rejected and awaiting resubmission.",
+          "count": 1,
+          "countLabel": "items flagged"
+        },
+        {
+          "id": 6,
+          "status": "active",
+          "summary": "10 items awaiting DPA sign-off. Every one needs a human decision.",
+          "count": 10,
+          "countLabel": "awaiting DPA"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "REQ-458B",
+          "sourceId": "SOLAS-I-07",
+          "obligation": "Matsu Solace must hold valid Safety Construction, Safety Equipment and Safety Radio certificates, renewed every 5 years and maintained through annual and intermediate surveys.",
+          "category": "Safety",
+          "periodicity": "Annual survey; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-4AE7",
+          "sourceId": "SOLAS-II-2-10",
+          "obligation": "Fire mains, pumps, hydrants, hoses and portable extinguishers must be provided to standard for a 29,900 GT chemical tanker and kept ready for immediate use.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-8C64",
+          "sourceId": "SOLAS-II-2-14",
+          "obligation": "Fire protection and detection systems on Matsu Solace must be maintained under a documented plan, tested at required intervals, and kept in working order between surveys.",
+          "category": "Safety",
+          "periodicity": "Continuous with scheduled tests",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "REQ-B6F2",
+          "sourceId": "SOLAS-III-19",
+          "obligation": "Every crew member on Matsu Solace must participate in an abandon ship drill and a fire drill each month, with additional drills within 24 hours if more than a quarter of crew changes.",
+          "category": "Safety",
+          "periodicity": "Monthly",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "REQ-B450",
+          "sourceId": "SOLAS-III-20",
+          "obligation": "Life-saving appliances on Matsu Solace must be inspected weekly and monthly, with lifeboat engines run regularly and davit-launched arrangements serviced at prescribed intervals.",
+          "category": "Safety",
+          "periodicity": "Weekly and monthly",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "REQ-4D48",
+          "sourceId": "SOLAS-IV-15",
+          "obligation": "Radio installations on Matsu Solace must be maintained available and operable for Middle East–India trading areas with required redundancy through duplication or maintenance capability.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-901D",
+          "sourceId": "SOLAS-V-19",
+          "obligation": "Matsu Solace must carry and maintain operational ECDIS, AIS, voyage data recorder and bridge navigational watch alarm system for a 29,900 GT tanker.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-A68A",
+          "sourceId": "SOLAS-V-34",
+          "obligation": "A berth-to-berth passage plan accounting for routeing measures, under-keel clearance and contingency anchorages must be prepared before each departure of Matsu Solace.",
+          "category": "Safety",
+          "periodicity": "Every voyage",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-AD55",
+          "sourceId": "SOLAS-IX-03",
+          "obligation": "Matsu Solace must be covered by the company's certified safety management system with a valid Safety Management Certificate, and internal audits and management review must occur annually.",
+          "category": "Safety",
+          "periodicity": "Annual audit; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-7DEA",
+          "sourceId": "SOLAS-XI-1-05",
+          "obligation": "Matsu Solace must maintain an unbroken Continuous Synopsis Record of flag, ownership, class and ISM history, with entries issued by the flag administration.",
+          "category": "Technical",
+          "periodicity": "On change of particulars",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-349B",
+          "sourceId": "ISPS-A-09",
+          "obligation": "An approved Ship Security Plan must be carried on Matsu Solace, a Ship Security Officer designated, and security drills held at least every three months with an annual company exercise.",
+          "category": "Security",
+          "periodicity": "Quarterly drills; annual exercise",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "REQ-775C",
+          "sourceId": "ISPS-A-19",
+          "obligation": "Matsu Solace must hold a valid International Ship Security Certificate supported by flag administration or recognised security organisation verification, renewed every 5 years.",
+          "category": "Security",
+          "periodicity": "Intermediate verification; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-3F3D",
+          "sourceId": "MARPOL-I-06",
+          "obligation": "Matsu Solace must hold an International Oil Pollution Prevention certificate maintained through initial, annual, intermediate and renewal surveys with matching Supplement for fitted equipment.",
+          "category": "Environmental",
+          "periodicity": "Annual; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-5BD9",
+          "sourceId": "MARPOL-I-14",
+          "obligation": "Machinery space bilge discharge on Matsu Solace must pass through oil filtering equipment meeting 15 ppm standard with automatic stopping where required by its 49,700 t deadweight.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-925E",
+          "sourceId": "MARPOL-I-17",
+          "obligation": "Every machinery space oil transfer, bilge discharge, sludge disposal and tank cleaning on Matsu Solace must be recorded in Oil Record Book Part I, signed by officer in charge and master.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-2E4A",
+          "sourceId": "MARPOL-I-36",
+          "obligation": "Cargo loading, internal transfer, discharge, crude oil washing, ballasting and slop tank operations on Matsu Solace must be recorded in Oil Record Book Part II, signed per entry.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-2E28",
+          "sourceId": "MARPOL-I-37",
+          "obligation": "Matsu Solace must carry an approved Shipboard Oil Pollution Emergency Plan with reporting contacts and crew exercises held at least annually.",
+          "category": "Environmental",
+          "periodicity": "Reviewed annually",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-3CB1",
+          "sourceId": "MARPOL-II-09",
+          "obligation": "Matsu Solace must hold an International Pollution Prevention Certificate for the Carriage of Noxious Liquid Substances listing the products approved for carriage.",
+          "category": "Environmental",
+          "periodicity": "Annual; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-77DC",
+          "sourceId": "MARPOL-II-14",
+          "obligation": "An approved Procedures and Arrangements Manual must be carried on Matsu Solace setting out cargo residue handling, tank prewashing and discharge for each substance category carried.",
+          "category": "Environmental",
+          "periodicity": "On approval; reviewed on cargo change",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-8CDD",
+          "sourceId": "MARPOL-II-15",
+          "obligation": "Loading, internal transfer, unloading, tank cleaning, prewash, ballasting and discharge operations for noxious liquid substances on Matsu Solace must be recorded in Cargo Record Book and signed.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-933E",
+          "sourceId": "MARPOL-IV-05",
+          "obligation": "Matsu Solace must hold an International Sewage Pollution Prevention certificate and carry an approved sewage treatment system or holding tank sized for Middle East–India trading.",
+          "category": "Environmental",
+          "periodicity": "Renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-28E7",
+          "sourceId": "MARPOL-V-10",
+          "obligation": "Matsu Solace must carry a Garbage Management Plan with placards displayed, and every discharge or incineration recorded in the Garbage Record Book with date, position and category.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-5A8A",
+          "sourceId": "MARPOL-VI-06",
+          "obligation": "Matsu Solace must hold an International Air Pollution Prevention certificate and an International Energy Efficiency certificate for ships in energy efficiency scope.",
+          "category": "Environmental",
+          "periodicity": "Annual; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-E3E4",
+          "sourceId": "MARPOL-VI-14",
+          "obligation": "Fuel oil supplied to Matsu Solace must not exceed 0.50% sulphur content globally, or 0.10% if bunkered in an Emission Control Area, verified by analysis.",
+          "category": "Environmental",
+          "periodicity": "Per bunkering; continuous compliance",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-4ACC",
+          "sourceId": "MARPOL-VI-18",
+          "obligation": "Bunker Delivery Notes for Matsu Solace must be retained on board for three years, and MARPOL representative samples retained for at least twelve months or until fuel consumed.",
+          "category": "Environmental",
+          "periodicity": "Per bunkering",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-DEBD",
+          "sourceId": "MARPOL-VI-22A",
+          "obligation": "Matsu Solace must collect fuel oil consumption, distance travelled and hours under way annually and report to the Marshall Islands administration for a Statement of Compliance.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-9DD0",
+          "sourceId": "MARPOL-VI-26",
+          "obligation": "Matsu Solace must carry a Ship Energy Efficiency Management Plan reviewed annually, including Part III with carbon intensity corrective action plan if in CII scope.",
+          "category": "Environmental",
+          "periodicity": "Reviewed annually",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-271C",
+          "sourceId": "MARPOL-VI-28",
+          "obligation": "Matsu Solace must calculate an annual operational carbon intensity indicator and receive a rating; a D rating in three consecutive years or single E triggers a SEEMP Part III corrective action plan.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-3B0A",
+          "sourceId": "BWM-B-01",
+          "obligation": "An approved Ballast Water Management Plan specific to Matsu Solace must set out ballast handling, sediment management, safety precautions and the responsible officer.",
+          "category": "Environmental",
+          "periodicity": "Reviewed on system or trade change",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-CA98",
+          "sourceId": "BWM-B-02",
+          "obligation": "Ballast uptake, circulation, treatment, discharge and accidental discharges on Matsu Solace must be recorded in the Ballast Water Record Book, signed by the officer in charge.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-4CAA",
+          "sourceId": "BWM-D-02",
+          "obligation": "Discharged ballast from Matsu Solace must meet D-2 organism concentration limits, requiring an approved treatment system operated within its stated limitations.",
+          "category": "Environmental",
+          "periodicity": "Continuous",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-C07F",
+          "sourceId": "BWM-E-01",
+          "obligation": "Matsu Solace must hold a valid International Ballast Water Management Certificate maintained through annual, intermediate and renewal survey cycles every 5 years.",
+          "category": "Environmental",
+          "periodicity": "Annual; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-B6EA",
+          "sourceId": "STCW-I-04",
+          "obligation": "Every seafarer on Matsu Solace must hold a certificate of competency appropriate to rank and ship type, endorsed by the Marshall Islands administration.",
+          "category": "Crew",
+          "periodicity": "Per crew change; revalidated every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-21D3",
+          "sourceId": "STCW-I-14",
+          "obligation": "Matsu Solace must assign only properly certificated seafarers, and each newly joined crew member must receive documented familiarisation with their safety duties before assignment.",
+          "category": "Crew",
+          "periodicity": "Per crew change",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-ADE4",
+          "sourceId": "STCW-VI-01",
+          "obligation": "All seafarers on Matsu Solace must hold basic safety training in personal survival, fire prevention and fighting, first aid and personal safety, refreshed every 5 years.",
+          "category": "Crew",
+          "periodicity": "Refreshed every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-ADDD",
+          "sourceId": "STCW-VIII-01",
+          "obligation": "Watchkeepers on Matsu Solace must receive at least 10 hours rest in 24 hours and 77 hours in 7 days, recorded monthly and countersigned by master and crew member.",
+          "category": "Crew",
+          "periodicity": "Continuous; recorded monthly",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-1FB5",
+          "sourceId": "MLC-1-2",
+          "obligation": "Each seafarer on Matsu Solace must hold a valid medical certificate attesting fitness for their duties, issued by an approved practitioner.",
+          "category": "Labour",
+          "periodicity": "Valid up to 2 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-B3FC",
+          "sourceId": "MLC-2-1",
+          "obligation": "Each seafarer on Matsu Solace must hold a signed employment agreement carried on board in English, setting out terms and notice period.",
+          "category": "Labour",
+          "periodicity": "Per engagement",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-74C5",
+          "sourceId": "MLC-2-3",
+          "obligation": "Daily hours of work or rest for all crew on Matsu Solace must be recorded in standardised format, endorsed by master and seafarer, with a copy given to the crew member.",
+          "category": "Labour",
+          "periodicity": "Monthly",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-D20C",
+          "sourceId": "MLC-2-5",
+          "obligation": "Matsu Solace must display a certificate evidencing financial security for repatriation and abandonment, naming the provider and the period of cover.",
+          "category": "Labour",
+          "periodicity": "Annual",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-04C4",
+          "sourceId": "MLC-5-1",
+          "obligation": "Matsu Solace must hold a Maritime Labour Certificate with Declaration of Maritime Labour Compliance Parts I and II, kept valid through intermediate inspection and renewed every 5 years.",
+          "category": "Labour",
+          "periodicity": "Intermediate inspection; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-7A2F",
+          "sourceId": "AFS-2001",
+          "obligation": "Matsu Solace must hold an International Anti-fouling System Certificate with a record of the coating system applied, free of prohibited substances including cybutryne.",
+          "category": "Environmental",
+          "periodicity": "On application or change of system",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-636E",
+          "sourceId": "LL-1966",
+          "obligation": "Matsu Solace must hold an International Load Line Certificate with legible freeboard marks, and conditions of assignment including closing appliances and freeing ports maintained in order.",
+          "category": "Technical",
+          "periodicity": "Annual; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-505E",
+          "sourceId": "TONNAGE-1969",
+          "obligation": "Matsu Solace must carry an International Tonnage Certificate (1969), reissued if alterations affecting measured tonnage are undertaken.",
+          "category": "Technical",
+          "periodicity": "On alteration",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-A0CF",
+          "sourceId": "BUNKERS-2001",
+          "obligation": "Matsu Solace must carry a certificate evidencing insurance or financial security for bunker oil pollution damage.",
+          "category": "Technical",
+          "periodicity": "Annual",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-E2AC",
+          "sourceId": "NAIROBI-2007",
+          "obligation": "Matsu Solace must carry a certificate evidencing insurance or other financial security covering liability for wreck removal.",
+          "category": "Technical",
+          "periodicity": "Annual",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-23E1",
+          "sourceId": "HKC-IHM",
+          "obligation": "A Part I inventory of hazardous materials in the structure and equipment of Matsu Solace must be maintained current throughout operational life and surveyed every 5 years.",
+          "category": "Environmental",
+          "periodicity": "Maintained continuously; surveyed every 5 years",
+          "evidenceType": "Certificate"
+        }
+      ],
+      "actions": [
+        {
+          "id": "ACT-3378",
+          "requirementId": "REQ-458B",
+          "action": "Conduct annual safety construction and equipment survey with classification society surveyor",
+          "due": "2026-09-13",
+          "status": "in-progress",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-44CA",
+          "requirementId": "REQ-4AE7",
+          "action": "Inspect and test fire mains, pumps, hydrants, hoses and portable extinguishers to standard",
+          "due": "2026-08-27",
+          "status": "open",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-FA59",
+          "requirementId": "REQ-8C64",
+          "action": "Test fire detection and protection systems per maintenance plan; document results in log",
+          "due": "2026-08-06",
+          "status": "in-progress",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "ACT-3467",
+          "requirementId": "REQ-B6F2",
+          "action": "Conduct monthly abandon ship and fire drills with all crew; complete drill report",
+          "due": "2026-08-02",
+          "status": "open",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "ACT-0107",
+          "requirementId": "REQ-B450",
+          "action": "Complete weekly inspection of life-saving appliances and monthly lifeboat engine run",
+          "due": "2026-08-01",
+          "status": "open",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "ACT-46A3",
+          "requirementId": "REQ-4D48",
+          "action": "Conduct annual radio installation maintenance and redundancy verification survey",
+          "due": "2026-09-20",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-DD13",
+          "requirementId": "REQ-901D",
+          "action": "Survey ECDIS, AIS, VDR and bridge watch alarm system for operational compliance",
+          "due": "2026-09-06",
+          "status": "open",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-B63D",
+          "requirementId": "REQ-A68A",
+          "action": "Prepare berth-to-berth passage plan before next departure from Jubail or Mundra",
+          "due": "2026-07-31",
+          "status": "done",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "ACT-FD5F",
+          "requirementId": "REQ-AD55",
+          "action": "Conduct annual internal audit of Safety Management System and management review",
+          "due": "2026-08-21",
+          "status": "in-progress",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-C9FA",
+          "requirementId": "REQ-349B",
+          "action": "Hold ship security drill with crew; prepare quarterly drill report and annual exercise",
+          "due": "2026-08-17",
+          "status": "open",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "ACT-A6DB",
+          "requirementId": "REQ-3F3D",
+          "action": "Conduct annual IOPPC survey and verify Supplement matches fitted equipment",
+          "due": "2026-09-03",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-6D8F",
+          "requirementId": "REQ-5BD9",
+          "action": "Inspect oil filtering equipment for 15 ppm standard compliance and test auto-stopping",
+          "due": "2026-09-09",
+          "status": "open",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-A318",
+          "requirementId": "REQ-925E",
+          "action": "Ensure Oil Record Book Part I entries completed and signed for all machinery space operations",
+          "due": "2026-07-30",
+          "status": "done",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "ACT-961A",
+          "requirementId": "REQ-2E4A",
+          "action": "Record all cargo operations in Oil Record Book Part II with officer and master signatures",
+          "due": "2026-07-30",
+          "status": "done",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "ACT-E2AA",
+          "requirementId": "REQ-2E28",
+          "action": "Review Shipboard Oil Pollution Emergency Plan and conduct required crew exercise",
+          "due": "2026-10-05",
+          "status": "open",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "ACT-17F3",
+          "requirementId": "REQ-3CB1",
+          "action": "Conduct annual survey of INLC certificate and verify approved cargo product listing",
+          "due": "2026-09-12",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-447E",
+          "requirementId": "REQ-8CDD",
+          "action": "Record noxious liquid substance operations in Cargo Record Book with required signatures",
+          "due": "2026-07-30",
+          "status": "done",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "ACT-9136",
+          "requirementId": "REQ-E3E4",
+          "action": "Obtain fuel oil analysis report confirming sulphur content at 0.50% max globally",
+          "due": "2026-08-04",
+          "status": "in-progress",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "ACT-2358",
+          "requirementId": "REQ-DEBD",
+          "action": "Compile annual fuel consumption, distance and hours data; submit to Marshall Islands for SOC",
+          "due": "2026-10-26",
+          "status": "open",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "ACT-3384",
+          "requirementId": "REQ-B6EA",
+          "action": "Verify all crew hold valid certificates of competency endorsed by flag administration",
+          "due": "2026-08-13",
+          "status": "open",
+          "evidenceType": "Certificate"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-B99F",
+          "actionId": "ACT-3378",
+          "label": "Annual Safety Construction and Equipment Survey Certificate",
+          "type": "Certificate",
+          "verdict": "pending",
+          "reason": "Due 2026-09-13, currently in-progress. Classification society surveyor inspection not yet completed and certified; awaiting final survey report and certificate issuance."
+        },
+        {
+          "id": "EV-C38B",
+          "actionId": "ACT-FA59",
+          "label": "Fire Detection and Protection Systems Maintenance Log",
+          "type": "Log",
+          "verdict": "pending",
+          "reason": "Due 2026-08-06, in-progress status. Testing of fire detection systems documented in log format; maintenance plan compliance verification still under completion."
+        },
+        {
+          "id": "EV-5464",
+          "actionId": "ACT-3467",
+          "label": "Monthly Abandon Ship and Fire Drills Report",
+          "type": "Drill report",
+          "verdict": "accepted",
+          "reason": "Drill report submitted documenting monthly abandon ship and fire drills conducted with all crew participation as required by SOLAS regulations."
+        },
+        {
+          "id": "EV-DB4B",
+          "actionId": "ACT-0107",
+          "label": "Weekly Life-Saving Appliances Inspection and Monthly Lifeboat Engine Run Log",
+          "type": "Log",
+          "verdict": "accepted",
+          "reason": "Inspection log demonstrates weekly checks of life-saving appliances and monthly lifeboat engine operation runs, meeting SOLAS Chapter III requirements."
+        },
+        {
+          "id": "EV-CEF2",
+          "actionId": "ACT-46A3",
+          "label": "Annual Radio Installation Maintenance and Redundancy Verification Certificate",
+          "type": "Certificate",
+          "verdict": "accepted",
+          "reason": "Annual GMDSS radio installation maintenance and redundancy verification survey completed and certified by approved service provider."
+        },
+        {
+          "id": "EV-0959",
+          "actionId": "ACT-DD13",
+          "label": "Bridge Navigation System Compliance Survey Report",
+          "type": "Survey report",
+          "verdict": "accepted",
+          "reason": "Survey report covers ECDIS, AIS, VDR and bridge watch alarm system operational compliance verification as required."
+        },
+        {
+          "id": "EV-E500",
+          "actionId": "ACT-B63D",
+          "label": "Berth-to-Berth Passage Plan Jubail to Mundra",
+          "type": "Plan",
+          "verdict": "accepted",
+          "reason": "Passage plan completed before departure from Jubail, detailing route, waypoints, hazards and contingencies for Middle East–India trading route."
+        },
+        {
+          "id": "EV-B50A",
+          "actionId": "ACT-FD5F",
+          "label": "Annual Safety Management System Internal Audit and Management Review Certificate",
+          "type": "Certificate",
+          "verdict": "pending",
+          "reason": "Due 2026-08-21, in-progress. Annual SMS audit and management review not yet finalized; certification pending completion of review process."
+        },
+        {
+          "id": "EV-BAB4",
+          "actionId": "ACT-C9FA",
+          "label": "Ship Security Drill Report",
+          "type": "Drill report",
+          "verdict": "accepted",
+          "reason": "Quarterly ship security drill conducted with crew and documented in required drill report format per ISPS Code requirements."
+        },
+        {
+          "id": "EV-77AD",
+          "actionId": "ACT-A6DB",
+          "label": "Annual International Oil Pollution Prevention Certificate Survey",
+          "type": "Certificate",
+          "verdict": "accepted",
+          "reason": "IOPPC survey completed; Supplement verified to match fitted cargo tank cleaning and pollution prevention equipment on vessel."
+        },
+        {
+          "id": "EV-3991",
+          "actionId": "ACT-6D8F",
+          "label": "Oil Filtering Equipment 15ppm Compliance Survey Report",
+          "type": "Survey report",
+          "verdict": "rejected",
+          "reason": "Survey report lacks documented evidence of auto-stopping device testing and functional verification required by Regulation 16 MARPOL Annex I."
+        },
+        {
+          "id": "EV-09E7",
+          "actionId": "ACT-A318",
+          "label": "Oil Record Book Part I - Machinery Space Operations",
+          "type": "Record book",
+          "verdict": "accepted",
+          "reason": "ORB Part I entries completed and signed by responsible officers for all machinery space operations, fuel transfers and bunkering events."
+        },
+        {
+          "id": "EV-8060",
+          "actionId": "ACT-961A",
+          "label": "Oil Record Book Part II - Cargo Operations",
+          "type": "Record book",
+          "verdict": "accepted",
+          "reason": "ORB Part II entries completed, signed by cargo officer and master for all cargo transfer operations conducted during period."
+        },
+        {
+          "id": "EV-DBC2",
+          "actionId": "ACT-9136",
+          "label": "Fuel Oil Analysis Report - Sulphur Content Verification",
+          "type": "Analysis report",
+          "verdict": "pending",
+          "reason": "Due 2026-08-04, in-progress. Fuel oil analysis for sulphur content (0.50% max) testing in progress; awaiting accredited laboratory results and certification."
+        },
+        {
+          "id": "EV-82D8",
+          "actionId": "ACT-3384",
+          "label": "Crew Certificates of Competency Verification List",
+          "type": "Certificate",
+          "verdict": "accepted",
+          "reason": "All crew hold valid CoC certificates duly endorsed by Marshall Islands flag administration; documentation verified and records current."
+        }
+      ],
+      "approvals": [
+        {
+          "id": "APR-5464",
+          "evidenceId": "EV-5464",
+          "summary": "Monthly Abandon Ship and Fire Drills Report — Conduct monthly abandon ship and fire drills with all crew; complete drill report",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-DB4B",
+          "evidenceId": "EV-DB4B",
+          "summary": "Weekly Life-Saving Appliances Inspection and Monthly Lifeboat Engine Run Log — Complete weekly inspection of life-saving appliances and monthly lifeboat engine run",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-CEF2",
+          "evidenceId": "EV-CEF2",
+          "summary": "Annual Radio Installation Maintenance and Redundancy Verification Certificate — Conduct annual radio installation maintenance and redundancy verification survey",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-0959",
+          "evidenceId": "EV-0959",
+          "summary": "Bridge Navigation System Compliance Survey Report — Survey ECDIS, AIS, VDR and bridge watch alarm system for operational compliance",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-E500",
+          "evidenceId": "EV-E500",
+          "summary": "Berth-to-Berth Passage Plan Jubail to Mundra — Prepare berth-to-berth passage plan before next departure from Jubail or Mundra",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-BAB4",
+          "evidenceId": "EV-BAB4",
+          "summary": "Ship Security Drill Report — Hold ship security drill with crew; prepare quarterly drill report and annual exercise",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-77AD",
+          "evidenceId": "EV-77AD",
+          "summary": "Annual International Oil Pollution Prevention Certificate Survey — Conduct annual IOPPC survey and verify Supplement matches fitted equipment",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-09E7",
+          "evidenceId": "EV-09E7",
+          "summary": "Oil Record Book Part I - Machinery Space Operations — Ensure Oil Record Book Part I entries completed and signed for all machinery space operations",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-8060",
+          "evidenceId": "EV-8060",
+          "summary": "Oil Record Book Part II - Cargo Operations — Record all cargo operations in Oil Record Book Part II with officer and master signatures",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-82D8",
+          "evidenceId": "EV-82D8",
+          "summary": "Crew Certificates of Competency Verification List — Verify all crew hold valid certificates of competency endorsed by flag administration",
+          "state": "awaiting"
+        }
+      ]
+    },
+    {
+      "vesselId": "matsu-cordillera",
+      "overallStatus": "needs-review",
+      "stages": [
+        {
+          "id": 1,
+          "status": "complete",
+          "summary": "55 corpus records indexed. 47 apply to this hull on flag, type, tonnage, fuel and trading area.",
+          "count": 55,
+          "countLabel": "records indexed"
+        },
+        {
+          "id": 2,
+          "status": "complete",
+          "summary": "44 discrete obligations extracted, each traced to a corpus record.",
+          "count": 44,
+          "countLabel": "requirements extracted"
+        },
+        {
+          "id": 3,
+          "status": "complete",
+          "summary": "Matsu Cordillera draws this comprehensive 44-obligation set primarily because it is a large bulk carrier (44,100 GT, 81,600 DWT) built in 2015 operating internationally on transpacific trade routes under Liberian flag. The 2015 build year triggers modern SOLAS, MARPOL, and ballast water management regimes, while its size (>500 GT) and international trading expose it to the full suite of statutory surveys, GMDSS, navigational system carriage, oil pollution prevention, sewage, garbage management, ballast water control, and crew certification requirements. The vessel's fuel capability (HFO/VLSFO) subjects it to MARPOL Annex VI sulphur limits, fuel consumption reporting, operational CII rating, and bunker documentation. The combination of bulk carrier type with transpacific deep-sea trading imposes Load Line, Tonnage, wreck removal, and comprehensive Port State Control alignment obligations that would not apply to smaller, inland, or specialized vessels.",
+          "count": 44,
+          "countLabel": "requirements assigned"
+        },
+        {
+          "id": 4,
+          "status": "needs-review",
+          "summary": "2 of 20 actions complete. 1 past their due date.",
+          "count": 2,
+          "countLabel": "of 20 actions done"
+        },
+        {
+          "id": 5,
+          "status": "needs-review",
+          "summary": "2 items accepted, 5 rejected and awaiting resubmission.",
+          "count": 5,
+          "countLabel": "items flagged"
+        },
+        {
+          "id": 6,
+          "status": "active",
+          "summary": "2 items awaiting DPA sign-off. Every one needs a human decision.",
+          "count": 2,
+          "countLabel": "awaiting DPA"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "REQ-F157",
+          "sourceId": "SOLAS-I-07",
+          "obligation": "Matsu Cordillera must hold valid Safety Construction, Safety Equipment and Safety Radio certificates, maintaining them through annual, intermediate and renewal surveys with a 5-year renewal cycle.",
+          "category": "Safety",
+          "periodicity": "Annual survey; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-9D3F",
+          "sourceId": "SOLAS-II-2-10",
+          "obligation": "Fire mains, pumps, hydrants, hoses and portable extinguishers must be provided and kept ready for immediate use on Matsu Cordillera, verified annually.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-01A4",
+          "sourceId": "SOLAS-II-2-14",
+          "obligation": "Fire protection and detection systems on Matsu Cordillera must be maintained under a documented plan, tested at required intervals, and kept in working order between surveys.",
+          "category": "Safety",
+          "periodicity": "Continuous with scheduled tests",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "REQ-DD6D",
+          "sourceId": "SOLAS-III-19",
+          "obligation": "Every crew member of Matsu Cordillera must participate in an abandon ship drill and a fire drill monthly, with additional drills within 24 hours if more than a quarter of crew changes.",
+          "category": "Safety",
+          "periodicity": "Monthly",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "REQ-4C66",
+          "sourceId": "SOLAS-III-20",
+          "obligation": "Life-saving appliances on Matsu Cordillera must be inspected weekly and monthly, with lifeboat engines run regularly and davit-launched liferaft release gear serviced per schedule.",
+          "category": "Safety",
+          "periodicity": "Weekly and monthly",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "REQ-AC4B",
+          "sourceId": "SOLAS-IV-15",
+          "obligation": "Matsu Cordillera must maintain GMDSS radio installations for the sea areas it trades, with required redundancy through duplication, shore maintenance or at-sea capability.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-060B",
+          "sourceId": "SOLAS-V-19",
+          "obligation": "Matsu Cordillera must carry and maintain operational navigational equipment including ECDIS, AIS, voyage data recorder and bridge watch alarm arrangements, verified annually.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-8455",
+          "sourceId": "SOLAS-V-34",
+          "obligation": "A berth-to-berth passage plan accounting for routeing, under-keel clearance and contingency anchorages must be prepared before each departure of Matsu Cordillera.",
+          "category": "Safety",
+          "periodicity": "Every voyage",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-BF47",
+          "sourceId": "SOLAS-IX-03",
+          "obligation": "Matsu Cordillera must hold a valid Safety Management Certificate, with the company holding a Document of Compliance, internal audits and management reviews conducted annually and renewal every 5 years.",
+          "category": "Safety",
+          "periodicity": "Annual audit; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-0FC3",
+          "sourceId": "SOLAS-XI-1-05",
+          "obligation": "Matsu Cordillera must maintain a complete Continuous Synopsis Record of flag, ownership, class and ISM history, updated when particulars change.",
+          "category": "Technical",
+          "periodicity": "On change of particulars",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-E91C",
+          "sourceId": "ISPS-A-09",
+          "obligation": "Matsu Cordillera must carry an approved Ship Security Plan, have a designated Ship Security Officer, and conduct security drills quarterly and a company security exercise annually.",
+          "category": "Security",
+          "periodicity": "Quarterly drills; annual exercise",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "REQ-3CDF",
+          "sourceId": "ISPS-A-19",
+          "obligation": "Matsu Cordillera must hold a valid International Ship Security Certificate through initial, intermediate and renewal verification by the flag administration, renewable every 5 years.",
+          "category": "Security",
+          "periodicity": "Intermediate verification; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-9D38",
+          "sourceId": "MARPOL-I-06",
+          "obligation": "Matsu Cordillera must hold a valid International Oil Pollution Prevention certificate maintained through annual, intermediate and renewal surveys, with a 5-year renewal cycle.",
+          "category": "Environmental",
+          "periodicity": "Annual survey; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-DAEC",
+          "sourceId": "MARPOL-I-14",
+          "obligation": "Machinery space bilge discharge on Matsu Cordillera must pass through oil filtering equipment meeting the 15 ppm standard with alarm and automatic stopping, verified annually.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-78F4",
+          "sourceId": "MARPOL-I-17",
+          "obligation": "Every machinery space oil transfer, bilge discharge, sludge disposal and tank cleaning operation on Matsu Cordillera must be recorded without delay and signed by the officer and master.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-3174",
+          "sourceId": "MARPOL-I-37",
+          "obligation": "Matsu Cordillera must carry an approved Shipboard Oil Pollution Emergency Plan with reporting contacts and immediate discharge actions, reviewed annually and crew exercised against it.",
+          "category": "Environmental",
+          "periodicity": "Annual review",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-139C",
+          "sourceId": "MARPOL-IV-05",
+          "obligation": "Matsu Cordillera must hold an International Sewage Pollution Prevention certificate and carry an approved treatment plant, comminuting and disinfecting system, or holding tank sized for its transpacific trade.",
+          "category": "Environmental",
+          "periodicity": "Renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-AF79",
+          "sourceId": "MARPOL-V-10",
+          "obligation": "Matsu Cordillera must carry and follow a Garbage Management Plan with displayed placards, recording every discharge or incineration in the Garbage Record Book with date, position, category and amount.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-85CF",
+          "sourceId": "MARPOL-VI-06",
+          "obligation": "Matsu Cordillera must hold a valid International Air Pollution Prevention certificate, and as a bulk carrier over 400 GT, must also hold an International Energy Efficiency certificate, renewable every 5 years.",
+          "category": "Environmental",
+          "periodicity": "Annual; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-EC22",
+          "sourceId": "MARPOL-VI-12",
+          "obligation": "Equipment containing ozone depleting substances on Matsu Cordillera must be listed, with recharges, repairs and atmospheric discharges recorded.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-4749",
+          "sourceId": "MARPOL-VI-13",
+          "obligation": "Diesel engines above 130 kW on Matsu Cordillera must hold an EIAPP certificate and Technical File, complying with NOx tier Tier II (keel-laid 2015) for all trading areas.",
+          "category": "Environmental",
+          "periodicity": "Survey-linked",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-C63D",
+          "sourceId": "MARPOL-VI-14",
+          "obligation": "Fuel oil aboard Matsu Cordillera must not exceed 0.50% sulphur content by mass; compliance verified by analysis report for each bunkering operation.",
+          "category": "Environmental",
+          "periodicity": "Per bunkering; continuous compliance",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-E0D5",
+          "sourceId": "MARPOL-VI-18",
+          "obligation": "Bunker Delivery Notes must be retained on board Matsu Cordillera for three years, and MARPOL samples for at least twelve months after delivery.",
+          "category": "Environmental",
+          "periodicity": "Per bunkering",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-7011",
+          "sourceId": "MARPOL-VI-22A",
+          "obligation": "Matsu Cordillera must collect fuel oil consumption, distance travelled and hours under way annually and report to the flag administration, receiving a Statement of Compliance.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-45EF",
+          "sourceId": "MARPOL-VI-26",
+          "obligation": "Matsu Cordillera must carry a Ship Energy Efficiency Management Plan with Parts I, II and III, reviewed annually with implementation plan and corrective actions.",
+          "category": "Environmental",
+          "periodicity": "Annual review",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-3846",
+          "sourceId": "MARPOL-VI-28",
+          "obligation": "Matsu Cordillera must calculate an annual operational carbon intensity indicator and receive a CII rating; a D rating in three consecutive years or a single E rating triggers corrective action in SEEMP Part III.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-C130",
+          "sourceId": "BWM-B-01",
+          "obligation": "Matsu Cordillera must maintain an approved Ballast Water Management Plan setting out ballast procedures, sediment management and safety precautions, reviewed if system or trade changes.",
+          "category": "Environmental",
+          "periodicity": "Reviewed on system or trade change",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-73DD",
+          "sourceId": "BWM-B-02",
+          "obligation": "Ballast uptake, circulation, treatment, discharge and accidental discharge on Matsu Cordillera must each be recorded in the Ballast Water Record Book, signed by the officer in charge.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-896F",
+          "sourceId": "BWM-E-01",
+          "obligation": "Matsu Cordillera must hold a valid International Ballast Water Management Certificate, maintained through annual, intermediate and renewal surveys with a 5-year renewal cycle.",
+          "category": "Environmental",
+          "periodicity": "Annual; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-231F",
+          "sourceId": "STCW-I-04",
+          "obligation": "Every seafarer on Matsu Cordillera must hold a certificate of competency appropriate to rank and ship type, endorsed by the flag administration and valid for the voyage undertaken.",
+          "category": "Crew",
+          "periodicity": "Per crew change; revalidated every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-4FD8",
+          "sourceId": "STCW-I-14",
+          "obligation": "Only properly certificated seafarers must be assigned to Matsu Cordillera, with each newly joined seafarer receiving documented familiarisation with safety duties before assignment.",
+          "category": "Crew",
+          "periodicity": "Per crew change",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-4B56",
+          "sourceId": "STCW-VI-01",
+          "obligation": "All seafarers on Matsu Cordillera must hold basic safety training in personal survival, fire prevention and fighting, elementary first aid, and personal safety, refreshed every 5 years.",
+          "category": "Crew",
+          "periodicity": "Refreshed every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-CEC4",
+          "sourceId": "STCW-VIII-01",
+          "obligation": "Watchkeepers on Matsu Cordillera must receive at least 10 hours rest per 24-hour period and 77 hours per 7-day period; records maintained and countersigned monthly.",
+          "category": "Crew",
+          "periodicity": "Continuous; recorded monthly",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-9364",
+          "sourceId": "MLC-1-2",
+          "obligation": "Each seafarer on Matsu Cordillera must hold a valid medical certificate attesting fitness for duties performed, issued by an approved practitioner and valid up to 2 years.",
+          "category": "Labour",
+          "periodicity": "Valid up to 2 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-E2F0",
+          "sourceId": "MLC-2-1",
+          "obligation": "Each seafarer on Matsu Cordillera must hold a signed employment agreement in English, carried on board, setting out terms and notice period.",
+          "category": "Labour",
+          "periodicity": "Per engagement",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-B962",
+          "sourceId": "MLC-2-3",
+          "obligation": "Daily hours of work or rest for Matsu Cordillera crew must be recorded in a standardised format, endorsed by master and seafarer, with a copy provided to the seafarer, compiled monthly.",
+          "category": "Labour",
+          "periodicity": "Monthly",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-5149",
+          "sourceId": "MLC-2-5",
+          "obligation": "Matsu Cordillera must carry and display a certificate evidencing financial security for repatriation and abandonment, naming the provider and period of cover, renewed annually.",
+          "category": "Labour",
+          "periodicity": "Annual",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-A6D8",
+          "sourceId": "MLC-5-1",
+          "obligation": "Matsu Cordillera must hold a Maritime Labour Certificate with Declaration of Maritime Labour Compliance Parts I and II, maintained through intermediate inspections and renewable every 5 years.",
+          "category": "Labour",
+          "periodicity": "Intermediate inspection; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-E125",
+          "sourceId": "AFS-2001",
+          "obligation": "Matsu Cordillera must carry an International Anti-fouling System Certificate recording the system applied, with coating free of prohibited substances including cybutryne restrictions.",
+          "category": "Environmental",
+          "periodicity": "On application or change of system",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-BF2B",
+          "sourceId": "LL-1966",
+          "obligation": "Matsu Cordillera must hold a valid International Load Line Certificate with freeboard marks maintained legible and conditions of assignment kept in order, renewed every 5 years.",
+          "category": "Technical",
+          "periodicity": "Annual; renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-098E",
+          "sourceId": "TONNAGE-1969",
+          "obligation": "Matsu Cordillera must carry an International Tonnage Certificate (1969), reissued when the ship undergoes alterations affecting measured tonnage.",
+          "category": "Technical",
+          "periodicity": "On alteration",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-9DBD",
+          "sourceId": "BUNKERS-2001",
+          "obligation": "Matsu Cordillera must carry a certificate evidencing insurance or financial security for bunker oil pollution damage, renewed annually.",
+          "category": "Technical",
+          "periodicity": "Annual",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-7716",
+          "sourceId": "NAIROBI-2007",
+          "obligation": "Matsu Cordillera must carry a certificate evidencing insurance or other financial security covering liability for wreck removal, renewed annually.",
+          "category": "Technical",
+          "periodicity": "Annual",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-4642",
+          "sourceId": "HKC-IHM",
+          "obligation": "Matsu Cordillera must maintain a current Part I inventory of hazardous materials in structure and equipment, supported by an international certificate renewed every 5 years.",
+          "category": "Environmental",
+          "periodicity": "Maintained continuously; surveyed every 5 years",
+          "evidenceType": "Certificate"
+        }
+      ],
+      "actions": [
+        {
+          "id": "ACT-EC15",
+          "requirementId": "REQ-F157",
+          "action": "Schedule and conduct annual Safety Construction survey with classification society",
+          "due": "2026-09-13",
+          "status": "in-progress",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-FCDD",
+          "requirementId": "REQ-9D3F",
+          "action": "Inspect and test fire mains, pumps, hydrants and portable extinguishers; document condition",
+          "due": "2026-08-31",
+          "status": "in-progress",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-B0AE",
+          "requirementId": "REQ-01A4",
+          "action": "Run monthly fire detection system test and record results in engineering log",
+          "due": "2026-08-07",
+          "status": "open",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "ACT-3CA2",
+          "requirementId": "REQ-DD6D",
+          "action": "Conduct monthly abandon ship and fire drills; document all crew participation",
+          "due": "2026-08-04",
+          "status": "open",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "ACT-2AD4",
+          "requirementId": "REQ-4C66",
+          "action": "Complete weekly inspection of life-saving appliances and record in LSA log",
+          "due": "2026-08-01",
+          "status": "open",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "ACT-3DF8",
+          "requirementId": "REQ-AC4B",
+          "action": "Verify GMDSS radio installations meet sea area requirements; service as needed",
+          "due": "2026-10-06",
+          "status": "done",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-1995",
+          "requirementId": "REQ-060B",
+          "action": "Annual verification of ECDIS, AIS, VDR and bridge watch alarm arrangements",
+          "due": "2026-09-20",
+          "status": "in-progress",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-D886",
+          "requirementId": "REQ-8455",
+          "action": "Prepare berth-to-berth passage plan for next departure from Dampier to Qingdao",
+          "due": "2026-08-02",
+          "status": "open",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "ACT-C4EF",
+          "requirementId": "REQ-BF47",
+          "action": "Conduct annual internal ISM audit and management review with documentation",
+          "due": "2026-08-27",
+          "status": "in-progress",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-4234",
+          "requirementId": "REQ-0FC3",
+          "action": "Update Continuous Synopsis Record if any flag, ownership or class changes occurred",
+          "due": "2026-07-25",
+          "status": "overdue",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "ACT-A36C",
+          "requirementId": "REQ-E91C",
+          "action": "Conduct quarterly ship security drill and document crew participation",
+          "due": "2026-08-11",
+          "status": "in-progress",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "ACT-6646",
+          "requirementId": "REQ-9D38",
+          "action": "Schedule annual IOPP certificate survey with classification society",
+          "due": "2026-09-06",
+          "status": "in-progress",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-72A6",
+          "requirementId": "REQ-DAEC",
+          "action": "Test and verify 15 ppm oil filtering equipment with alarm and auto-stop function",
+          "due": "2026-09-03",
+          "status": "in-progress",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-804B",
+          "requirementId": "REQ-78F4",
+          "action": "Ensure all machinery space oil transfers and bilge discharges recorded and signed",
+          "due": "2026-07-30",
+          "status": "done",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "ACT-C7C4",
+          "requirementId": "REQ-3174",
+          "action": "Annual review of Shipboard Oil Pollution Emergency Plan; brief crew on procedures",
+          "due": "2026-08-21",
+          "status": "in-progress",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "ACT-B9A0",
+          "requirementId": "REQ-85CF",
+          "action": "Schedule annual Air Pollution and Energy Efficiency certificate surveys",
+          "due": "2026-09-23",
+          "status": "in-progress",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-1B53",
+          "requirementId": "REQ-C63D",
+          "action": "Obtain and retain fuel oil analysis report confirming sulphur content ≤0.50%",
+          "due": "2026-08-06",
+          "status": "open",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "ACT-6B0E",
+          "requirementId": "REQ-7011",
+          "action": "Compile annual fuel oil consumption and voyage data; submit to flag administration",
+          "due": "2026-09-10",
+          "status": "in-progress",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "ACT-2FE8",
+          "requirementId": "REQ-45EF",
+          "action": "Conduct annual SEEMP review and update implementation plan with corrective actions",
+          "due": "2026-08-24",
+          "status": "in-progress",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "ACT-E4D8",
+          "requirementId": "REQ-5149",
+          "action": "Renew financial security certificate for crew repatriation and abandonment",
+          "due": "2026-08-17",
+          "status": "open",
+          "evidenceType": "Certificate"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-47C1",
+          "actionId": "ACT-EC15",
+          "label": "Annual Safety Construction Survey Certificate 2026",
+          "type": "Certificate",
+          "verdict": "pending",
+          "reason": "Classification society survey scheduled and in-progress; certificate expected upon completion. Due date 2026-09-13 is future. Preliminary survey work should be underway but final certificate not yet issued."
+        },
+        {
+          "id": "EV-DDD6",
+          "actionId": "ACT-FCDD",
+          "label": "Fire Main and Extinguisher Inspection Report 2026",
+          "type": "Survey report",
+          "verdict": "pending",
+          "reason": "Fire safety system inspection in-progress; due 2026-08-31. Testing of mains, pumps, hydrants and portable extinguishers underway but final documented report not yet submitted."
+        },
+        {
+          "id": "EV-387B",
+          "actionId": "ACT-3CA2",
+          "label": "Monthly Fire and Abandon Ship Drill Report August 2026",
+          "type": "Drill report",
+          "verdict": "rejected",
+          "reason": "Action is open (not in-progress) with due date 2026-08-04. No evidence of drill having been conducted or documented. Submission should have occurred by now if drill was completed."
+        },
+        {
+          "id": "EV-F2DE",
+          "actionId": "ACT-2AD4",
+          "label": "Weekly Life-Saving Appliances Inspection Log August 2026",
+          "type": "Log",
+          "verdict": "rejected",
+          "reason": "Action is open with due date 2026-08-01, now overdue. Weekly inspections should have begun and log entries should exist. No evidence submitted despite being past due date."
+        },
+        {
+          "id": "EV-9BF0",
+          "actionId": "ACT-3DF8",
+          "label": "GMDSS Radio Installation Certificate 2026",
+          "type": "Certificate",
+          "verdict": "accepted",
+          "reason": "Action marked as done with due date 2026-10-06. GMDSS service and verification certificate issued confirming installations meet sea area requirements for transpacific trading."
+        },
+        {
+          "id": "EV-1315",
+          "actionId": "ACT-1995",
+          "label": "Annual Bridge Navigation Systems Survey Report 2026",
+          "type": "Survey report",
+          "verdict": "pending",
+          "reason": "ECDIS, AIS and VDR verification in-progress; due 2026-09-20. Survey of bridge watch alarm arrangements underway. Final report expected upon completion of classification society survey."
+        },
+        {
+          "id": "EV-29EF",
+          "actionId": "ACT-C4EF",
+          "label": "Annual ISM Internal Audit and Management Review Certificate 2026",
+          "type": "Certificate",
+          "verdict": "pending",
+          "reason": "ISM audit in-progress; due 2026-08-27. Internal audit documentation and management review meeting scheduled. Final audit certificate and documentation pending completion by deadline."
+        },
+        {
+          "id": "EV-99D2",
+          "actionId": "ACT-4234",
+          "label": "Continuous Synopsis Record Update July 2026",
+          "type": "Record book",
+          "verdict": "rejected",
+          "reason": "Action overdue (due 2026-07-25). CSR must be updated within 30 days of any flag, ownership or class changes. No evidence of update submission despite past deadline. Compliance required immediately."
+        },
+        {
+          "id": "EV-C89E",
+          "actionId": "ACT-A36C",
+          "label": "Quarterly Ship Security Drill Report August 2026",
+          "type": "Drill report",
+          "verdict": "pending",
+          "reason": "Security drill in-progress; due 2026-08-11. Crew participation documentation being compiled. Drill execution and final signed report expected by deadline."
+        },
+        {
+          "id": "EV-2EC5",
+          "actionId": "ACT-6646",
+          "label": "Annual IOPP Certificate Survey 2026",
+          "type": "Certificate",
+          "verdict": "pending",
+          "reason": "IOPP certificate survey scheduled in-progress; due 2026-09-06. Classification society survey underway. Final IOPP certificate expected upon completion of inspection and testing."
+        },
+        {
+          "id": "EV-6F74",
+          "actionId": "ACT-72A6",
+          "label": "15 ppm Oil Filtering Equipment Test Report 2026",
+          "type": "Survey report",
+          "verdict": "pending",
+          "reason": "Oil filtering equipment testing in-progress; due 2026-09-03. Testing of 15 ppm separator with alarm and auto-stop function underway. Survey report documenting performance pending completion."
+        },
+        {
+          "id": "EV-98D5",
+          "actionId": "ACT-804B",
+          "label": "Oil Transfer and Bilge Discharge Record Book 2026",
+          "type": "Record book",
+          "verdict": "accepted",
+          "reason": "Action marked as done with due date 2026-07-30. All machinery space oil transfers and bilge discharges recorded in official log with required signatures confirming MARPOL Annex I compliance."
+        },
+        {
+          "id": "EV-B700",
+          "actionId": "ACT-C7C4",
+          "label": "Annual SOPEP Review and Crew Briefing Plan 2026",
+          "type": "Plan",
+          "verdict": "pending",
+          "reason": "Shipboard Oil Pollution Emergency Plan review in-progress; due 2026-08-21. Annual review and crew briefing documentation being prepared. Final approved plan with attendance records expected by deadline."
+        },
+        {
+          "id": "EV-E466",
+          "actionId": "ACT-B9A0",
+          "label": "Annual Air Pollution and Energy Efficiency Certificate Surveys 2026",
+          "type": "Certificate",
+          "verdict": "pending",
+          "reason": "APEC and EEXI surveys scheduled in-progress; due 2026-09-23. Classification society surveys underway. Final certificates for both air pollution and energy efficiency pending completion."
+        },
+        {
+          "id": "EV-FFD1",
+          "actionId": "ACT-1B53",
+          "label": "Fuel Oil Analysis Report July-August 2026",
+          "type": "Analysis report",
+          "verdict": "rejected",
+          "reason": "Action open with due date 2026-08-06, now overdue. No fuel oil analysis report submitted confirming sulphur content ≤0.50%. VLSFO/HFO fuel verification certificate required for compliance with MARPOL Annex VI."
+        },
+        {
+          "id": "EV-AA3A",
+          "actionId": "ACT-E4D8",
+          "label": "Financial Security Certificate for Crew Repatriation 2026",
+          "type": "Certificate",
+          "verdict": "rejected",
+          "reason": "Action open with due date 2026-08-17. No financial security certificate submitted. MLC requirement for crew repatriation and abandonment financial security is mandatory and currently unmet."
+        }
+      ],
+      "approvals": [
+        {
+          "id": "APR-9BF0",
+          "evidenceId": "EV-9BF0",
+          "summary": "GMDSS Radio Installation Certificate 2026 — Verify GMDSS radio installations meet sea area requirements; service as needed",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-98D5",
+          "evidenceId": "EV-98D5",
+          "summary": "Oil Transfer and Bilge Discharge Record Book 2026 — Ensure all machinery space oil transfers and bilge discharges recorded and signed",
+          "state": "awaiting"
+        }
+      ]
+    },
+    {
+      "vesselId": "matsu-aurora",
+      "overallStatus": "needs-review",
+      "stages": [
+        {
+          "id": 1,
+          "status": "complete",
+          "summary": "55 corpus records indexed. 50 apply to this hull on flag, type, tonnage, fuel and trading area.",
+          "count": 55,
+          "countLabel": "records indexed"
+        },
+        {
+          "id": 2,
+          "status": "complete",
+          "summary": "30 discrete obligations extracted, each traced to a corpus record.",
+          "count": 30,
+          "countLabel": "requirements extracted"
+        },
+        {
+          "id": 3,
+          "status": "complete",
+          "summary": "Matsu Aurora draws this comprehensive 30-obligation set primarily due to its classification as a large modern LNG-fuelled container vessel built in 2025 with gross tonnage of 152,800 and capacity of 14,000 TEU operating on long-distance Asia-Europe trades. The LNG dual-fuel propulsion system triggers specialized SOLAS-II-1-G requirements for gas fuel handling, while its size and international trading mandate activate the full suite of MARPOL Annexes I through VI including ballast water management, bunker fuel monitoring, and carbon intensity reporting. The vessel's 2025 build year and Singapore flag mean it must comply with contemporary environmental standards (SEEMP, CII, EU-MRV, NAIROBI-2007 wreck removal), security certifications (ISPS-A), and comprehensive survey/certification regimes. Modern container vessels of this scale on intercontinental routes trigger all standard maritime labour, tonnage, load line, and port state control provisions, while the LNG fuel specificity adds gas fuel-specific statutory survey and operational requirements not applicable to conventionally-fuelled vessels.",
+          "count": 30,
+          "countLabel": "requirements assigned"
+        },
+        {
+          "id": 4,
+          "status": "active",
+          "summary": "3 of 20 actions complete.",
+          "count": 3,
+          "countLabel": "of 20 actions done"
+        },
+        {
+          "id": 5,
+          "status": "needs-review",
+          "summary": "10 items accepted, 4 rejected and awaiting resubmission.",
+          "count": 4,
+          "countLabel": "items flagged"
+        },
+        {
+          "id": 6,
+          "status": "active",
+          "summary": "10 items awaiting DPA sign-off. Every one needs a human decision.",
+          "count": 10,
+          "countLabel": "awaiting DPA"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "REQ-9682",
+          "sourceId": "SOLAS-I-07",
+          "obligation": "Matsu Aurora must hold valid Safety Construction, Safety Equipment and Safety Radio certificates, maintained through annual and intermediate surveys with renewal every 5 years.",
+          "category": "Safety",
+          "periodicity": "Annual, renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-5EC6",
+          "sourceId": "SOLAS-II-1-G",
+          "obligation": "Matsu Aurora must comply with the IGF Code: maintain an approved LNG fuel handling arrangement, documented bunkering procedures, gas detection and shutdown systems, and ensure crew training specific to LNG dual-fuel operation.",
+          "category": "Technical",
+          "periodicity": "Annual, renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-6D81",
+          "sourceId": "SOLAS-II-2-10",
+          "obligation": "Matsu Aurora must maintain fire mains, pumps, hydrants, hoses and portable extinguishers to the standard for 152,800 gt container ships and keep them ready for immediate use.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-4B82",
+          "sourceId": "SOLAS-II-2-14",
+          "obligation": "Matsu Aurora must maintain fire protection and detection systems under a documented plan, test them at required intervals, and keep them in working order between surveys.",
+          "category": "Safety",
+          "periodicity": "Continuous with scheduled tests",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "REQ-8941",
+          "sourceId": "SOLAS-III-19",
+          "obligation": "Matsu Aurora crew must conduct an abandon ship drill and a fire drill each month, or within 24 hours of leaving port if more than 25% of crew has changed.",
+          "category": "Safety",
+          "periodicity": "Monthly",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "REQ-1E68",
+          "sourceId": "SOLAS-III-20",
+          "obligation": "Matsu Aurora must inspect life-saving appliances weekly and monthly, run lifeboat engines regularly, and service davit-launched liferaft and release gear on their stated intervals.",
+          "category": "Safety",
+          "periodicity": "Weekly and monthly",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "REQ-6AF8",
+          "sourceId": "SOLAS-IV-15",
+          "obligation": "Matsu Aurora must maintain GMDSS radio installations for trading in Asia-Europe areas with available duplication or approved maintenance providing required redundancy.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-332C",
+          "sourceId": "SOLAS-V-19",
+          "obligation": "Matsu Aurora must carry and maintain operational ECDIS, AIS, voyage data recorder and bridge navigational watch alarm systems appropriate to a 152,800 gt container ship.",
+          "category": "Safety",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-783C",
+          "sourceId": "SOLAS-V-34",
+          "obligation": "Matsu Aurora must prepare a berth-to-berth passage plan before each departure from Ningbo and Hamburg, accounting for routeing, under-keel clearance and contingency anchorages.",
+          "category": "Safety",
+          "periodicity": "Every voyage",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-FBB7",
+          "sourceId": "SOLAS-IX-03",
+          "obligation": "Matsu Aurora must maintain a valid Safety Management Certificate supported by annual internal audits, management review and documented corrective action, with ISM Document of Compliance renewed every 5 years.",
+          "category": "Safety",
+          "periodicity": "Annual audit, renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-B9B5",
+          "sourceId": "SOLAS-XI-1-05",
+          "obligation": "Matsu Aurora must maintain a complete Continuous Synopsis Record covering flag, ownership, class and ISM history, updated on any change of particulars.",
+          "category": "Technical",
+          "periodicity": "On change of particulars",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-C138",
+          "sourceId": "ISPS-A-09",
+          "obligation": "Matsu Aurora must carry an approved Ship Security Plan, designate a Ship Security Officer, conduct security drills quarterly and a company security exercise at least annually.",
+          "category": "Security",
+          "periodicity": "Quarterly drills, annual exercise",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "REQ-8DFB",
+          "sourceId": "ISPS-A-19",
+          "obligation": "Matsu Aurora must hold a valid International Ship Security Certificate maintained through intermediate verification and renewed every 5 years.",
+          "category": "Security",
+          "periodicity": "Intermediate verification, renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-9C32",
+          "sourceId": "MARPOL-I-06",
+          "obligation": "Matsu Aurora must hold a valid International Oil Pollution Prevention certificate maintained through annual, intermediate and renewal surveys, with Supplement matching fitted equipment.",
+          "category": "Environmental",
+          "periodicity": "Annual, renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-9769",
+          "sourceId": "MARPOL-I-14",
+          "obligation": "Matsu Aurora must pass machinery space bilge discharge through oil filtering equipment meeting 15 ppm standard with alarm and automatic stopping arrangement.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "REQ-A938",
+          "sourceId": "MARPOL-I-17",
+          "obligation": "Matsu Aurora must record every machinery space oil transfer, bilge discharge, sludge disposal and tank cleaning in Oil Record Book Part I, signed by officer and master on page completion.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-D78D",
+          "sourceId": "MARPOL-I-37",
+          "obligation": "Matsu Aurora must carry an approved Shipboard Oil Pollution Emergency Plan with reporting contacts and crew exercised annually against discharge scenarios.",
+          "category": "Environmental",
+          "periodicity": "Reviewed annually",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-80FA",
+          "sourceId": "MARPOL-IV-05",
+          "obligation": "Matsu Aurora must hold a valid International Sewage Pollution Prevention certificate and maintain an approved treatment plant, comminuting and disinfecting system, or holding tank suitable for Asia-Europe trade.",
+          "category": "Environmental",
+          "periodicity": "Renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-9093",
+          "sourceId": "MARPOL-V-10",
+          "obligation": "Matsu Aurora must follow a Garbage Management Plan, display required placards, and record every discharge and incineration in the Garbage Record Book with date, position, category and estimated amount.",
+          "category": "Environmental",
+          "periodicity": "Per operation",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-6634",
+          "sourceId": "MARPOL-VI-06",
+          "obligation": "Matsu Aurora must hold valid International Air Pollution Prevention and International Energy Efficiency certificates, maintained annually with renewal every 5 years.",
+          "category": "Environmental",
+          "periodicity": "Annual, renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-B027",
+          "sourceId": "MARPOL-VI-14",
+          "obligation": "Matsu Aurora must ensure LNG fuel and any alternative fuel do not exceed 0.50% sulphur content globally, or 0.10% in Emission Control Areas on the Asia-Europe route.",
+          "category": "Environmental",
+          "periodicity": "Per bunkering, continuous compliance",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-356B",
+          "sourceId": "MARPOL-VI-18",
+          "obligation": "Matsu Aurora must retain Bunker Delivery Notes for 3 years and MARPOL fuel samples until substantially consumed or 12 months, whichever is longer.",
+          "category": "Environmental",
+          "periodicity": "Per bunkering",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-E37D",
+          "sourceId": "MARPOL-VI-22A",
+          "obligation": "Matsu Aurora must collect annual fuel oil consumption, distance travelled and hours under way data and report to Singapore MPA to obtain Statement of Compliance.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-76DC",
+          "sourceId": "MARPOL-VI-26",
+          "obligation": "Matsu Aurora must carry a Ship Energy Efficiency Management Plan Part II (data collection) and Part III (carbon intensity) with implementation plan and corrective actions, reviewed annually.",
+          "category": "Environmental",
+          "periodicity": "Reviewed annually",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "REQ-E99B",
+          "sourceId": "MARPOL-VI-28",
+          "obligation": "Matsu Aurora must calculate annual operational carbon intensity rating A–E; a D rating in three consecutive years or single E triggers a SEEMP Part III corrective action plan.",
+          "category": "Environmental",
+          "periodicity": "Annual",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "REQ-6D17",
+          "sourceId": "BWM-E-01",
+          "obligation": "Matsu Aurora must hold a valid International Ballast Water Management Certificate maintained through annual surveys with intermediate and renewal every 5 years.",
+          "category": "Environmental",
+          "periodicity": "Annual, renewal every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-0A61",
+          "sourceId": "STCW-I-04",
+          "obligation": "Matsu Aurora crew must each hold a certificate of competency appropriate to their rank and ship type, endorsed by Singapore flag administration, valid for the voyage.",
+          "category": "Crew",
+          "periodicity": "Per crew change, revalidated every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-1485",
+          "sourceId": "STCW-I-14",
+          "obligation": "Matsu Aurora company must assign only certificated seafarers; each newly joined crew member must receive documented familiarisation with safety duties before assignment.",
+          "category": "Crew",
+          "periodicity": "Per crew change",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "REQ-C6E7",
+          "sourceId": "STCW-VI-01",
+          "obligation": "Matsu Aurora crew must hold valid basic safety training in personal survival, fire prevention and fighting, elementary first aid and personal safety, refreshed every 5 years.",
+          "category": "Crew",
+          "periodicity": "Refreshed every 5 years",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "REQ-CB30",
+          "sourceId": "STCW-VIII-01",
+          "obligation": "Matsu Aurora watchkeepers must receive at least 10 hours rest in 24 hours and 77 hours in 7 days, recorded monthly and countersigned by master and crew member.",
+          "category": "Crew",
+          "periodicity": "Continuous, recorded monthly",
+          "evidenceType": "Record book"
+        }
+      ],
+      "actions": [
+        {
+          "id": "ACT-81A3",
+          "requirementId": "REQ-9682",
+          "action": "Conduct annual Safety Construction, Equipment and Radio certificate survey and renewal inspection",
+          "due": "2026-09-13",
+          "status": "in-progress",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-4D30",
+          "requirementId": "REQ-5EC6",
+          "action": "Verify LNG fuel handling procedures, gas detection systems and crew training currency for dual-fuel operation",
+          "due": "2026-09-30",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-24EB",
+          "requirementId": "REQ-6D81",
+          "action": "Inspect and test all fire mains, pumps, hydrants, hoses and portable extinguishers; document readiness",
+          "due": "2026-08-27",
+          "status": "in-progress",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-9115",
+          "requirementId": "REQ-4B82",
+          "action": "Execute monthly fire detection and protection system functional test; record results in maintenance log",
+          "due": "2026-08-02",
+          "status": "open",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "ACT-34C1",
+          "requirementId": "REQ-8941",
+          "action": "Conduct monthly abandon ship and fire drills; document crew participation and observations in drill report",
+          "due": "2026-08-07",
+          "status": "done",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "ACT-BC38",
+          "requirementId": "REQ-1E68",
+          "action": "Complete weekly inspection of life-saving appliances and monthly lifeboat engine/davit service check",
+          "due": "2026-08-01",
+          "status": "open",
+          "evidenceType": "Log"
+        },
+        {
+          "id": "ACT-D733",
+          "requirementId": "REQ-6AF8",
+          "action": "Verify GMDSS radio installation redundancy and annual maintenance certificate for Asia-Europe trading",
+          "due": "2026-10-21",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-966C",
+          "requirementId": "REQ-332C",
+          "action": "Survey ECDIS, AIS, voyage data recorder and bridge alarm systems; verify annual certification",
+          "due": "2026-09-19",
+          "status": "in-progress",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-F372",
+          "requirementId": "REQ-783C",
+          "action": "Prepare detailed berth-to-berth passage plan for next Ningbo departure with UKC and contingency data",
+          "due": "2026-08-04",
+          "status": "open",
+          "evidenceType": "Plan"
+        },
+        {
+          "id": "ACT-1294",
+          "requirementId": "REQ-FBB7",
+          "action": "Complete annual internal ISM audit, management review and corrective action follow-up documentation",
+          "due": "2026-09-03",
+          "status": "in-progress",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-C5B1",
+          "requirementId": "REQ-C138",
+          "action": "Execute quarterly ship security drill and document crew performance against Company Security Plan",
+          "due": "2026-08-11",
+          "status": "open",
+          "evidenceType": "Drill report"
+        },
+        {
+          "id": "ACT-B246",
+          "requirementId": "REQ-8DFB",
+          "action": "Schedule and conduct intermediate verification of International Ship Security Certificate",
+          "due": "2026-12-04",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-81FD",
+          "requirementId": "REQ-9C32",
+          "action": "Conduct annual IOPPC survey and ensure Supplement matches fitted equipment; renew certificate if expiring",
+          "due": "2026-09-09",
+          "status": "in-progress",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-60CE",
+          "requirementId": "REQ-9769",
+          "action": "Test oil filtering equipment bilge discharge, 15 ppm alarm and auto-stop; complete annual survey documentation",
+          "due": "2026-09-06",
+          "status": "open",
+          "evidenceType": "Survey report"
+        },
+        {
+          "id": "ACT-740A",
+          "requirementId": "REQ-A938",
+          "action": "Review Oil Record Book Part I entries; ensure all bilge discharges and transfers properly signed and dated",
+          "due": "2026-07-31",
+          "status": "in-progress",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "ACT-167A",
+          "requirementId": "REQ-9093",
+          "action": "Verify Garbage Record Book current entries with positions, amounts and dates; update placards on-board",
+          "due": "2026-08-01",
+          "status": "done",
+          "evidenceType": "Record book"
+        },
+        {
+          "id": "ACT-AA25",
+          "requirementId": "REQ-6634",
+          "action": "Renew International Air Pollution and Energy Efficiency certificates; schedule annual compliance verification",
+          "due": "2026-10-10",
+          "status": "open",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-1DFD",
+          "requirementId": "REQ-B027",
+          "action": "Analyze LNG fuel sample from current bunkering for sulphur content compliance; document 0.50% limit adherence",
+          "due": "2026-07-31",
+          "status": "in-progress",
+          "evidenceType": "Analysis report"
+        },
+        {
+          "id": "ACT-53EB",
+          "requirementId": "REQ-0A61",
+          "action": "Verify all current crew hold valid CoC certificates endorsed by Singapore; prepare for next crew change",
+          "due": "2026-10-28",
+          "status": "done",
+          "evidenceType": "Certificate"
+        },
+        {
+          "id": "ACT-FD89",
+          "requirementId": "REQ-CB30",
+          "action": "Review monthly rest hour records for all watchkeepers; ensure 10/24 and 77/7 requirements met and signed",
+          "due": "2026-08-03",
+          "status": "open",
+          "evidenceType": "Record book"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-3DC6",
+          "actionId": "ACT-81A3",
+          "label": "Annual Safety Construction, Equipment and Radio Certificate Survey Report 2025",
+          "type": "Certificate",
+          "verdict": "accepted",
+          "reason": "Valid certificate issued by Singapore Class society confirming hull, machinery, equipment and radio installation compliance. Survey completed within statutory timeframe for new 2025-built vessel."
+        },
+        {
+          "id": "EV-6409",
+          "actionId": "ACT-4D30",
+          "label": "LNG Dual-Fuel System Certification and Crew Training Record",
+          "type": "Certificate",
+          "verdict": "rejected",
+          "reason": "Certificate provided but does not explicitly confirm crew training currency (recertification/endorsements for LNG operations). Requires evidence of all relevant crew holding valid LNG operation endorsements dated within 12 months."
+        },
+        {
+          "id": "EV-93C0",
+          "actionId": "ACT-24EB",
+          "label": "Fire Main Systems Annual Inspection and Test Report 2025",
+          "type": "Survey report",
+          "verdict": "accepted",
+          "reason": "Comprehensive survey report documenting pressure testing of all fire mains, pump capacity verification, hydrant flow tests, hose condition assessment and portable extinguisher serviceability. All systems ready for operation."
+        },
+        {
+          "id": "EV-4EEE",
+          "actionId": "ACT-9115",
+          "label": "Fire Detection and Protection System Functional Test Log - July 2026",
+          "type": "Log",
+          "verdict": "accepted",
+          "reason": "Monthly maintenance log documenting functional tests of fire detection sensors, alarm circuits and suppression system activation sequences. Results recorded with technician signature and dates."
+        },
+        {
+          "id": "EV-6459",
+          "actionId": "ACT-34C1",
+          "label": "Monthly Fire Drill and Abandon Ship Exercise Report - July 2026",
+          "type": "Drill report",
+          "verdict": "accepted",
+          "reason": "Drill report documenting participation of all on-watch and standby crew, muster station assignments, emergency procedures execution and emergency contact station activation with observations and signatures."
+        },
+        {
+          "id": "EV-CAC6",
+          "actionId": "ACT-BC38",
+          "label": "Life-Saving Appliances Weekly Inspection and Monthly Service Log - July 2026",
+          "type": "Log",
+          "verdict": "rejected",
+          "reason": "Log shows weekly visual inspections only. Missing documented evidence of monthly lifeboat engine starting and davit lowering tests with operational parameters and dates as required by SOLAS III/1.19."
+        },
+        {
+          "id": "EV-2FCE",
+          "actionId": "ACT-D733",
+          "label": "GMDSS Annual Radio Installation Maintenance Certificate 2025",
+          "type": "Certificate",
+          "verdict": "pending",
+          "reason": "Certificate scheduled for October 2026 renewal. Current submission cannot be evaluated as action is due 2026-10-21; insufficient time has elapsed for annual maintenance verification documentation."
+        },
+        {
+          "id": "EV-236F",
+          "actionId": "ACT-966C",
+          "label": "Bridge Navigation System Survey and Certification Report 2025",
+          "type": "Survey report",
+          "verdict": "accepted",
+          "reason": "Detailed survey covering ECDIS system operational testing, AIS transponder redundancy verification, voyage data recorder continuity and bridge alarm system functional checks with annual compliance certification issued."
+        },
+        {
+          "id": "EV-9C45",
+          "actionId": "ACT-F372",
+          "label": "Ningbo to Hamburg Passage Plan - Next Departure",
+          "type": "Plan",
+          "verdict": "rejected",
+          "reason": "Plan provided is template-based and lacks specific underkeel clearance calculations, contingency waypoints, pilot pickup coordinates, and current weather/routing optimization for the actual planned transit."
+        },
+        {
+          "id": "EV-FC96",
+          "actionId": "ACT-1294",
+          "label": "Annual ISM Internal Audit and Management Review Certificate 2025",
+          "type": "Certificate",
+          "verdict": "accepted",
+          "reason": "Internal audit report with non-conformances identified, root cause analysis and corrective action register. Management review meeting minutes confirm document review and action follow-up closure verification."
+        },
+        {
+          "id": "EV-E09E",
+          "actionId": "ACT-C5B1",
+          "label": "Quarterly Ship Security Drill Report - Q3 2026",
+          "type": "Drill report",
+          "verdict": "accepted",
+          "reason": "Exercise report documenting crew scenario response against Company Security Plan, communication procedures, access control testing, sensitive area verification and personnel accountability with times and signatures."
+        },
+        {
+          "id": "EV-F771",
+          "actionId": "ACT-81FD",
+          "label": "Annual IOPPC Survey Certificate and Supplement 2025",
+          "type": "Certificate",
+          "verdict": "accepted",
+          "reason": "Certificate from Singapore verifying International Oil Pollution Prevention compliance. Supplement documentation confirms OWE system fitted matches survey findings. Certificate valid through September 2026."
+        },
+        {
+          "id": "EV-D5A1",
+          "actionId": "ACT-60CE",
+          "label": "Oil Filtering Equipment and Bilge System Annual Survey Report 2025",
+          "type": "Survey report",
+          "verdict": "accepted",
+          "reason": "Comprehensive survey documenting 15 ppm alarm calibration, oil filter condition assessment, auto-stop valve operational testing and bilge discharge pathway verification with discharge monitoring equipment certification."
+        },
+        {
+          "id": "EV-D251",
+          "actionId": "ACT-740A",
+          "label": "Oil Record Book Part I - June 2026 Entries",
+          "type": "Record book",
+          "verdict": "rejected",
+          "reason": "ORB Part I submitted but entries lack consistent signatures and dates for all bilge discharge operations. Two transfer entries missing authorized officer signatures as required by MARPOL Annex I procedures."
+        },
+        {
+          "id": "EV-E200",
+          "actionId": "ACT-1DFD",
+          "label": "LNG Fuel Sample Analysis Report - Sulphur Content Compliance July 2026",
+          "type": "Analysis report",
+          "verdict": "accepted",
+          "reason": "Certified laboratory analysis confirming LNG fuel sulphur content of 0.48% (compliant with 0.50% MARPOL Annex VI limit). Sample provenance, test date, and analytical method documented with accreditation statement."
+        }
+      ],
+      "approvals": [
+        {
+          "id": "APR-3DC6",
+          "evidenceId": "EV-3DC6",
+          "summary": "Annual Safety Construction, Equipment and Radio Certificate Survey Report 2025 — Conduct annual Safety Construction, Equipment and Radio certificate survey and renewal inspection",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-93C0",
+          "evidenceId": "EV-93C0",
+          "summary": "Fire Main Systems Annual Inspection and Test Report 2025 — Inspect and test all fire mains, pumps, hydrants, hoses and portable extinguishers; document readiness",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-4EEE",
+          "evidenceId": "EV-4EEE",
+          "summary": "Fire Detection and Protection System Functional Test Log - July 2026 — Execute monthly fire detection and protection system functional test; record results in maintenance log",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-6459",
+          "evidenceId": "EV-6459",
+          "summary": "Monthly Fire Drill and Abandon Ship Exercise Report - July 2026 — Conduct monthly abandon ship and fire drills; document crew participation and observations in drill report",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-236F",
+          "evidenceId": "EV-236F",
+          "summary": "Bridge Navigation System Survey and Certification Report 2025 — Survey ECDIS, AIS, voyage data recorder and bridge alarm systems; verify annual certification",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-FC96",
+          "evidenceId": "EV-FC96",
+          "summary": "Annual ISM Internal Audit and Management Review Certificate 2025 — Complete annual internal ISM audit, management review and corrective action follow-up documentation",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-E09E",
+          "evidenceId": "EV-E09E",
+          "summary": "Quarterly Ship Security Drill Report - Q3 2026 — Execute quarterly ship security drill and document crew performance against Company Security Plan",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-F771",
+          "evidenceId": "EV-F771",
+          "summary": "Annual IOPPC Survey Certificate and Supplement 2025 — Conduct annual IOPPC survey and ensure Supplement matches fitted equipment; renew certificate if expiring",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-D5A1",
+          "evidenceId": "EV-D5A1",
+          "summary": "Oil Filtering Equipment and Bilge System Annual Survey Report 2025 — Test oil filtering equipment bilge discharge, 15 ppm alarm and auto-stop; complete annual survey documentation",
+          "state": "awaiting"
+        },
+        {
+          "id": "APR-E200",
+          "evidenceId": "EV-E200",
+          "summary": "LNG Fuel Sample Analysis Report - Sulphur Content Compliance July 2026 — Analyze LNG fuel sample from current bunkering for sulphur content compliance; document 0.50% limit adherence",
+          "state": "awaiting"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "at": "2026-07-30T08:37:33.623Z",
+      "vesselId": "matsu-meridian",
+      "vesselName": "Matsu Meridian",
+      "stage": "Evidence",
+      "message": "Crew Certificate of Competency Register (Singapore MPA endorsements) rejected — Action is overdue (due 2026-07-25). Submission date is past due. Current status shows no evidence provided yet; overdue actions require immediate remediation before approval.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:37:33.623Z",
+      "vesselId": "matsu-kestrel",
+      "vesselName": "Matsu Kestrel",
+      "stage": "Evidence",
+      "message": "Fire Main System Inspection Report rejected — Report lacks pressure test results for main and backup fire pumps. Hydrant flow testing documented but hose integrity certificates expired (last renewal 2024-06-15). Portable extinguisher distribution plan missing.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:37:33.623Z",
+      "vesselId": "matsu-solace",
+      "vesselName": "Matsu Solace",
+      "stage": "Evidence",
+      "message": "Oil Filtering Equipment 15ppm Compliance Survey Report rejected — Survey report lacks documented evidence of auto-stopping device testing and functional verification required by Regulation 16 MARPOL Annex I.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:37:33.623Z",
+      "vesselId": "matsu-cordillera",
+      "vesselName": "Matsu Cordillera",
+      "stage": "Evidence",
+      "message": "Monthly Fire and Abandon Ship Drill Report August 2026 rejected — Action is open (not in-progress) with due date 2026-08-04. No evidence of drill having been conducted or documented. Submission should have occurred by now if drill was completed.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:37:33.623Z",
+      "vesselId": "matsu-aurora",
+      "vesselName": "Matsu Aurora",
+      "stage": "Evidence",
+      "message": "LNG Dual-Fuel System Certification and Crew Training Record rejected — Certificate provided but does not explicitly confirm crew training currency (recertification/endorsements for LNG operations). Requires evidence of all relevant crew holding valid LNG operation endorsements dated within 12 months.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:36:33.623Z",
+      "vesselId": "matsu-meridian",
+      "vesselName": "Matsu Meridian",
+      "stage": "Evidence",
+      "message": "15 ppm oil filtering equipment verification and functional test report rejected — No submission received yet. Action due 2026-09-08 and status remains open. This is a future deadline; cannot assess evidence that has not yet been submitted for evaluation.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:36:33.623Z",
+      "vesselId": "matsu-kestrel",
+      "vesselName": "Matsu Kestrel",
+      "stage": "Evidence",
+      "message": "Fire Detection System Maintenance Log rejected — Log entries present but incomplete. Smoke detectors tested but heat detectors not recorded since March 2026. Sprinkler system inspection missing entirely. Does not comply with quarterly test schedule requirement.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:36:33.623Z",
+      "vesselId": "matsu-solace",
+      "vesselName": "Matsu Solace",
+      "stage": "Approval",
+      "message": "10 items routed to the DPA queue for sign-off",
+      "type": "info"
+    },
+    {
+      "at": "2026-07-30T08:36:33.623Z",
+      "vesselId": "matsu-cordillera",
+      "vesselName": "Matsu Cordillera",
+      "stage": "Evidence",
+      "message": "Weekly Life-Saving Appliances Inspection Log August 2026 rejected — Action is open with due date 2026-08-01, now overdue. Weekly inspections should have begun and log entries should exist. No evidence submitted despite being past due date.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:36:33.623Z",
+      "vesselId": "matsu-aurora",
+      "vesselName": "Matsu Aurora",
+      "stage": "Evidence",
+      "message": "Life-Saving Appliances Weekly Inspection and Monthly Service Log - July 2026 rejected — Log shows weekly visual inspections only. Missing documented evidence of monthly lifeboat engine starting and davit lowering tests with operational parameters and dates as required by SOLAS III/1.19.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:35:33.623Z",
+      "vesselId": "matsu-meridian",
+      "vesselName": "Matsu Meridian",
+      "stage": "Evidence",
+      "message": "Berth-to-berth passage plan Singapore to Rotterdam with routing and UKC analysis rejected — Action due 2026-08-02 (imminent) with status open. No passage plan submitted yet. This document must be prepared prior to voyage commencement; cannot validate without actual plan data.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:35:33.623Z",
+      "vesselId": "matsu-kestrel",
+      "vesselName": "Matsu Kestrel",
+      "stage": "Evidence",
+      "message": "Passage Plan - Port Klang to Ho Chi Minh rejected — Plan submitted but lacks required safety contours for designated ship route IA2. Pilot boarding arrangements not specified. ECDIS route verification not documented. Incomplete per passage planning requirements.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:35:33.623Z",
+      "vesselId": "matsu-solace",
+      "vesselName": "Matsu Solace",
+      "stage": "Extraction",
+      "message": "47 obligations extracted and assigned to this hull",
+      "type": "info"
+    },
+    {
+      "at": "2026-07-30T08:35:33.623Z",
+      "vesselId": "matsu-cordillera",
+      "vesselName": "Matsu Cordillera",
+      "stage": "Evidence",
+      "message": "Continuous Synopsis Record Update July 2026 rejected — Action overdue (due 2026-07-25). CSR must be updated within 30 days of any flag, ownership or class changes. No evidence of update submission despite past deadline. Compliance required immediately.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:35:33.623Z",
+      "vesselId": "matsu-aurora",
+      "vesselName": "Matsu Aurora",
+      "stage": "Evidence",
+      "message": "Ningbo to Hamburg Passage Plan - Next Departure rejected — Plan provided is template-based and lacks specific underkeel clearance calculations, contingency waypoints, pilot pickup coordinates, and current weather/routing optimization for the actual planned transit.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:34:33.623Z",
+      "vesselId": "matsu-meridian",
+      "vesselName": "Matsu Meridian",
+      "stage": "Evidence",
+      "message": "Monthly fire drill and abandon ship drill report with participation roster rejected — Due 2026-08-04. No drill report evidence submitted. Document must record date, crew participation, muster station assignments, deficiencies found, and corrective actions taken. Submission absent.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:34:33.623Z",
+      "vesselId": "matsu-kestrel",
+      "vesselName": "Matsu Kestrel",
+      "stage": "Evidence",
+      "message": "Bridge Navigation Systems Annual Survey Report rejected — Survey covers ECDIS and AIS functionality but voyage data recorder inspection incomplete; recorder last serviced 2024-11-10. Bridge alarm system testing not included. Does not satisfy full scope of annual requirement.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:34:33.623Z",
+      "vesselId": "matsu-cordillera",
+      "vesselName": "Matsu Cordillera",
+      "stage": "Evidence",
+      "message": "Fuel Oil Analysis Report July-August 2026 rejected — Action open with due date 2026-08-06, now overdue. No fuel oil analysis report submitted confirming sulphur content ≤0.50%. VLSFO/HFO fuel verification certificate required for compliance with MARPOL Annex VI.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:34:33.623Z",
+      "vesselId": "matsu-aurora",
+      "vesselName": "Matsu Aurora",
+      "stage": "Evidence",
+      "message": "Oil Record Book Part I - June 2026 Entries rejected — ORB Part I submitted but entries lack consistent signatures and dates for all bilge discharge operations. Two transfer entries missing authorized officer signatures as required by MARPOL Annex I procedures.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:33:33.623Z",
+      "vesselId": "matsu-meridian",
+      "vesselName": "Matsu Meridian",
+      "stage": "Evidence",
+      "message": "Fire detection system test log - engine room and cargo holds rejected — Due 2026-08-06. No test log provided. Documentation must show specific test dates, system responses, any failures, repairs, and maintenance schedule compliance. Evidence not yet supplied.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:33:33.623Z",
+      "vesselId": "matsu-kestrel",
+      "vesselName": "Matsu Kestrel",
+      "stage": "Evidence",
+      "message": "Financial Security Certificate - Repatriation & Abandonment rejected — Certificate valid until 2026-08-24 but renewal application not yet submitted. Must renew before expiry; providing evidence of valid certificate approaching expiration does not discharge action.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:33:33.623Z",
+      "vesselId": "matsu-cordillera",
+      "vesselName": "Matsu Cordillera",
+      "stage": "Evidence",
+      "message": "Financial Security Certificate for Crew Repatriation 2026 rejected — Action open with due date 2026-08-17. No financial security certificate submitted. MLC requirement for crew repatriation and abandonment financial security is mandatory and currently unmet.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:33:33.623Z",
+      "vesselId": "matsu-aurora",
+      "vesselName": "Matsu Aurora",
+      "stage": "Approval",
+      "message": "10 items routed to the DPA queue for sign-off",
+      "type": "info"
+    },
+    {
+      "at": "2026-07-30T08:32:33.623Z",
+      "vesselId": "matsu-meridian",
+      "vesselName": "Matsu Meridian",
+      "stage": "Actions",
+      "message": "Overdue since 2026-07-25 — Verify all watchkeepers hold current certificates of competency endorsed by Singapore MPA",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:32:33.623Z",
+      "vesselId": "matsu-kestrel",
+      "vesselName": "Matsu Kestrel",
+      "stage": "Evidence",
+      "message": "IOPP Certificate & Survey Scheduling Letter rejected — Current IOPP certificate valid until 2027-09-08. Action asks for survey to be scheduled; submission shows scheduled survey 2026-10-15 but due date suggests immediate scheduling required for 2026-09-08 compliance. Insufficient lead time.",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:32:33.623Z",
+      "vesselId": "matsu-cordillera",
+      "vesselName": "Matsu Cordillera",
+      "stage": "Actions",
+      "message": "Overdue since 2026-07-25 — Update Continuous Synopsis Record if any flag, ownership or class changes occurred",
+      "type": "warning"
+    },
+    {
+      "at": "2026-07-30T08:32:33.623Z",
+      "vesselId": "matsu-aurora",
+      "vesselName": "Matsu Aurora",
+      "stage": "Extraction",
+      "message": "30 obligations extracted and assigned to this hull",
+      "type": "info"
+    },
+    {
+      "at": "2026-07-30T08:31:33.623Z",
+      "vesselId": "matsu-meridian",
+      "vesselName": "Matsu Meridian",
+      "stage": "Approval",
+      "message": "6 items routed to the DPA queue for sign-off",
+      "type": "info"
+    },
+    {
+      "at": "2026-07-30T08:31:33.623Z",
+      "vesselId": "matsu-kestrel",
+      "vesselName": "Matsu Kestrel",
+      "stage": "Approval",
+      "message": "10 items routed to the DPA queue for sign-off",
+      "type": "info"
+    },
+    {
+      "at": "2026-07-30T08:31:33.623Z",
+      "vesselId": "matsu-cordillera",
+      "vesselName": "Matsu Cordillera",
+      "stage": "Approval",
+      "message": "2 items routed to the DPA queue for sign-off",
+      "type": "info"
+    },
+    {
+      "at": "2026-07-30T08:30:33.623Z",
+      "vesselId": "matsu-meridian",
+      "vesselName": "Matsu Meridian",
+      "stage": "Extraction",
+      "message": "31 obligations extracted and assigned to this hull",
+      "type": "info"
+    },
+    {
+      "at": "2026-07-30T08:30:33.623Z",
+      "vesselId": "matsu-kestrel",
+      "vesselName": "Matsu Kestrel",
+      "stage": "Extraction",
+      "message": "33 obligations extracted and assigned to this hull",
+      "type": "info"
+    },
+    {
+      "at": "2026-07-30T08:30:33.623Z",
+      "vesselId": "matsu-cordillera",
+      "vesselName": "Matsu Cordillera",
+      "stage": "Extraction",
+      "message": "44 obligations extracted and assigned to this hull",
+      "type": "info"
+    }
+  ]
+}

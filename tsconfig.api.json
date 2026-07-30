@@ -1,0 +1,14 @@
+// The Vercel Functions in api/ are not part of the Vite build, so the main
+// tsconfig never sees them. Without this file a function that does not compile
+// deploys anyway and fails at request time, with the frontend build green.
+//
+// `npm run typecheck` runs both configs. Keep it that way.
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2023"],
+    "types": ["node"],
+    "noEmit": true
+  },
+  "include": ["api", "shared", "scripts"]
+}
