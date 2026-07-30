@@ -82,6 +82,38 @@ const appearance = {
     borderRadius: '0.375rem',
     fontFamily: "'Inter Variable', 'Inter', sans-serif",
   },
+  layout: {
+    // Clerk renders the logo set in its own dashboard, which defaults to
+    // Clerk's mark — so the card opened under an orange logo belonging to our
+    // auth vendor. AuthShell already puts the Matsu wordmark directly above the
+    // card, so the fix is to drop Clerk's rather than swap the image and end up
+    // with two logos stacked.
+    logoPlacement: 'none' as const,
+  },
+}
+
+/**
+ * Card titles.
+ *
+ * Clerk's defaults interpolate {{applicationName}} from the instance name set
+ * in its dashboard, which is not something this repo controls and drifted to
+ * the vendor's own branding. Naming the product here means the sign-in page
+ * says Matsu no matter what the dashboard is set to, and it moves with the
+ * code rather than living in someone's browser tab.
+ */
+const localization = {
+  signIn: {
+    start: {
+      title: 'Sign in to Matsu',
+      subtitle: 'Continue to the fleet compliance demo.',
+    },
+  },
+  signUp: {
+    start: {
+      title: 'Create your Matsu account',
+      subtitle: 'Continue to the fleet compliance demo.',
+    },
+  },
 }
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -96,6 +128,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       isSatellite={isSatelliteHost}
       domain={url => (isSatelliteHost(url) ? SATELLITE_HOST : '')}
       appearance={appearance}
+      localization={localization}
     >
       {children}
     </ClerkProvider>

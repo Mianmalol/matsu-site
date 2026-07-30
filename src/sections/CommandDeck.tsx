@@ -2,22 +2,20 @@ import { useEffect, useRef, useState } from 'react'
 import { Reveal } from '@/components/ui'
 import { vessels, type Vessel } from '@/data'
 import { MAP_W, MAP_H, LAND_PATH, PORTS, VESSEL_GEO, GRATICULE, CHOKEPOINTS } from '@/components/mapGeo'
-import {
-  demoFleet, DEMO_OPERATOR, FLEET_COUNT, capacityLabel, applicabilityFor, REGULATIONS_INDEXED,
-} from '@/data/demoFleet'
 
 // ═══════════════════════════════════════════════════════════════════════════
-//  5 · Command deck (blueprint → fleet roster + worked cycles ↔ live map)
+//  5 · Command deck (blueprint → worked cycles ↔ live map)
 //
-//  Every vessel here is invented, operator included. This page is public and
-//  indexed, so a roster of real ships reads as a customer list and a status
-//  column reads as a claim about their condition. See data/demoFleet.ts.
+//  Every vessel here is invented. This page is public and indexed, so a roster
+//  of real ships reads as a customer list and a status column reads as a claim
+//  about their condition.
 //
-//  Two views of one fleet:
-//    · demoFleet → all 12 hulls, with the obligations that apply and a stage
-//                  position. The roster.
-//    · vessels   → the 5 the map plots, carrying full cycle state: statuses,
-//                  deficiencies, positions.
+//  One fleet, one source: `vessels`, the 5 hulls the map plots, carrying full
+//  cycle state — statuses, deficiencies, positions. The 12-hull demoFleet
+//  roster that used to sit above this, along with its headline counts and the
+//  stats strip under the map, is gone. It was a second invented fleet stating
+//  large numbers about itself, and a visitor cannot tell a derived count from a
+//  decorative one. What survives is the part that shows the product working.
 // ═══════════════════════════════════════════════════════════════════════════
 
 function Blueprint() {
@@ -258,25 +256,7 @@ function FleetMap({ sel, onSelect }: { sel: string; onSelect: (id: string) => vo
 export default function CommandDeck() {
   const [sel, setSel] = useState<string>('3')
 
-  const roster = demoFleet.map((v, i) => ({ v, a: applicabilityFor(v, i) }))
-  const obligations = roster.reduce((n, r) => n + r.a.requirements, 0)
-  const projected = roster.reduce((n, r) => n + r.a.actions, 0)
-  const flagStates = new Set(demoFleet.map(v => v.flag)).size
-
   const pipelineDone = PIPELINE.map((_, i) => vessels.filter(x => stagesDone(x) >= i + 1).length)
-
-  const kpis: { label: string; value: string }[] = [
-    { label: 'Vessels in fleet', value: String(FLEET_COUNT) },
-    { label: 'Flag states', value: String(flagStates) },
-    { label: 'Obligations mapped', value: obligations.toLocaleString() },
-    { label: 'Regulations indexed', value: REGULATIONS_INDEXED.toLocaleString() },
-  ]
-  const stats: { label: string; value: string }[] = [
-    { label: 'Vessels tracked', value: String(FLEET_COUNT) },
-    { label: 'Flag states covered', value: String(flagStates) },
-    { label: 'Obligations mapped across the fleet', value: obligations.toLocaleString() },
-    { label: 'Actions those obligations generate', value: projected.toLocaleString() },
-  ]
 
   return (
     <section id="platform" className="bg-fog py-28 lg:py-36 px-6">
@@ -295,7 +275,7 @@ export default function CommandDeck() {
         <Reveal delay={100} className="mt-4">
           <div className="bg-white border border-mist rounded-xl overflow-hidden shadow-[0_30px_80px_-40px_rgba(7,26,44,0.35)]">
             <div className="flex items-center justify-between px-6 py-4 border-b border-fog bg-fog/60 flex-wrap gap-2">
-              <span className="text-sm font-semibold text-navy">Fleet Overview · {DEMO_OPERATOR}</span>
+              <span className="text-sm font-semibold text-navy">Fleet Overview</span>
               <span className="flex items-center gap-5">
                 <span className="flex items-center gap-2 text-xs font-medium text-navy/70">
                   <span className="w-2 h-2 rounded-full bg-ocean anim-pulse-dot" aria-hidden="true" />
@@ -303,63 +283,8 @@ export default function CommandDeck() {
                 </span>
               </span>
             </div>
-            <div className="px-6 py-3.5 border-b border-fog bg-white">
-              <p className="text-[12.5px] text-navy/70 leading-relaxed">
-                <span className="font-semibold text-navy">{DEMO_OPERATOR} is an example fleet.</span>{' '}
-                Every vessel here is made up, so nothing on this screen says anything about a real operator.
-                The obligation counts are real: they follow from flag state, vessel type and tonnage the same way
-                they would for your own ships.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 border-b border-fog">
-              {kpis.map((k, i) => (
-                <div key={k.label} className={`px-6 py-5 ${i > 0 ? 'border-l border-fog' : ''}`}>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel">{k.label}</p>
-                  <p className="mt-1.5 text-2xl font-bold tracking-[-0.01em] text-navy">{k.value}</p>
-                </div>
-              ))}
-            </div>
             <div className="grid lg:grid-cols-[1.6fr_1fr]">
               <div className="lg:border-r border-fog">
-                <div className="flex items-baseline justify-between px-6 pt-5 pb-2 gap-3 flex-wrap">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel">
-                    Fleet · obligations by vessel
-                  </p>
-                  <p className="text-[10px] font-mono text-steel">EXAMPLE FLEET</p>
-                </div>
-                <div className="overflow-x-auto">
-                  <div className="min-w-[620px]">
-                    <div className="grid grid-cols-[1.8fr_1.1fr_0.9fr_0.9fr_1.1fr] gap-3 px-6 py-2.5 border-b border-fog">
-                      {['Vessel', 'Flag', 'Capacity', 'Obligations', 'Stage'].map(h => (
-                        <span key={h} className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel">{h}</span>
-                      ))}
-                    </div>
-                    {roster.slice(0, 8).map(({ v, a }) => (
-                      <div key={v.name} className="grid grid-cols-[1.8fr_1.1fr_0.9fr_0.9fr_1.1fr] gap-3 px-6 py-3.5 border-b border-fog">
-                        <span className="self-center text-sm font-semibold text-navy">{v.name}</span>
-                        <span className="self-center text-[13px] text-navy/70">{v.flag}</span>
-                        <span className="self-center text-[13px] font-mono text-navy/70">{capacityLabel(v)}</span>
-                        <span className="self-center text-[13px] font-mono text-navy/70">{a.requirements}</span>
-                        <span className="self-center flex items-center gap-2" aria-label={`Stage ${a.stageReached} of 6`}>
-                          <span className="flex gap-1 flex-1">
-                            {PIPELINE.map((_, i) => (
-                              <span
-                                key={i}
-                                className="h-[4px] flex-1 max-w-[14px] rounded-full"
-                                style={{ background: i < a.stageReached ? 'rgba(22,125,183,0.7)' : '#e5ecf0' }}
-                              />
-                            ))}
-                          </span>
-                          <span className="text-[11px] font-mono text-steel shrink-0">{a.stageReached}/6</span>
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <p className="px-6 pt-3 pb-1 text-[11.5px] text-steel">
-                  Showing 8 of {FLEET_COUNT}. Obligation counts follow from flag state, vessel type and tonnage.
-                </p>
-
                 <div className="flex items-baseline justify-between px-6 pt-5 pb-2 gap-3 flex-wrap">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel">
                     Worked cycles · vessels on the map
@@ -460,14 +385,6 @@ export default function CommandDeck() {
               </div>
             </div>
             <FleetMap sel={sel} onSelect={setSel} />
-            <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-white/10 bg-navy">
-              {stats.map((s, i) => (
-                <div key={s.label} className={`px-6 py-6 ${i > 0 ? 'border-l border-white/10' : ''}`}>
-                  <p className="text-3xl font-bold text-white">{s.value}</p>
-                  <p className="text-[12px] text-mist/60 mt-1.5 leading-snug">{s.label}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </Reveal>
       </div>
