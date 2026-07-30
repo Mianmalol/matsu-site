@@ -47,7 +47,19 @@ export const AUTH_CONFIGURED = typeof PUBLISHABLE_KEY === 'string' && PUBLISHABL
 const PRIMARY_HOST = 'www.mymatzu.com'
 const SATELLITE_HOST = 'www.matsunow.com'
 
-const isSatelliteHost = (url: URL) => url.hostname === SATELLITE_HOST
+/**
+ * Satellites only exist on the Clerk Production instance, so the behaviour is
+ * gated on a live key.
+ *
+ * This matters for correctness, not tidiness. Claiming to be a satellite against
+ * an instance with no satellite registered makes Clerk attempt a handshake that
+ * fails, so auth would break on matsunow.com. A development instance is instead
+ * permissive about unknown origins, so with a test key both hosts work as plain
+ * origins. Swap in the pk_live_ key and satellite routing turns itself on.
+ */
+const SATELLITES_ENABLED = PUBLISHABLE_KEY?.startsWith('pk_live_') ?? false
+
+const isSatelliteHost = (url: URL) => SATELLITES_ENABLED && url.hostname === SATELLITE_HOST
 
 /**
  * On the satellite, Clerk's sign-in URLs must be absolute and point at the
@@ -55,7 +67,7 @@ const isSatelliteHost = (url: URL) => url.hostname === SATELLITE_HOST
  * the flow on the current origin.
  */
 const onSatelliteNow = () =>
-  typeof window !== 'undefined' && window.location.hostname === SATELLITE_HOST
+  SATELLITES_ENABLED && typeof window !== 'undefined' && window.location.hostname === SATELLITE_HOST
 
 const signInUrl = () => (onSatelliteNow() ? `https://${PRIMARY_HOST}/sign-in` : '/sign-in')
 const signUpUrl = () => (onSatelliteNow() ? `https://${PRIMARY_HOST}/sign-up` : '/sign-up')
