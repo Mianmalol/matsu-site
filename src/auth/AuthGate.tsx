@@ -118,10 +118,24 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
 /**
  * Account menu for the demo chrome, which is also where sign-out lives.
  * Renders nothing when auth is not configured.
+ *
+ * `size` matches the avatar to the slot it sits in — the demo's sidebar footer
+ * budgets 24px, against Clerk's default 28.
+ *
+ * The popover comes from @clerk/clerk-js, which loads from the CDN at runtime
+ * and so can't be inspected here. The demo shell is `h-dvh overflow-hidden`, so
+ * whether the menu clips depends on how clerk-js positions it — verified in the
+ * browser, not assumed. If it ever does clip, the fix is to lift this out of the
+ * overflow context rather than to loosen the shell.
  */
-export function AccountButton() {
+export function AccountButton({ size = 28 }: { size?: number }) {
   if (!AUTH_CONFIGURED) return null
-  return <UserButton afterSignOutUrl="/" />
+  return (
+    <UserButton
+      afterSignOutUrl="/"
+      appearance={{ elements: { userButtonAvatarBox: { width: size, height: size } } }}
+    />
+  )
 }
 
 /** Shell around Clerk's sign-in / sign-up cards. */

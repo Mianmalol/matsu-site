@@ -25,22 +25,30 @@ npm run preview      # serve the production build locally
 `npm run preview` does **not** read `vercel.json`, so it cannot exercise the `/demo` rewrite or
 the `noindex` headers. Those only work on a real Vercel deployment.
 
-## Fleet data: real identities, simulated state
+## Fleet data: real identities, illustrative state
 
 `src/data/pilFleet.ts` holds 109 real, publicly published Pacific International Lines vessel
-identities. It deliberately carries **no** compliance state. PIL is a prospect, not a customer,
-so nothing may assert or imply that one of their hulls is compliant, deficient, or under review.
+identities — name, flag, build year, TEU. It carries **no** compliance state, so nothing reading
+that table alone can render a real hull compliant or deficient.
 
-`src/data/scenario.ts` holds five invented vessels. Those carry every operational record:
-statuses, findings, rejected evidence, approvals.
+Two surfaces use those names, and they are held to different standards.
 
-The split is the point. "84 obligations apply to a vessel of this flag and tonnage" is a
-statement about the rulebook and is safe on a real name. "3 evidence items rejected" is an
-allegation about an operator and is not. Real vessels show applicability and a labelled
-simulated pipeline position; invented vessels show verdicts.
+**The marketing page (`src/sections/`) stays verdict-free.** It is public, indexed, and read
+without any product chrome around it, so a status dot there reads as a factual claim. Real hulls
+get applicability instead — `src/data/applicability.ts` derives "84 obligations apply to an
+ultra-large container vessel on the Singapore register" from published attributes. That is a
+statement about the rulebook, not about anything PIL has done.
 
-`npm run check:fleet` enforces this. It fails if any of the 109 names appears near verdict
-vocabulary, or if a state field ever lands in `pilFleet.ts`.
+**The demo (`src/demo/`) shows illustrative pipeline state against real names.** It is a faithful
+port of the Figma Make export, gated behind auth, `noindex`'d, and carries a `Demo data` chip in
+its top bar. This is a deliberate exemption, not an oversight.
+
+One rule holds everywhere: **no named individual may be presented as a PIL employee.** A ship's
+simulated status inside a labelled demo is one thing; inventing a person at a real company is
+another. The export named a DPA; both places it appeared now show the role only.
+
+`npm run check:fleet` enforces all three: verdict vocabulary near a real name in `src/sections/`,
+a state field landing in `pilFleet.ts`, or a named person in a PIL role anywhere.
 
 ## Auth
 

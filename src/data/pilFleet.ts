@@ -2,13 +2,16 @@
 //  PIL FLEET · IDENTITY ONLY
 //
 //  Real, publicly published vessel identities. This file deliberately carries
-//  NO compliance state. PIL is a prospect, not a customer, so nothing here may
-//  assert or imply that one of their hulls is compliant, deficient, or under
-//  review. Simulated pipeline state lives in ./scenario.ts and is attached at
-//  render time behind a visible "simulated" marker.
+//  NO compliance state, so nothing reading it alone can render a real hull
+//  compliant or deficient.
 //
-//  Keep that separation. If a status field ever lands in this file, the
-//  honesty guarantee is gone.
+//  Keep it that way. If a status field ever lands here, every consumer inherits
+//  it silently — `npm run check:fleet` fails the build if one does.
+//
+//  Consumers differ in what they may say about these names. The marketing page
+//  gets applicability only, from ./applicability.ts. The demo at /demo shows
+//  illustrative pipeline state behind auth and a "Demo data" marker. See the
+//  README's fleet data section.
 //
 //  Generated from the operator fleet list. Do not hand-edit rows.
 // ═══════════════════════════════════════════════════════════════════════════
