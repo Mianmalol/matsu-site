@@ -1052,7 +1052,8 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken, filingAgainst, 
 
   // ── Stage 4: dated work ────────────────────────────────────────────────────
   if (stageId === 4) {
-    const sc: Record<string, string> = { done: "text-emerald-700", open: "text-[#656d78]", overdue: "text-red-600" };
+    const sc: Record<string, string> = { done: "text-emerald-700", "in-progress": "text-[#2d6aad]", overdue: "text-red-600" };
+    const sl: Record<string, string> = { done: "Done", "in-progress": "In progress", overdue: "Overdue" };
     const overdue = run.actions.filter((a: ComplianceAction) => a.status === "overdue");
     const done = run.actions.filter((a: ComplianceAction) => a.status === "done").length;
 
@@ -1064,7 +1065,7 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken, filingAgainst, 
 
         <div className="border border-[#e2e4e9] rounded-lg px-4 py-2.5 bg-white flex items-center gap-6 text-[10px] text-[#656d78] flex-wrap">
           <span><span className="font-medium text-emerald-700">Done</span> — accepted evidence exists ({done})</span>
-          <span><span className="font-medium text-[#656d78]">Open</span> — outstanding, not yet due ({run.actions.length - done - overdue.length})</span>
+          <span><span className="font-medium text-[#2d6aad]">In progress</span> — outstanding, not yet due ({run.actions.length - done - overdue.length})</span>
           <span><span className="font-medium text-red-600">Overdue</span> — due date passed, nothing accepted ({overdue.length})</span>
         </div>
 
@@ -1101,7 +1102,7 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken, filingAgainst, 
                 <td className="px-4 py-2 font-mono text-[#9ca3af] whitespace-nowrap">{a.id}</td>
                 <td className="px-4 py-2 text-[#0d1117]">{a.action}</td>
                 <td className="px-4 py-2 font-mono text-[#656d78] whitespace-nowrap">{a.due}</td>
-                <td className={`px-4 py-2 font-medium capitalize ${sc[a.status]}`}>{a.status}</td>
+                <td className={`px-4 py-2 font-medium whitespace-nowrap ${sc[a.status]}`}>{sl[a.status]}</td>
                 <td className="pr-4 py-2 text-right">
                   {a.status !== "done" && (
                     <button

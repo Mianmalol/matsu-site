@@ -361,7 +361,7 @@
           "requirementId": "REQ-59BA",
           "action": "Schedule and conduct annual safety construction, equipment and radio survey before certificate expires",
           "due": "2026-09-13",
-          "status": "open",
+          "status": "in-progress",
           "evidenceType": "Certificate"
         },
         {
@@ -393,7 +393,7 @@
           "requirementId": "REQ-6704",
           "action": "Perform weekly inspection of life-saving appliances; run lifeboat engines and check davit systems",
           "due": "2026-08-01",
-          "status": "open",
+          "status": "in-progress",
           "evidenceType": "Log"
         },
         {
@@ -401,7 +401,7 @@
           "requirementId": "REQ-06A4",
           "action": "Verify GMDSS radio installations operational with full redundancy for NE3 area; prepare for annual certification",
           "due": "2026-09-20",
-          "status": "open",
+          "status": "in-progress",
           "evidenceType": "Certificate"
         },
         {
@@ -409,7 +409,7 @@
           "requirementId": "REQ-0755",
           "action": "Test ECDIS, AIS, voyage data recorder and bridge watch alarms; arrange annual verification survey",
           "due": "2026-09-06",
-          "status": "open",
+          "status": "in-progress",
           "evidenceType": "Survey report"
         },
         {
@@ -425,7 +425,7 @@
           "requirementId": "REQ-C0F6",
           "action": "Conduct annual internal SMS audit and document findings; review compliance with company management",
           "due": "2026-08-27",
-          "status": "open",
+          "status": "in-progress",
           "evidenceType": "Certificate"
         },
         {
@@ -433,7 +433,7 @@
           "requirementId": "REQ-3B92",
           "action": "Conduct quarterly ship security drill; document all participants and exercise outcomes",
           "due": "2026-08-14",
-          "status": "open",
+          "status": "in-progress",
           "evidenceType": "Drill report"
         },
         {
@@ -441,7 +441,7 @@
           "requirementId": "REQ-4287",
           "action": "Schedule intermediate verification of International Ship Security Certificate with approved service provider",
           "due": "2026-11-05",
-          "status": "open",
+          "status": "in-progress",
           "evidenceType": "Certificate"
         },
         {
@@ -449,7 +449,7 @@
           "requirementId": "REQ-1425",
           "action": "Arrange annual IOPP Certificate survey covering pollution prevention equipment and Supplement verification",
           "due": "2026-08-21",
-          "status": "open",
+          "status": "in-progress",
           "evidenceType": "Certificate"
         },
         {
@@ -457,7 +457,7 @@
           "requirementId": "REQ-9416",
           "action": "Verify 15 ppm oil filtering equipment alarm and auto-stop function; document annual maintenance",
           "due": "2026-08-17",
-          "status": "open",
+          "status": "in-progress",
           "evidenceType": "Survey report"
         },
         {
@@ -473,7 +473,7 @@
           "requirementId": "REQ-E45F",
           "action": "Review Shipboard Oil Pollution Emergency Plan with crew; conduct tabletop exercise and update as needed",
           "due": "2026-09-03",
-          "status": "open",
+          "status": "in-progress",
           "evidenceType": "Plan"
         },
         {
@@ -481,7 +481,7 @@
           "requirementId": "REQ-C511",
           "action": "Schedule annual verification survey for IAPP and IEE certificates before expiration",
           "due": "2026-09-30",
-          "status": "open",
+          "status": "in-progress",
           "evidenceType": "Certificate"
         },
         {
@@ -489,7 +489,7 @@
           "requirementId": "REQ-F687",
           "action": "Obtain fuel analysis report for next bunkering; verify sulphur content ≤0.50% and document Bunker Delivery Note",
           "due": "2026-08-04",
-          "status": "open",
+          "status": "in-progress",
           "evidenceType": "Analysis report"
         },
         {

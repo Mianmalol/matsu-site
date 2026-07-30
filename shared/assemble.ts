@@ -109,7 +109,7 @@ export function deriveActionStatus(
   today: string,
 ): ActionStatus {
   if (discharged.has(action.id)) return 'done'
-  return action.due < today ? 'overdue' : 'open'
+  return action.due < today ? 'overdue' : 'in-progress'
 }
 
 export function deriveActionStatuses(

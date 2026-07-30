@@ -133,16 +133,18 @@ export interface Requirement {
 /**
  * Three states, each a fact the system can check.
  *
- *   done      accepted evidence exists against this action
- *   overdue   the due date has passed and no accepted evidence exists
- *   open      neither — the work is outstanding and not yet late
+ *   done         accepted evidence exists against this action
+ *   overdue      the due date has passed and no accepted evidence exists
+ *   in-progress  neither — the action is live and not yet late
  *
- * There used to be an 'in-progress' as well, and the model picked between it
- * and 'open' on nothing at all: whether a crew has started a task is not
+ * There used to be an 'open' as well, and the model chose between it and
+ * 'in-progress' on nothing at all: whether a crew has started a task is not
  * knowable from a corpus of regulations. Two labels no observer could tell
- * apart is worse than one honest label.
+ * apart is worse than one. The survivor is 'in-progress', and it now means
+ * something checkable — the action is outstanding — rather than a guess about
+ * work aboard a ship.
  */
-export type ActionStatus = 'done' | 'open' | 'overdue'
+export type ActionStatus = 'done' | 'in-progress' | 'overdue'
 
 /** A dated piece of work generated from an assigned requirement. */
 export interface ComplianceAction {
