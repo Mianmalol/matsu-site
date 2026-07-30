@@ -1,6 +1,6 @@
 import { Reveal, PhotoLayer } from '@/components/ui'
 import { CargoShip } from '@/components/scenes'
-import { IMAGES } from '@/data'
+import { IMAGES, DEMO_MAILTO } from '@/data'
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  11 · Final harbor + CTA
@@ -52,7 +52,7 @@ export default function Harbor() {
             Prepared for every voyage.
           </h2>
           <div className="mt-11 flex items-center justify-center gap-4 flex-wrap">
-            <a href="mailto:marco0111ml@gmail.com?subject=Matsu%20demo%20request" className="bg-white text-navy text-[15px] font-semibold px-8 py-4 rounded-md hover:bg-mist transition-colors">
+            <a href={DEMO_MAILTO} className="bg-white text-navy text-[15px] font-semibold px-8 py-4 rounded-md hover:bg-mist transition-colors">
               Book a demo
             </a>
           </div>

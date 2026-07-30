@@ -1,20 +1,64 @@
 import { useEffect, useRef, useState } from 'react'
 import { clamp01, easeOut } from '@/lib/hooks'
 
-/** Fades/slides children in when scrolled into view. */
+/**
+ * Fades/slides children in when scrolled into view.
+ *
+ * Two things beyond a plain IntersectionObserver, both guarding against blocks
+ * that stay invisible forever:
+ *
+ *  · Anything already at or above the viewport reveals immediately, with no
+ *    animation. A fling scroll, an anchor jump, or a browser-restored scroll
+ *    position can move an element from below the fold to above it between two
+ *    frames, and an observer never sees a crossing it wasn't sampled for.
+ *
+ *  · threshold 0 rather than a ratio. A tall block in a short viewport can have
+ *    a maximum achievable ratio below any ratio you pick, in which case it can
+ *    never satisfy the threshold at all. The bottom rootMargin inset keeps the
+ *    trigger from feeling premature.
+ *
+ * A scroll listener backstops both, so nothing is left at opacity 0.
+ */
 export function Reveal({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null)
   const [inView, setInView] = useState(false)
+
   useEffect(() => {
     const el = ref.current
     if (!el) return
+
+    let done = false
+    const cleanup = () => {
+      io?.disconnect()
+      window.removeEventListener('scroll', check)
+      window.removeEventListener('resize', check)
+    }
+    const reveal = () => {
+      if (done) return
+      done = true
+      setInView(true)
+      cleanup()
+    }
+    /** Reveal if any part of the element has reached the trigger line. */
+    function check() {
+      if (!el) return
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.92) reveal()
+    }
+
+    check()
+    if (done) return cleanup
+
     const io = new IntersectionObserver(
-      entries => entries.forEach(e => e.isIntersecting && setInView(true)),
-      { threshold: 0.18 },
+      entries => entries.forEach(e => e.isIntersecting && reveal()),
+      { threshold: 0, rootMargin: '0px 0px -8% 0px' },
     )
     io.observe(el)
-    return () => io.disconnect()
+    window.addEventListener('scroll', check, { passive: true })
+    window.addEventListener('resize', check, { passive: true })
+
+    return cleanup
   }, [])
+
   return (
     <div ref={ref} className={`reveal ${inView ? 'in' : ''} ${className}`} style={{ transitionDelay: `${delay}ms` }}>
       {children}

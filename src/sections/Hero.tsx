@@ -1,5 +1,6 @@
 import { useScrollY, useReducedMotion, clamp01 } from '@/lib/hooks'
 import { HeroScene } from '@/components/scenes'
+import { DEMO_MAILTO } from '@/data'
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  1 · Cinematic hero
@@ -28,7 +29,7 @@ export default function Hero() {
           Navigate compliance.<br />Sail with confidence.
         </h1>
         <div className="mt-9 flex items-center gap-4 flex-wrap">
-          <a href="#cta" className="bg-navy text-white text-[15px] font-semibold px-7 py-4 rounded-md hover:bg-deepsea transition-colors">
+          <a href={DEMO_MAILTO} className="bg-navy text-white text-[15px] font-semibold px-7 py-4 rounded-md hover:bg-deepsea transition-colors">
             Book a demo →
           </a>
         </div>
