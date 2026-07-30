@@ -1,8 +1,12 @@
 // ═══════════════════════════════════════════════════════════════════════════
 //  CONTACT
-//  Single source of truth. Harbor and the footer used to disagree about this.
+//  Single source of truth for every mailto on the site. Harbor and the footer
+//  used to disagree about this by accident; one constant so they can't again.
 // ═══════════════════════════════════════════════════════════════════════════
-export const CONTACT_EMAIL = 'alexander.m.zhao@columbia.edu'
+export const CONTACT_EMAIL = 'marco0111ml@gmail.com'
+
+/** Prefilled subject for demo requests, so they're filterable on arrival. */
+export const DEMO_MAILTO = `mailto:${CONTACT_EMAIL}?subject=Matsu%20demo%20request`
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  PHOTOGRAPHY SLOTS

@@ -1,5 +1,5 @@
 import { Wordmark } from '@/components/ui'
-import { CONTACT_EMAIL } from '@/data'
+import { CONTACT_EMAIL, DEMO_MAILTO } from '@/data'
 import { Link } from '@/lib/router'
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -10,7 +10,7 @@ export default function Footer() {
   const cols: { h: string; l: [string, string][] }[] = [
     {
       h: 'Get in touch',
-      l: [['Open the demo', '/demo'], ['Contact', `mailto:${CONTACT_EMAIL}`]],
+      l: [['Book a demo', DEMO_MAILTO], ['Sign in', '/sign-in'], ['Contact', `mailto:${CONTACT_EMAIL}`]],
     },
   ]
   return (

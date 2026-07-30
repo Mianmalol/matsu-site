@@ -23,12 +23,42 @@
 import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn, UserButton } from '@clerk/clerk-react'
 import { Wordmark } from '@/components/ui'
 import { Link } from '@/lib/router'
-import { CONTACT_EMAIL } from '@/data'
+import { DEMO_MAILTO } from '@/data'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
 /** Clerk keys are `pk_test_…` / `pk_live_…`; anything else is a misconfiguration. */
 export const AUTH_CONFIGURED = typeof PUBLISHABLE_KEY === 'string' && PUBLISHABLE_KEY.startsWith('pk_')
+
+// ── Multi-domain ────────────────────────────────────────────────────────────
+//
+//  Two production origins serve this same build: www.mymatzu.com is primary and
+//  www.matsunow.com is a Clerk satellite. Clerk accepts functions for both
+//  `isSatellite` and `domain`, so one bundle decides per-hostname at runtime
+//  rather than needing a second deployment or a per-domain env var.
+//
+//  Signing in from the satellite bounces through the primary and returns. That
+//  is how Clerk satellites work and config can't hide it.
+//
+//  These MUST be exact-match. localhost and *.vercel.app previews are neither
+//  primary nor satellite, and if the predicate were written as "not primary"
+//  every preview and local session would start redirecting to www.mymatzu.com.
+
+const PRIMARY_HOST = 'www.mymatzu.com'
+const SATELLITE_HOST = 'www.matsunow.com'
+
+const isSatelliteHost = (url: URL) => url.hostname === SATELLITE_HOST
+
+/**
+ * On the satellite, Clerk's sign-in URLs must be absolute and point at the
+ * primary. Everywhere else — primary, previews, localhost — relative paths keep
+ * the flow on the current origin.
+ */
+const onSatelliteNow = () =>
+  typeof window !== 'undefined' && window.location.hostname === SATELLITE_HOST
+
+const signInUrl = () => (onSatelliteNow() ? `https://${PRIMARY_HOST}/sign-in` : '/sign-in')
+const signUpUrl = () => (onSatelliteNow() ? `https://${PRIMARY_HOST}/sign-up` : '/sign-up')
 
 /** Clerk's own UI, themed to the site's palette. */
 const appearance = {
@@ -49,8 +79,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       publishableKey={PUBLISHABLE_KEY as string}
       // Without these, Clerk redirects to its hosted Account Portal instead of
       // the in-app routes.
-      signInUrl="/sign-in"
-      signUpUrl="/sign-up"
+      signInUrl={signInUrl()}
+      signUpUrl={signUpUrl()}
+      isSatellite={isSatelliteHost}
+      domain={url => (isSatelliteHost(url) ? SATELLITE_HOST : '')}
       appearance={appearance}
     >
       {children}
@@ -117,7 +149,7 @@ export function AuthNotConfigured() {
           </p>
           <div className="flex items-center gap-4 flex-wrap">
             <a
-              href={`mailto:${CONTACT_EMAIL}?subject=Matsu%20demo%20request`}
+              href={DEMO_MAILTO}
               className="bg-white text-navy text-[15px] font-semibold px-7 py-3.5 rounded-md hover:bg-mist transition-colors"
             >
               Request access
