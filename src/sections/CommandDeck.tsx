@@ -2,17 +2,22 @@ import { useEffect, useRef, useState } from 'react'
 import { Reveal } from '@/components/ui'
 import { vessels, type Vessel } from '@/data'
 import { MAP_W, MAP_H, LAND_PATH, PORTS, VESSEL_GEO, GRATICULE, CHOKEPOINTS } from '@/components/mapGeo'
-import { FLEET_SOURCE, FLEET_COUNT, pilFleet } from '@/data/pilFleet'
-import { applicabilityFor, REGULATIONS_INDEXED } from '@/data/applicability'
+import {
+  demoFleet, DEMO_OPERATOR, FLEET_COUNT, capacityLabel, applicabilityFor, REGULATIONS_INDEXED,
+} from '@/data/demoFleet'
 
 // ═══════════════════════════════════════════════════════════════════════════
-//  5 · Command deck (blueprint → fleet roster + scenario cycles ↔ live map)
+//  5 · Command deck (blueprint → fleet roster + worked cycles ↔ live map)
 //
-//  Two data sources, kept visibly apart:
-//    · pilFleet   → real identities. Flags, capacities, applicable obligations,
-//                   and a simulated stage position. No verdicts.
-//    · vessels    → five invented hulls. These carry the compliance statuses,
-//                   deficiencies and the map positions.
+//  Every vessel here is invented, operator included. This page is public and
+//  indexed, so a roster of real ships reads as a customer list and a status
+//  column reads as a claim about their condition. See data/demoFleet.ts.
+//
+//  Two views of one fleet:
+//    · demoFleet → all 12 hulls, with the obligations that apply and a stage
+//                  position. The roster.
+//    · vessels   → the 5 the map plots, carrying full cycle state: statuses,
+//                  deficiencies, positions.
 // ═══════════════════════════════════════════════════════════════════════════
 
 function Blueprint() {
@@ -108,19 +113,9 @@ function Blueprint() {
           ))}
         </g>
 
-        {/* title block */}
-        <g stroke="#8797a5" strokeWidth="1" fill="none" opacity="0.8">
-          <rect x="676" y="252" width="254" height="50" />
-          <line x1="676" y1="268" x2="930" y2="268" />
-          <line x1="676" y1="285" x2="930" y2="285" />
-          <line x1="836" y1="285" x2="836" y2="302" />
-        </g>
-        <g fontFamily="'JetBrains Mono', monospace" fill="#8797a5">
-          <text x="684" y="263" fontSize="8.5" fill="#0d5c91" letterSpacing="1">GENERAL ARRANGEMENT · PROFILE</text>
-          <text x="684" y="280" fontSize="9">MV ADRIATIC PIONEER · IMO 9876543</text>
-          <text x="684" y="297" fontSize="8.5">BULK CARRIER · DWT 82,000</text>
-          <text x="844" y="297" fontSize="8.5">SCALE 1:1000</text>
-        </g>
+        {/* The drafting title block that sat here (general arrangement, vessel
+            name, IMO, scale) is gone. The dimensions and frame stations carry
+            the drawing on their own. */}
       </svg>
     </div>
   )
@@ -263,13 +258,11 @@ function FleetMap({ sel, onSelect }: { sel: string; onSelect: (id: string) => vo
 export default function CommandDeck() {
   const [sel, setSel] = useState<string>('3')
 
-  // ── Real fleet. Identity and applicability only, never a compliance verdict.
-  const roster = pilFleet.map((v, i) => ({ v, a: applicabilityFor(v, i) }))
+  const roster = demoFleet.map((v, i) => ({ v, a: applicabilityFor(v, i) }))
   const obligations = roster.reduce((n, r) => n + r.a.requirements, 0)
   const projected = roster.reduce((n, r) => n + r.a.actions, 0)
-  const flagStates = new Set(pilFleet.map(v => v.flag)).size
+  const flagStates = new Set(demoFleet.map(v => v.flag)).size
 
-  // ── Scenario fleet. Invented hulls, so execution state is fine here.
   const pipelineDone = PIPELINE.map((_, i) => vessels.filter(x => stagesDone(x) >= i + 1).length)
 
   const kpis: { label: string; value: string }[] = [
@@ -302,7 +295,7 @@ export default function CommandDeck() {
         <Reveal delay={100} className="mt-4">
           <div className="bg-white border border-mist rounded-xl overflow-hidden shadow-[0_30px_80px_-40px_rgba(7,26,44,0.35)]">
             <div className="flex items-center justify-between px-6 py-4 border-b border-fog bg-fog/60 flex-wrap gap-2">
-              <span className="text-sm font-semibold text-navy">Fleet Overview · {FLEET_SOURCE.operator}</span>
+              <span className="text-sm font-semibold text-navy">Fleet Overview · {DEMO_OPERATOR}</span>
               <span className="flex items-center gap-5">
                 <span className="flex items-center gap-2 text-xs font-medium text-navy/70">
                   <span className="w-2 h-2 rounded-full bg-ocean anim-pulse-dot" aria-hidden="true" />
@@ -312,10 +305,10 @@ export default function CommandDeck() {
             </div>
             <div className="px-6 py-3.5 border-b border-fog bg-white">
               <p className="text-[12.5px] text-navy/70 leading-relaxed">
-                <span className="font-semibold text-navy">Fleet data is real.</span>{' '}
-                {FLEET_COUNT} vessel identities from the {FLEET_SOURCE.source}, retrieved {FLEET_SOURCE.retrieved}.
-                Flags and capacities are as published. Pipeline state is simulated and shows which obligations apply,
-                not what any operator has or has not done.
+                <span className="font-semibold text-navy">{DEMO_OPERATOR} is an example fleet.</span>{' '}
+                Every vessel here is made up, so nothing on this screen says anything about a real operator.
+                The obligation counts are real: they follow from flag state, vessel type and tonnage the same way
+                they would for your own ships.
               </p>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 border-b border-fog">
@@ -332,7 +325,7 @@ export default function CommandDeck() {
                   <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel">
                     Fleet · obligations by vessel
                   </p>
-                  <p className="text-[10px] font-mono text-steel">REAL IDENTITIES · SIMULATED STAGE</p>
+                  <p className="text-[10px] font-mono text-steel">EXAMPLE FLEET</p>
                 </div>
                 <div className="overflow-x-auto">
                   <div className="min-w-[620px]">
@@ -345,13 +338,9 @@ export default function CommandDeck() {
                       <div key={v.name} className="grid grid-cols-[1.8fr_1.1fr_0.9fr_0.9fr_1.1fr] gap-3 px-6 py-3.5 border-b border-fog">
                         <span className="self-center text-sm font-semibold text-navy">{v.name}</span>
                         <span className="self-center text-[13px] text-navy/70">{v.flag}</span>
-                        <span className="self-center text-[13px] font-mono text-navy/70">
-                          {v.teu > 0 ? `${v.teu.toLocaleString()} TEU` : '—'}
-                        </span>
-                        <span className="self-center text-[13px] font-mono text-navy/70">
-                          {a.requirements > 0 ? a.requirements : '—'}
-                        </span>
-                        <span className="self-center flex items-center gap-2" aria-label={`Simulated stage ${a.stageReached} of 6`}>
+                        <span className="self-center text-[13px] font-mono text-navy/70">{capacityLabel(v)}</span>
+                        <span className="self-center text-[13px] font-mono text-navy/70">{a.requirements}</span>
+                        <span className="self-center flex items-center gap-2" aria-label={`Stage ${a.stageReached} of 6`}>
                           <span className="flex gap-1 flex-1">
                             {PIPELINE.map((_, i) => (
                               <span
@@ -368,14 +357,14 @@ export default function CommandDeck() {
                   </div>
                 </div>
                 <p className="px-6 pt-3 pb-1 text-[11.5px] text-steel">
-                  Showing 8 of {FLEET_COUNT}. Obligation counts follow from flag state and tonnage.
+                  Showing 8 of {FLEET_COUNT}. Obligation counts follow from flag state, vessel type and tonnage.
                 </p>
 
                 <div className="flex items-baseline justify-between px-6 pt-5 pb-2 gap-3 flex-wrap">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel">
-                    Scenario vessels · worked cycles
+                    Worked cycles · vessels on the map
                   </p>
-                  <p className="text-[10px] font-mono text-steel">INVENTED HULLS</p>
+                  <p className="text-[10px] font-mono text-steel">FULL CYCLE STATE</p>
                 </div>
                 <div className="overflow-x-auto">
                   <div className="min-w-[620px]">
@@ -403,7 +392,7 @@ export default function CommandDeck() {
                     })}
                   </div>
                 </div>
-                <p className="px-6 pt-5 pb-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-steel">Agent event log · scenario</p>
+                <p className="px-6 pt-5 pb-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-steel">Agent event log</p>
                 <div className="pb-4">
                   {agentEvents.map(ev => (
                     <div key={ev.t} className="flex items-baseline gap-3 px-6 py-2 text-[12.5px]">
@@ -434,7 +423,7 @@ export default function CommandDeck() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel mb-3">Scenario compliance status</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel mb-3">Compliance status</p>
                   <div className="space-y-3.5">
                     {(['compliant', 'attention', 'risk'] as const).map(s => {
                       const t = statusTint(s)
@@ -454,7 +443,7 @@ export default function CommandDeck() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel mb-3">Scenario pipeline breakdown</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-steel mb-3">Pipeline breakdown</p>
                   <div className="space-y-3">
                     {PIPELINE.map((stage, i) => (
                       <div key={stage} className="flex items-center gap-3 text-[13px]">

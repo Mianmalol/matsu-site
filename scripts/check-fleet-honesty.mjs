@@ -1,43 +1,45 @@
-// Audits two honesty invariants around the real Pacific International Lines
-// fleet data. Run with: npm run check:fleet
+// Audits the honesty invariants around real Pacific International Lines fleet
+// data. Run with: npm run check:fleet
 //
-// Scope narrowed deliberately. The original version banned verdict vocabulary
-// near any of the 109 real vessel names anywhere in src/, which was the right
-// rule when the demo was built around invented hulls. The product demo at /demo
-// is now a faithful port of the Figma Make export and does show illustrative
-// pipeline state against real names, labelled as demo data in its chrome. So:
+// Real PIL identities exist in exactly one place: the FLEET array in
+// src/demo/DemoApp.tsx, the gated product demo. That demo is behind auth,
+// noindex'd, and labelled as demo data in its own chrome, and it shows
+// illustrative pipeline state against those names deliberately.
 //
-//   1. src/sections/ — the public marketing page, indexed by search engines and
-//      read without any product chrome around it. Stays verdict-free.
-//   2. all of src/  — no named individual may be presented as a PIL employee.
-//      A vessel's simulated status in a labelled demo is one thing; inventing a
-//      person at a real company is another, and no surface gets to do it.
+// The marketing page is the opposite situation: public, indexed, read with no
+// product chrome around it. A roster there reads as a customer list and a status
+// column reads as a claim about someone's ships. So:
 //
-// src/demo/ is exempt from (1) by design, not by oversight. It is noindex'd,
-// sits behind auth, and carries its own "Demo data" marker.
+//   1. src/sections/ names no real PIL vessel and not the operator either. It
+//      uses the invented fleet in src/data/demoFleet.ts.
+//   2. Nowhere in src/ is a named individual presented as a PIL employee. A
+//      ship's illustrative status inside a labelled demo is one thing;
+//      inventing a person at a real company is another.
+//
+// Earlier versions of this script read the names from a src/data/pilFleet.ts
+// that no longer exists — the marketing page stopped using real identities, so
+// the only copy left is the demo's own array.
 
 import fs from 'node:fs'
 import path from 'node:path'
 
 const ROOT = new URL('../src', import.meta.url).pathname
+const DEMO = path.join(ROOT, 'demo/DemoApp.tsx')
 
-const fleetSrc = fs.readFileSync(path.join(ROOT, 'data/pilFleet.ts'), 'utf8')
-const names = [...fleetSrc.matchAll(/name: '([^']+)'/g)].map(m => m[1])
-if (names.length !== 109) throw new Error('expected 109 names, got ' + names.length)
+// Pull the FLEET rows: ["Kota Anggun", "Singapore", 1999, 1454, "complete"],
+const demoSrc = fs.readFileSync(DEMO, 'utf8')
+const fleetBlock = demoSrc.slice(demoSrc.indexOf('const FLEET: Spec[] = ['), demoSrc.indexOf('const VESSELS'))
+const names = [...fleetBlock.matchAll(/\[\s*"([^"]+)"/g)].map(m => m[1])
+if (names.length !== 109) throw new Error(`expected 109 PIL names in ${DEMO}, got ${names.length}`)
 
-// Words that assert a compliance state or an adverse finding.
-const VERDICT = [
-  'compliant', 'needs review', 'needs-review', 'deficien', 'rejected', 'overdue',
-  'flagged', 'psc risk', 'non-conformity', 'approved', 'accepted', 'complete',
-  'sulphur', 'violation', 'breach',
-]
+const OPERATOR_STRINGS = ['Pacific International Lines', 'PIL public fleet list']
 
 // Roles that, if given a personal name, would invent an employee at a real
-// company. Matches "<Firstname Lastname>" adjacent to the role, or the reverse.
+// company. Matches "<Firstname Lastname>" on the same line as the role.
 const PERSON_ROLES = ['designated person ashore', 'dpa', 'fleet manager', 'superintendent', 'master']
 const NAME_RE = /\b[A-Z][a-z]{1,15}\s+[A-Z][a-z]{1,15}\b/g
 
-// Capitalised pairs that are places, instruments or labels rather than people.
+// Capitalised pairs that are places, instruments or UI labels rather than people.
 const NOT_A_PERSON = new Set([
   'Designated Person', 'Person Ashore', 'Fleet Overview', 'Fleet Manager', 'Pacific International',
   'International Lines', 'Marshall Islands', 'Hong Kong', 'Port Klang', 'Buenos Aires', 'Ho Chi',
@@ -45,7 +47,8 @@ const NOT_A_PERSON = new Set([
   'Regulation Scanning', 'Requirement Extraction', 'Vessel Assignment', 'Action Assignment',
   'Evidence Collection', 'Security Plan', 'Update Ship', 'Seafarer Employment', 'Every Monday',
   'Recent Mo', 'Regional Mo', 'Code Part', 'Code Rev', 'Safety Management', 'Little Mermaid',
-  'Salam Maju', 'Selatan Damai', 'Zhong Hang', 'Zhu Cheng', 'Kota Anggun',
+  'Salam Maju', 'Selatan Damai', 'Zhong Hang', 'Zhu Cheng', 'Full Cycle', 'Cycle State',
+  'Example Fleet', 'Meridian Line', 'Worked Cycles',
 ])
 
 function walk(dir) {
@@ -56,7 +59,7 @@ function walk(dir) {
 }
 
 const files = walk(ROOT)
-const verdictHits = []
+const marketingHits = []
 const personHits = []
 
 for (const file of files) {
@@ -65,22 +68,23 @@ for (const file of files) {
 
   lines.forEach((line, i) => {
     const lower = line.toLowerCase()
+    // Comments explain the rule and necessarily mention what it forbids.
+    const isComment = /^\s*(\/\/|\*|\/\*)/.test(line)
 
-    // (1) Marketing sections only. pilFleet.ts is the identity table itself.
-    if (rel.startsWith('sections/')) {
-      const hitName = names.find(n => line.includes(n))
-      const hitWord = VERDICT.find(w => lower.includes(w))
-      if (hitName && hitWord) {
-        verdictHits.push(`${rel}:${i + 1}  vessel "${hitName}" near "${hitWord}"\n    ${line.trim().slice(0, 150)}`)
+    // (1) The public marketing page.
+    if (rel.startsWith('sections/') && !isComment) {
+      const hit = names.find(n => new RegExp(`\\b${n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(line))
+        ?? OPERATOR_STRINGS.find(o => line.includes(o))
+      if (hit) {
+        marketingHits.push(`${rel}:${i + 1}  names "${hit}" on the public page\n    ${line.trim().slice(0, 150)}`)
       }
     }
 
     // (2) Everywhere, including the demo.
     if (PERSON_ROLES.some(r => lower.includes(r))) {
-      // A capitalised pair sitting in a `vessel:` or `name:` slot is a ship, not
-      // a person, even on a line that also mentions the DPA. Drop those values
-      // before looking for names, rather than growing the exclusion list with
-      // every vessel someone invents.
+      // A capitalised pair in a `vessel:` or `name:` slot is a ship, not a
+      // person, even on a line that also mentions the DPA. Drop those values
+      // rather than growing the exclusion list with every invented vessel.
       const scannable = line.replace(/\b(?:vessel|name)\s*:\s*(['"`])(?:\\.|(?!\1).)*\1/gi, '')
       for (const m of scannable.match(NAME_RE) ?? []) {
         if (!NOT_A_PERSON.has(m) && !names.includes(m)) {
@@ -91,28 +95,17 @@ for (const file of files) {
   })
 }
 
-// The identity table must carry no state field, so a real hull cannot be
-// structurally rendered compliant or deficient from that data alone.
-const stateFields = ['status', 'state', 'complete', 'needs-review', 'active', 'pending']
-const leaked = stateFields.filter(f => new RegExp(`\\b${f}\\s*:`, 'i').test(fleetSrc))
-
-console.log('PIL vessel names indexed:      ', names.length)
-console.log('Files scanned:                 ', files.length)
-console.log('State fields in pilFleet.ts:   ', leaked.length ? leaked.join(', ') : 'none')
+console.log('Real PIL names (demo only):', names.length)
+console.log('Files scanned:             ', files.length)
 console.log('')
 
 let failed = false
-if (verdictHits.length) {
+if (marketingHits.length) {
   failed = true
-  console.log(`FAIL — ${verdictHits.length} verdict occurrence(s) in src/sections/:`)
-  verdictHits.forEach(p => console.log('  ' + p))
+  console.log(`FAIL — ${marketingHits.length} real PIL reference(s) in src/sections/:`)
+  marketingHits.forEach(p => console.log('  ' + p))
 } else {
-  console.log('PASS — no real vessel name near verdict vocabulary in src/sections/.')
-}
-
-if (leaked.length) {
-  failed = true
-  console.log(`FAIL — pilFleet.ts gained a state field: ${leaked.join(', ')}`)
+  console.log('PASS — src/sections/ names no real PIL vessel or the operator.')
 }
 
 if (personHits.length) {
