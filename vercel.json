@@ -1,7 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-
-  "//": "Rewrites are enumerated rather than a catch-all. A catch-all would send every unmatched path to index.html, so typos and missing assets would return a 200 page instead of a 404. Only real app routes get the SPA fallback.",
   "rewrites": [
     { "source": "/demo", "destination": "/index.html" },
     { "source": "/sign-in", "destination": "/index.html" },
@@ -9,8 +7,6 @@
     { "source": "/sign-up", "destination": "/index.html" },
     { "source": "/sign-up/:path*", "destination": "/index.html" }
   ],
-
-  "//headers": "index.html is shared by every route, so a React effect cannot keep the demo out of an index. Crawlers read the response headers before any JS runs.",
   "headers": [
     {
       "source": "/demo",
