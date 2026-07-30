@@ -41,6 +41,23 @@ import type { AgentEvent, FleetRun, VesselRun } from '../shared/types.js'
 const HERE = dirname(fileURLToPath(import.meta.url))
 const OUT = join(HERE, '..', 'src', 'data', 'canonicalRun.json')
 
+/**
+ * The one hull the seeded fleet leaves outstanding.
+ *
+ * Every other hull is generated with its cycle closed and its DPA queue signed
+ * off, so the fleet opens on four green rows and one that needs attention. A
+ * board where all five read "Needs Review" is the same as one where none do —
+ * it gives the eye nowhere to go. Meridian is the exception because it is the
+ * first row, so the thing worth clicking is the thing you land on.
+ *
+ * This shapes the SCENARIO, not the verdicts. Stage 5 still judges each
+ * document and writes its own reason; the closed hulls are ones where the
+ * paperwork is in order, not ones where the validator was told to look away.
+ * The request path never sets closeCycle, so "Re-run this hull" in the demo
+ * always gets the unshaped pipeline.
+ */
+const NEEDS_REVIEW = 'matsu-meridian'
+
 function log(msg: string): void {
   process.stdout.write(`${msg}\n`)
 }
@@ -74,12 +91,26 @@ async function main(): Promise<void> {
     const { actions, report: r4 } = await runActions(vessel, requirements)
     log(`  stage 4  ${actions.length} actions generated${describe(r4)}`)
 
-    const { evidence, report: r5 } = await runEvidence(vessel, actions)
+    const closeCycle = vessel.id !== NEEDS_REVIEW
+
+    const { evidence, report: r5 } = await runEvidence(vessel, actions, { closeCycle })
     const rejected = evidence.filter(e => e.verdict === 'rejected').length
     log(`  stage 5  ${evidence.length} evidence items, ${rejected} rejected${describe(r5)}`)
 
-    const approvals = buildApprovals(evidence, actions)
-    log(`  stage 6  ${approvals.length} items awaiting a human decision`)
+    // A closed hull arrives with its queue already signed off. Marked seeded so
+    // the UI can say the decision came with the fixture rather than pretending
+    // someone reviewed it — stage 6 is the step this demo claims no model
+    // touches, and that claim has to survive its own demo data.
+    const approvals = buildApprovals(evidence, actions).map(a =>
+      closeCycle ?
+        { ...a, state: 'approved' as const, decidedAt: startedAt.toISOString(), seeded: true }
+      : a,
+    )
+    log(
+      closeCycle ?
+        `  stage 6  ${approvals.length} items signed off (seeded closed cycle)`
+      : `  stage 6  ${approvals.length} items awaiting a human decision`,
+    )
 
     const run = buildVesselRun({
       vessel,

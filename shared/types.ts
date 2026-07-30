@@ -130,7 +130,19 @@ export interface Requirement {
   evidenceType: EvidenceType
 }
 
-export type ActionStatus = 'done' | 'in-progress' | 'open' | 'overdue'
+/**
+ * Three states, each a fact the system can check.
+ *
+ *   done      accepted evidence exists against this action
+ *   overdue   the due date has passed and no accepted evidence exists
+ *   open      neither — the work is outstanding and not yet late
+ *
+ * There used to be an 'in-progress' as well, and the model picked between it
+ * and 'open' on nothing at all: whether a crew has started a task is not
+ * knowable from a corpus of regulations. Two labels no observer could tell
+ * apart is worse than one honest label.
+ */
+export type ActionStatus = 'done' | 'open' | 'overdue'
 
 /** A dated piece of work generated from an assigned requirement. */
 export interface ComplianceAction {
@@ -139,6 +151,7 @@ export interface ComplianceAction {
   action: string
   /** ISO date. */
   due: string
+  /** Derived, never model-supplied. See deriveActionStatus in assemble.ts. */
   status: ActionStatus
   evidenceType: EvidenceType
 }
@@ -167,8 +180,16 @@ export interface ApprovalItem {
   state: ApprovalState
   /** The reviewer's note when an item is returned. */
   note?: string
-  /** ISO timestamp of the human decision. */
+  /** ISO timestamp of the decision. */
   decidedAt?: string
+  /**
+   * True when the decision came with the seeded demo fixture rather than from
+   * someone clicking Approve in this session. The demo tells the viewer stage 6
+   * is the one step no model touches; a fixture that quietly shows items
+   * "signed off" by nobody would undercut exactly that claim, so the UI says
+   * which is which.
+   */
+  seeded?: boolean
 }
 
 export interface StageResult {

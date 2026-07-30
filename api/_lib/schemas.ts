@@ -113,7 +113,10 @@ export const actionsSchema = z.object({
           .describe(
             'Days from today the action is due. Negative means already overdue. Derive from the periodicity.',
           ),
-        status: z.enum(['done', 'in-progress', 'open', 'overdue']),
+        // No status field, deliberately. Whether an action is done, open or
+        // overdue follows from its due date and the evidence filed against it,
+        // both of which the system holds. Asking the model to label it invites
+        // it to invent progress on work it has no knowledge of.
         evidenceType: EVIDENCE_TYPE,
       }),
     ),

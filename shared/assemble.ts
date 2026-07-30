@@ -13,6 +13,7 @@
 
 import type {
   AgentEvent,
+  ActionStatus,
   ApprovalItem,
   ComplianceAction,
   EvidenceItem,
@@ -90,22 +91,37 @@ export interface VesselParts {
 }
 
 /**
- * An action is discharged once accepted evidence exists against it.
+ * The one place an action's status is decided.
  *
- * This is derived, not asserted: the pipeline already decided whether the
- * document discharges the obligation, so the action's status is a fact about
- * the record rather than a claim by whoever clicked last. Without it an action
- * can sit at "overdue" with an accepted certificate filed against it, which is
- * the dashboard contradicting itself.
+ * Every branch is a fact the system already holds — the due date it generated
+ * and the verdicts stage 5 reached — so nothing here is a claim by a model or
+ * by whoever clicked last. That matters more than it sounds: the model used to
+ * pick the label itself, which let an action sit at "overdue" with an accepted
+ * certificate filed against it, and let "open" and "in-progress" mean the same
+ * nothing.
+ *
+ * `today` is a parameter rather than a call to Date so this stays pure and the
+ * seeded run and the browser can be compared without one of them drifting.
  */
-export function settleActions(
+export function deriveActionStatus(
+  action: ComplianceAction,
+  discharged: Set<string>,
+  today: string,
+): ActionStatus {
+  if (discharged.has(action.id)) return 'done'
+  return action.due < today ? 'overdue' : 'open'
+}
+
+export function deriveActionStatuses(
   actions: ComplianceAction[],
   evidence: EvidenceItem[],
+  today = new Date().toISOString().slice(0, 10),
 ): ComplianceAction[] {
-  const discharged = new Set(
-    evidence.filter(e => e.verdict === 'accepted').map(e => e.actionId),
-  )
-  return actions.map(a => (discharged.has(a.id) ? { ...a, status: 'done' as const } : a))
+  const discharged = dischargedActionIds(evidence)
+  return actions.map(a => {
+    const status = deriveActionStatus(a, discharged, today)
+    return status === a.status ? a : { ...a, status }
+  })
 }
 
 /** Actions with at least one accepted item filed against them. */
@@ -240,7 +256,7 @@ export function buildStages(p: VesselParts): StageResult[] {
 }
 
 export function buildVesselRun(p: VesselParts): VesselRun {
-  const actions = settleActions(p.actions, p.evidence)
+  const actions = deriveActionStatuses(p.actions, p.evidence)
   const stages = buildStages({ ...p, actions })
   return {
     vesselId: p.vessel.id,
@@ -269,7 +285,7 @@ export function buildVesselRun(p: VesselParts): VesselRun {
  * landed on, so re-deriving them would be busywork.
  */
 export function recomputeVesselRun(run: VesselRun): VesselRun {
-  const actions = settleActions(run.actions, run.evidence)
+  const actions = deriveActionStatuses(run.actions, run.evidence)
   const stages = [
     ...run.stages.filter(s => s.id <= 3),
     ...buildOperatorStages(actions, run.evidence, run.approvals),

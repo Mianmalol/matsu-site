@@ -191,12 +191,26 @@ export function project(canonical: FleetRun | null, overlay: Overlay) {
 
     // Rebuild the queue rather than patching the seeded one, so a document
     // uploaded now reaches the DPA the same way a seeded item did. Approval ids
-    // are derived from evidence ids, so decisions already taken still match.
-    const approvals = buildApprovals(evidence, base.actions).map(a => {
-      const decision = overlay.decisions[a.id]
+    // are derived from evidence ids, so items that already existed keep their
+    // identity — and with it any decision already recorded against them.
+    //
+    // Both layers of prior decision are carried forward, oldest first: what the
+    // run itself arrived with (a seeded closed cycle), then anything this
+    // visitor decided. Rebuilding without the first would silently reopen every
+    // hull that shipped signed off.
+    const priorById = new Map(base.approvals.map(a => [a.id, a]))
+
+    const approvals = buildApprovals(evidence, base.actions).map(fresh => {
+      const prior = priorById.get(fresh.id)
+      const carried =
+        prior ?
+          { ...fresh, state: prior.state, note: prior.note, decidedAt: prior.decidedAt, seeded: prior.seeded }
+        : fresh
+
+      const decision = overlay.decisions[fresh.id]
       return decision ?
-          { ...a, state: decision.state, note: decision.note, decidedAt: decision.decidedAt }
-        : a
+          { ...carried, state: decision.state, note: decision.note, decidedAt: decision.decidedAt, seeded: false }
+        : carried
     })
 
     return recomputeVesselRun({ ...base, evidence, approvals })

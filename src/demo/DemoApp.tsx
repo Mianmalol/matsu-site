@@ -780,7 +780,17 @@ function VesselPage({ row, dispatch, onRunVessel, runState, getToken }: {
   getToken: () => Promise<string | null>;
 }) {
   const [expanded, setExpanded] = useState<number | null>(null);
+  // Which action the evidence uploader is pointed at. Lives here rather than in
+  // StageDetail because stage 4 sets it and stage 5 reads it: filing the
+  // document is Evidence Collection's job, so stage 4 hands off instead of
+  // growing an uploader of its own.
+  const [filingAgainst, setFilingAgainst] = useState<string | null>(null);
   const { vessel, run } = row;
+
+  const fileEvidenceFor = useCallback((actionId: string) => {
+    setFilingAgainst(actionId);
+    setExpanded(5);
+  }, []);
 
   const stages = run?.stages ?? ST.map(s => ({
     id: s.id as 1 | 2 | 3 | 4 | 5 | 6,
@@ -869,6 +879,9 @@ function VesselPage({ row, dispatch, onRunVessel, runState, getToken }: {
                       run={run}
                       dispatch={dispatch}
                       getToken={getToken}
+                      filingAgainst={filingAgainst}
+                      setFilingAgainst={setFilingAgainst}
+                      onFileEvidence={fileEvidenceFor}
                     />
                   </div>
                 )}
@@ -903,17 +916,20 @@ const NotRun = () => (
   </p>
 );
 
-function StageDetail({ stageId, vessel, run, dispatch, getToken }: {
+function StageDetail({ stageId, vessel, run, dispatch, getToken, filingAgainst, setFilingAgainst, onFileEvidence }: {
   stageId: number;
   vessel: Vessel;
   run: VesselRun | null;
   dispatch: React.Dispatch<import("./state").Action>;
   getToken: () => Promise<string | null>;
+  filingAgainst: string | null;
+  setFilingAgainst: (id: string | null) => void;
+  /** Jump to Evidence Collection with the uploader bound to this action. */
+  onFileEvidence: (actionId: string) => void;
 }) {
   const [viewing, setViewing] = useState<EvidenceItem | null>(null);
   const [returning, setReturning] = useState<string | null>(null);
   const [note, setNote] = useState("");
-  const [filingAgainst, setFilingAgainst] = useState<string | null>(null);
 
   const records = useMemo(() => applicableRecords(vessel), [vessel]);
 
@@ -1036,15 +1052,21 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken }: {
 
   // ── Stage 4: dated work ────────────────────────────────────────────────────
   if (stageId === 4) {
-    const sc: Record<string, string> = { done: "text-emerald-700", "in-progress": "text-[#2d6aad]", open: "text-[#9ca3af]", overdue: "text-red-600" };
+    const sc: Record<string, string> = { done: "text-emerald-700", open: "text-[#656d78]", overdue: "text-red-600" };
     const overdue = run.actions.filter((a: ComplianceAction) => a.status === "overdue");
+    const done = run.actions.filter((a: ComplianceAction) => a.status === "done").length;
 
     return (
       <div className="space-y-3">
         <p className="text-[11px] text-[#656d78] leading-relaxed">
-          <strong className="text-[#0d1117] font-medium">{run.actions.length} compliance actions</strong> generated — each linked to an obligation with a due date and an expected evidence type.
-          An action clears when evidence filed against it is accepted.
+          <strong className="text-[#0d1117] font-medium">{run.actions.length} compliance actions</strong> generated — each linked to an obligation, with a due date derived from that obligation&apos;s cadence and the kind of document that discharges it.
         </p>
+
+        <div className="border border-[#e2e4e9] rounded-lg px-4 py-2.5 bg-white flex items-center gap-6 text-[10px] text-[#656d78] flex-wrap">
+          <span><span className="font-medium text-emerald-700">Done</span> — accepted evidence exists ({done})</span>
+          <span><span className="font-medium text-[#656d78]">Open</span> — outstanding, not yet due ({run.actions.length - done - overdue.length})</span>
+          <span><span className="font-medium text-red-600">Overdue</span> — due date passed, nothing accepted ({overdue.length})</span>
+        </div>
 
         {overdue.length > 0 && (
           <div className="border border-amber-200 bg-amber-50/50 rounded-lg p-3 space-y-2">
@@ -1053,8 +1075,8 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken }: {
               {overdue.length === 1 ? "1 action is past its due date" : `${overdue.length} actions are past their due date`}
             </div>
             <p className="text-[10px] text-amber-800 leading-relaxed">
-              This is what the amber flag on this stage is pointing at. File a document against the action and the
-              validator will judge it — if it is accepted, the action closes and the flag clears.
+              This is what the amber flag on this stage is pointing at. Collecting the document is Evidence
+              Collection&apos;s job — open it against this action and file one there.
             </p>
             {overdue.map((a: ComplianceAction) => (
               <div key={a.id} className="flex items-start gap-3 text-[11px]">
@@ -1062,24 +1084,13 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken }: {
                 <span className="text-[#374151] flex-1 min-w-0">{a.action}</span>
                 <span className="font-mono text-red-600 flex-shrink-0">due {a.due}</span>
                 <button
-                  onClick={() => setFilingAgainst(a.id)}
+                  onClick={() => onFileEvidence(a.id)}
                   className="px-2 py-1 rounded bg-amber-600 text-white text-[10px] font-medium hover:bg-amber-700 transition-colors flex items-center gap-1 flex-shrink-0">
-                  <Upload size={10} /> File evidence
+                  Open in stage 05 <ChevronRight size={10} />
                 </button>
               </div>
             ))}
           </div>
-        )}
-
-        {filingAgainst && (
-          <UploadControl
-            vessel={vessel}
-            run={run}
-            dispatch={dispatch}
-            getToken={getToken}
-            actionId={filingAgainst}
-            onActionChange={setFilingAgainst}
-          />
         )}
 
         <MicroTable>
@@ -1087,17 +1098,17 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken }: {
           <tbody className="divide-y divide-[#e2e4e9]">
             {run.actions.map((a: ComplianceAction) => (
               <tr key={a.id} className="hover:bg-[#f8f9fa]">
-                <td className="px-4 py-2 font-mono text-[#9ca3af]">{a.id}</td>
+                <td className="px-4 py-2 font-mono text-[#9ca3af] whitespace-nowrap">{a.id}</td>
                 <td className="px-4 py-2 text-[#0d1117]">{a.action}</td>
-                <td className="px-4 py-2 font-mono text-[#656d78]">{a.due}</td>
+                <td className="px-4 py-2 font-mono text-[#656d78] whitespace-nowrap">{a.due}</td>
                 <td className={`px-4 py-2 font-medium capitalize ${sc[a.status]}`}>{a.status}</td>
                 <td className="pr-4 py-2 text-right">
                   {a.status !== "done" && (
                     <button
-                      onClick={() => setFilingAgainst(a.id)}
-                      title="File evidence against this action"
+                      onClick={() => onFileEvidence(a.id)}
+                      title="File evidence against this action in Evidence Collection"
                       className="text-[#c8cbd0] hover:text-[#2d6aad] transition-colors">
-                      <Upload size={11} />
+                      <ChevronRight size={12} />
                     </button>
                   )}
                 </td>
@@ -1209,6 +1220,7 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken }: {
   // ── Stage 6: the human decision ────────────────────────────────────────────
   const queue = run.approvals;
   const outstanding = queue.filter(a => a.state === "awaiting");
+  const seededDecisions = queue.filter(a => a.seeded).length;
 
   return (
     <div className="space-y-3">
@@ -1216,9 +1228,16 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken }: {
         {queue.length === 0
           ? "Nothing has reached the DPA queue for this hull."
           : outstanding.length === 0
-            ? "Every item has had a human decision. No model touches this stage."
+            ? "Every item has had a decision. No model touches this stage."
             : `${outstanding.length} items awaiting DPA sign-off. Every agent-generated action requires an explicit human decision before the record is finalised — this stage is deliberately not automated.`}
       </p>
+      {seededDecisions > 0 && (
+        <p className="text-[10px] text-[#9ca3af] leading-relaxed">
+          {seededDecisions === queue.length ? "These decisions" : `${seededDecisions} of these decisions`} came with
+          the demo fixture, not from a person reviewing them here. Anything you approve or return in this session is
+          marked with the time you decided it.
+        </p>
+      )}
       {queue.length > 0 && (
         <div className="space-y-2">
           {queue.map((item: ApprovalItem) => {
@@ -1240,6 +1259,7 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken }: {
                     {item.decidedAt && (
                       <p className="text-[10px] text-[#9ca3af] mt-1">
                         {item.state === "approved" ? "Approved" : "Returned"} {new Date(item.decidedAt).toISOString().slice(0, 16).replace("T", " ")} UTC
+                        {item.seeded && " · demo fixture"}
                       </p>
                     )}
                     {isReturning && (

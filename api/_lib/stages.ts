@@ -210,8 +210,8 @@ export async function runActions(
       'You are the action assignment stage of a maritime compliance pipeline. ' +
       'You turn obligations into concrete, dated tasks a real crew or shore team could carry out. ' +
       'Every action cites the requirementId it discharges, and that id must be one listed below. ' +
-      'Derive the due date offset from the obligation cadence. Vary the statuses realistically: ' +
-      'a working ship has most things done, several in progress, and occasionally something overdue.',
+      'Derive the due date offset from the obligation cadence. A working ship has some work already ' +
+      'behind it and occasionally something late, so vary the offsets: most ahead, a few just past.',
     prompt: [
       vesselBrief(vessel),
       '',
@@ -232,11 +232,25 @@ export async function runActions(
 
 // ── Stage 5 ──────────────────────────────────────────────────────────────────
 
+/**
+ * `closeCycle` asks for a hull whose compliance cycle has finished: one item
+ * per action, all accepted. It exists so the seeded fleet can show mostly
+ * closed hulls with one that needs attention, rather than five identical amber
+ * ones — a dashboard where everything is flagged tells you nothing about where
+ * to look.
+ *
+ * It is a request about which SCENARIO to generate, not a thumb on the scale of
+ * an individual verdict: the validator still writes a specific reason per
+ * document, and the request path never passes it, so a live re-run always gets
+ * the honest mixed judgement.
+ */
 export async function runEvidence(
   vessel: Vessel,
   actions: ComplianceAction[],
+  opts: { closeCycle?: boolean } = {},
 ): Promise<{ evidence: EvidenceItem[]; report: GuardReport }> {
   const report = emptyReport()
+  const { closeCycle = false } = opts
 
   const { object } = await generateObject({
     model: MODEL,
@@ -246,9 +260,14 @@ export async function runEvidence(
     system:
       'You are the evidence collection stage of a maritime compliance pipeline. ' +
       'For each action, describe the document the vessel would submit and judge whether it ' +
-      'satisfies the linked action. Be a real validator: some submissions are incomplete, expired, ' +
-      'unsigned, or inconsistent with what was asked for, and those must be rejected with a specific ' +
-      'reason. A validator that accepts everything is useless. Reject roughly one in six.',
+      'satisfies the linked action. ' +
+      (closeCycle ?
+        'This hull has closed out its cycle: every action has a complete, in-date, properly signed ' +
+        'submission. Accept all of them, and say specifically what makes each one sufficient for the ' +
+        'action it discharges.'
+      : 'Be a real validator: some submissions are incomplete, expired, unsigned, or inconsistent ' +
+        'with what was asked for, and those must be rejected with a specific reason. A validator ' +
+        'that accepts everything is useless. Reject roughly one in six.'),
     prompt: [
       vesselBrief(vessel),
       '',
@@ -257,11 +276,20 @@ export async function runEvidence(
         a => `  [${a.id}] ${a.action} (due ${a.due}, ${a.status}; expects ${a.evidenceType})`,
       ),
       '',
-      'For each action that would plausibly have a submission by now, describe the document and',
-      'give a verdict. Actions still open in the future should be left without evidence rather than',
-      'given a fabricated submission.',
-      '',
-      'Return AT MOST 16 evidence items. Keep each reason under 240 characters.',
+      ...(closeCycle ?
+        [
+          'Produce exactly one evidence item for EVERY action listed above, with verdict "accepted".',
+          `That is ${actions.length} items. Do not skip any action and do not add items for anything not listed.`,
+          '',
+          `Return ${actions.length} evidence items. Keep each reason under 240 characters.`,
+        ]
+      : [
+          'For each action that would plausibly have a submission by now, describe the document and',
+          'give a verdict. Actions still open in the future should be left without evidence rather than',
+          'given a fabricated submission.',
+          '',
+          'Return AT MOST 16 evidence items. Keep each reason under 240 characters.',
+        ]),
     ].join('\n'),
   })
 
