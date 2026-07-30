@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /demo
+Disallow: /sign-in
+Disallow: /sign-up

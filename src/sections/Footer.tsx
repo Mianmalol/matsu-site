@@ -1,4 +1,6 @@
 import { Wordmark } from '@/components/ui'
+import { CONTACT_EMAIL } from '@/data'
+import { Link } from '@/lib/router'
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  Footer
@@ -8,7 +10,7 @@ export default function Footer() {
   const cols: { h: string; l: [string, string][] }[] = [
     {
       h: 'Get in touch',
-      l: [['Book a demo', 'mailto:alexander.m.zhao@columbia.edu?subject=Matsu%20demo%20request'], ['Contact', 'mailto:alexander.m.zhao@columbia.edu']],
+      l: [['Open the demo', '/demo'], ['Contact', `mailto:${CONTACT_EMAIL}`]],
     },
   ]
   return (
@@ -26,7 +28,9 @@ export default function Footer() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-mist/70 mb-4">{c.h}</p>
               <ul className="space-y-2.5">
                 {c.l.map(([x, h]) => (
-                  <li key={x}><a href={h} className="text-[13px] text-steel hover:text-mist transition-colors">{x}</a></li>
+                  <li key={x}>
+                    <Link to={h} className="text-[13px] text-steel hover:text-mist transition-colors">{x}</Link>
+                  </li>
                 ))}
               </ul>
             </div>

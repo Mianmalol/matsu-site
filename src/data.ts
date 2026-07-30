@@ -1,4 +1,10 @@
 // ═══════════════════════════════════════════════════════════════════════════
+//  CONTACT
+//  Single source of truth. Harbor and the footer used to disagree about this.
+// ═══════════════════════════════════════════════════════════════════════════
+export const CONTACT_EMAIL = 'alexander.m.zhao@columbia.edu'
+
+// ═══════════════════════════════════════════════════════════════════════════
 //  PHOTOGRAPHY SLOTS
 //  Drop licensed maritime photo URLs here (blue hour, overcast, industrial).
 //  When a URL is set, it renders behind the section's vector scene with a
@@ -26,6 +32,11 @@ export interface Vessel {
 }
 
 // Chart positions/routes for these vessels live in components/mapGeo.ts (keyed by id).
+//
+// These five hulls are INVENTED. That is what lets them carry execution state:
+// compliance status, deficiencies, expiring certificates, PSC risk. The real PIL
+// fleet in data/pilFleet.ts may never carry any of it — see the header comment
+// there. If you add a real vessel to this array, that guarantee breaks.
 export const vessels: Vessel[] = [
   { id: '1', name: 'MV Adriatic Pioneer', type: 'Bulk Carrier', flag: 'MT', imo: '9876543', score: 96, expiring: 1, actions: 0, port: 'Rotterdam', status: 'compliant' },
   { id: '2', name: 'MV Pacific Endeavour', type: 'Container', flag: 'PA', imo: '9654321', score: 81, expiring: 4, actions: 2, port: 'Singapore', status: 'attention' },
