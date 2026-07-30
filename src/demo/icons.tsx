@@ -206,3 +206,11 @@ export const X = (p: IconProps) => (
     <line x1="18" y1="6" x2="6" y2="18" />
   </Svg>
 )
+
+export const AlertTriangle = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M12 4 2.5 20h19L12 4z" />
+    <line x1="12" y1="10" x2="12" y2="14" />
+    <line x1="12" y1="17" x2="12" y2="17.01" />
+  </Svg>
+)

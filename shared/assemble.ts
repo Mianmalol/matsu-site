@@ -90,18 +90,61 @@ export interface VesselParts {
 }
 
 /**
- * Derive the six stage rows for one hull from what the agents actually produced.
+ * An action is discharged once accepted evidence exists against it.
  *
- * Every status here is read off the data. Nothing is asserted.
+ * This is derived, not asserted: the pipeline already decided whether the
+ * document discharges the obligation, so the action's status is a fact about
+ * the record rather than a claim by whoever clicked last. Without it an action
+ * can sit at "overdue" with an accepted certificate filed against it, which is
+ * the dashboard contradicting itself.
  */
-export function buildStages(p: VesselParts): StageResult[] {
-  const { requirements, actions, evidence, approvals } = p
+export function settleActions(
+  actions: ComplianceAction[],
+  evidence: EvidenceItem[],
+): ComplianceAction[] {
+  const discharged = new Set(
+    evidence.filter(e => e.verdict === 'accepted').map(e => e.actionId),
+  )
+  return actions.map(a => (discharged.has(a.id) ? { ...a, status: 'done' as const } : a))
+}
 
+/** Actions with at least one accepted item filed against them. */
+function dischargedActionIds(evidence: EvidenceItem[]): Set<string> {
+  return new Set(evidence.filter(e => e.verdict === 'accepted').map(e => e.actionId))
+}
+
+/**
+ * Evidence that still blocks something: rejected or undecided, against an
+ * action nothing accepted has landed on yet.
+ *
+ * Once accepted evidence arrives for the same action, the earlier item is
+ * history rather than an outstanding problem. It stays visible in the table
+ * marked superseded, so clearing a flag never rewrites the trail — but it stops
+ * being counted, because a stage that reads amber with nothing left to do about
+ * it is the demo asking for work that has already been done.
+ */
+export function unresolvedEvidence(evidence: EvidenceItem[]): EvidenceItem[] {
+  const discharged = dischargedActionIds(evidence)
+  return evidence.filter(e => e.verdict !== 'accepted' && !discharged.has(e.actionId))
+}
+
+/**
+ * Stages 4, 5 and 6 — the three an operator can actually move.
+ *
+ * Split out from buildStages because they have to be re-derived every time
+ * someone approves, returns or files something. See recomputeVesselRun.
+ */
+function buildOperatorStages(
+  actions: ComplianceAction[],
+  evidence: EvidenceItem[],
+  approvals: ApprovalItem[],
+): StageResult[] {
   const doneActions = actions.filter(a => a.status === 'done').length
   const overdueActions = actions.filter(a => a.status === 'overdue').length
   const accepted = evidence.filter(e => e.verdict === 'accepted').length
-  const rejected = evidence.filter(e => e.verdict === 'rejected').length
-  const pendingEvidence = evidence.filter(e => e.verdict === 'pending').length
+  const unresolved = unresolvedEvidence(evidence)
+  const rejected = unresolved.filter(e => e.verdict === 'rejected').length
+  const pendingEvidence = unresolved.filter(e => e.verdict === 'pending').length
   const awaiting = approvals.filter(a => a.state === 'awaiting').length
   const approved = approvals.filter(a => a.state === 'approved').length
   const returned = approvals.filter(a => a.state === 'returned').length
@@ -125,30 +168,6 @@ export function buildStages(p: VesselParts): StageResult[] {
     : 'complete'
 
   return [
-    {
-      id: 1,
-      status: 'complete',
-      summary: `${p.recordsIndexed} corpus records indexed. ${p.applicableRecordCount} apply to this hull on flag, type, tonnage, fuel and trading area.`,
-      count: p.recordsIndexed,
-      countLabel: 'records indexed',
-    },
-    {
-      id: 2,
-      status: requirements.length > 0 ? 'complete' : 'pending',
-      summary:
-        requirements.length > 0 ?
-          `${requirements.length} discrete obligations extracted, each traced to a corpus record.`
-        : 'Requirement extraction has not run for this hull.',
-      count: requirements.length,
-      countLabel: 'requirements extracted',
-    },
-    {
-      id: 3,
-      status: p.assignmentSummary ? 'complete' : 'pending',
-      summary: p.assignmentSummary || 'Vessel assignment has not run for this hull.',
-      count: requirements.length,
-      countLabel: 'requirements assigned',
-    },
     {
       id: 4,
       status: stage4,
@@ -185,17 +204,77 @@ export function buildStages(p: VesselParts): StageResult[] {
   ]
 }
 
+/**
+ * Derive the six stage rows for one hull from what the agents actually produced.
+ *
+ * Every status here is read off the data. Nothing is asserted.
+ */
+export function buildStages(p: VesselParts): StageResult[] {
+  return [
+    {
+      id: 1,
+      status: 'complete',
+      summary: `${p.recordsIndexed} corpus records indexed. ${p.applicableRecordCount} apply to this hull on flag, type, tonnage, fuel and trading area.`,
+      count: p.recordsIndexed,
+      countLabel: 'records indexed',
+    },
+    {
+      id: 2,
+      status: p.requirements.length > 0 ? 'complete' : 'pending',
+      summary:
+        p.requirements.length > 0 ?
+          `${p.requirements.length} discrete obligations extracted, each traced to a corpus record.`
+        : 'Requirement extraction has not run for this hull.',
+      count: p.requirements.length,
+      countLabel: 'requirements extracted',
+    },
+    {
+      id: 3,
+      status: p.assignmentSummary ? 'complete' : 'pending',
+      summary: p.assignmentSummary || 'Vessel assignment has not run for this hull.',
+      count: p.requirements.length,
+      countLabel: 'requirements assigned',
+    },
+    ...buildOperatorStages(p.actions, p.evidence, p.approvals),
+  ]
+}
+
 export function buildVesselRun(p: VesselParts): VesselRun {
-  const stages = buildStages(p)
+  const actions = settleActions(p.actions, p.evidence)
+  const stages = buildStages({ ...p, actions })
   return {
     vesselId: p.vessel.id,
     overallStatus: worstOf(stages.map(s => s.status)),
     stages,
     requirements: p.requirements,
-    actions: p.actions,
+    actions,
     evidence: p.evidence,
     approvals: p.approvals,
   }
+}
+
+/**
+ * Re-derive everything an operator's actions can change, from the run as it
+ * stands right now.
+ *
+ * A seeded run is a snapshot of one moment. The instant somebody approves an
+ * item, returns one, or files a document, the facts the stage rows were read
+ * off have moved, and a row that is still showing the old reading is the demo
+ * flagging a problem the operator has already fixed. That is what made stage 4
+ * feel like a dead end: it said "needs review" and nothing you did could clear
+ * it.
+ *
+ * Stages 1 to 3 are passed through untouched. Nothing available in the demo
+ * changes the corpus, the obligations pulled out of it, or which hull they
+ * landed on, so re-deriving them would be busywork.
+ */
+export function recomputeVesselRun(run: VesselRun): VesselRun {
+  const actions = settleActions(run.actions, run.evidence)
+  const stages = [
+    ...run.stages.filter(s => s.id <= 3),
+    ...buildOperatorStages(actions, run.evidence, run.approvals),
+  ]
+  return { ...run, actions, stages, overallStatus: worstOf(stages.map(s => s.status)) }
 }
 
 /**

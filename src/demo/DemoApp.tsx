@@ -36,12 +36,12 @@ import {
   FolderOpen, UserCheck, ChevronRight,
   ArrowLeft, Bell, Settings, Search, BarChart2,
   CheckCircle2, FileText, Camera, Video, Eye, Stamp,
-  Upload, RotateCw, X,
+  Upload, RotateCw, X, AlertTriangle,
 } from "./icons.js";
 import { AccountButton } from "@/auth/AuthGate";
 import { CORPUS, CORPUS_BY_ID, CORPUS_VERSION, CURRENT_THROUGH, applicableRecords } from "../../shared/corpus.js";
 import { FLEET, OPERATOR, typeLabel } from "../../shared/fleet.js";
-import { STAGE_LABELS } from "../../shared/assemble.js";
+import { STAGE_LABELS, unresolvedEvidence } from "../../shared/assemble.js";
 import type {
   AgentEvent, ApprovalItem, ComplianceAction, EvidenceItem,
   Requirement, StageStatus, Vessel, VesselRun,
@@ -913,6 +913,7 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken }: {
   const [viewing, setViewing] = useState<EvidenceItem | null>(null);
   const [returning, setReturning] = useState<string | null>(null);
   const [note, setNote] = useState("");
+  const [filingAgainst, setFilingAgainst] = useState<string | null>(null);
 
   const records = useMemo(() => applicableRecords(vessel), [vessel]);
 
@@ -1036,13 +1037,53 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken }: {
   // ── Stage 4: dated work ────────────────────────────────────────────────────
   if (stageId === 4) {
     const sc: Record<string, string> = { done: "text-emerald-700", "in-progress": "text-[#2d6aad]", open: "text-[#9ca3af]", overdue: "text-red-600" };
+    const overdue = run.actions.filter((a: ComplianceAction) => a.status === "overdue");
+
     return (
       <div className="space-y-3">
         <p className="text-[11px] text-[#656d78] leading-relaxed">
           <strong className="text-[#0d1117] font-medium">{run.actions.length} compliance actions</strong> generated — each linked to an obligation with a due date and an expected evidence type.
+          An action clears when evidence filed against it is accepted.
         </p>
+
+        {overdue.length > 0 && (
+          <div className="border border-amber-200 bg-amber-50/50 rounded-lg p-3 space-y-2">
+            <div className="flex items-center gap-1.5 text-[11px] font-medium text-amber-900">
+              <AlertTriangle size={12} className="text-amber-600 flex-shrink-0" />
+              {overdue.length === 1 ? "1 action is past its due date" : `${overdue.length} actions are past their due date`}
+            </div>
+            <p className="text-[10px] text-amber-800 leading-relaxed">
+              This is what the amber flag on this stage is pointing at. File a document against the action and the
+              validator will judge it — if it is accepted, the action closes and the flag clears.
+            </p>
+            {overdue.map((a: ComplianceAction) => (
+              <div key={a.id} className="flex items-start gap-3 text-[11px]">
+                <span className="font-mono text-amber-700 flex-shrink-0">{a.id}</span>
+                <span className="text-[#374151] flex-1 min-w-0">{a.action}</span>
+                <span className="font-mono text-red-600 flex-shrink-0">due {a.due}</span>
+                <button
+                  onClick={() => setFilingAgainst(a.id)}
+                  className="px-2 py-1 rounded bg-amber-600 text-white text-[10px] font-medium hover:bg-amber-700 transition-colors flex items-center gap-1 flex-shrink-0">
+                  <Upload size={10} /> File evidence
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {filingAgainst && (
+          <UploadControl
+            vessel={vessel}
+            run={run}
+            dispatch={dispatch}
+            getToken={getToken}
+            actionId={filingAgainst}
+            onActionChange={setFilingAgainst}
+          />
+        )}
+
         <MicroTable>
-          <THead cols={["ID", "Action", "Due", "Status"]} />
+          <THead cols={["ID", "Action", "Due", "Status", ""]} />
           <tbody className="divide-y divide-[#e2e4e9]">
             {run.actions.map((a: ComplianceAction) => (
               <tr key={a.id} className="hover:bg-[#f8f9fa]">
@@ -1050,6 +1091,16 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken }: {
                 <td className="px-4 py-2 text-[#0d1117]">{a.action}</td>
                 <td className="px-4 py-2 font-mono text-[#656d78]">{a.due}</td>
                 <td className={`px-4 py-2 font-medium capitalize ${sc[a.status]}`}>{a.status}</td>
+                <td className="pr-4 py-2 text-right">
+                  {a.status !== "done" && (
+                    <button
+                      onClick={() => setFilingAgainst(a.id)}
+                      title="File evidence against this action"
+                      className="text-[#c8cbd0] hover:text-[#2d6aad] transition-colors">
+                      <Upload size={11} />
+                    </button>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -1071,6 +1122,10 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken }: {
       "Analysis report": <Camera size={11} className="text-[#9ca3af]" />,
     };
 
+    const blocking = unresolvedEvidence(run.evidence);
+    const blockingIds = new Set(blocking.map(e => e.id));
+    const rejectedCount = blocking.filter(e => e.verdict === "rejected").length;
+
     return (
       <div className="space-y-3">
         <p className="text-[11px] text-[#656d78] leading-relaxed">
@@ -1079,7 +1134,43 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken }: {
           by the agent for demonstration and graded by the same pipeline, which is a workflow illustration and not assurance.
         </p>
 
-        <UploadControl vessel={vessel} run={run} dispatch={dispatch} getToken={getToken} />
+        {blocking.length > 0 && (
+          <div className="border border-amber-200 bg-amber-50/50 rounded-lg p-3 space-y-2">
+            <div className="flex items-center gap-1.5 text-[11px] font-medium text-amber-900">
+              <AlertTriangle size={12} className="text-amber-600 flex-shrink-0" />
+              {blocking.length === 1 ? "1 item is unresolved" : `${blocking.length} items are unresolved`}
+              {rejectedCount > 0 && <span className="font-normal text-amber-800">({rejectedCount} rejected)</span>}
+            </div>
+            <p className="text-[10px] text-amber-800 leading-relaxed">
+              Pick one, read what the validator said, then file a replacement against the same action. Once a
+              replacement is accepted the old item is marked superseded and this stage clears.
+            </p>
+            {blocking.map((e: EvidenceItem) => (
+              <div key={e.id} className="flex items-start gap-3 text-[11px]">
+                <span className="font-mono text-amber-700 flex-shrink-0">{e.id}</span>
+                <span className="text-[#374151] flex-1 min-w-0">{e.label}</span>
+                <span className={`flex-shrink-0 capitalize ${e.verdict === "rejected" ? "text-red-600" : "text-amber-700"}`}>{e.verdict}</span>
+                <button onClick={() => setViewing(e)}
+                  className="px-2 py-1 rounded border border-amber-300 text-amber-800 text-[10px] hover:bg-amber-100 transition-colors flex-shrink-0">
+                  Why
+                </button>
+                <button onClick={() => setFilingAgainst(e.actionId)}
+                  className="px-2 py-1 rounded bg-amber-600 text-white text-[10px] font-medium hover:bg-amber-700 transition-colors flex items-center gap-1 flex-shrink-0">
+                  <Upload size={10} /> Replace
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <UploadControl
+          vessel={vessel}
+          run={run}
+          dispatch={dispatch}
+          getToken={getToken}
+          actionId={filingAgainst ?? run.actions[0]?.id ?? ""}
+          onActionChange={setFilingAgainst}
+        />
 
         <MicroTable>
           <THead cols={["Ref", "Document", "Type", "Origin", "Status", ""]} />
@@ -1087,21 +1178,26 @@ function StageDetail({ stageId, vessel, run, dispatch, getToken }: {
             {run.evidence.length === 0 && (
               <tr><td colSpan={6} className="px-4 py-4 text-[#9ca3af]">No evidence submitted yet.</td></tr>
             )}
-            {run.evidence.map((e: EvidenceItem) => (
-              <tr key={e.id} className="hover:bg-[#f8f9fa]">
-                <td className="px-4 py-2 font-mono text-[#9ca3af]">{e.id}</td>
-                <td className="px-4 py-2 text-[#0d1117]">{e.label}</td>
-                <td className="px-4 py-2"><div className="flex items-center gap-1.5 text-[#656d78]">{ti[e.type] ?? <FileText size={11} className="text-[#9ca3af]" />}{e.type}</div></td>
-                <td className="px-4 py-2 text-[#9ca3af]">{e.uploadedFilename ? "uploaded" : "synthetic"}</td>
-                <td className={`px-4 py-2 font-medium capitalize ${sc[e.verdict]}`}>{e.verdict}</td>
-                <td className="pr-4 py-2">
-                  <button onClick={() => setViewing(e)} title="View the validator's finding"
-                    className="text-[#c8cbd0] hover:text-[#2d6aad] transition-colors">
-                    <Eye size={11} />
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {run.evidence.map((e: EvidenceItem) => {
+              const superseded = e.verdict !== "accepted" && !blockingIds.has(e.id);
+              return (
+                <tr key={e.id} className="hover:bg-[#f8f9fa]">
+                  <td className="px-4 py-2 font-mono text-[#9ca3af]">{e.id}</td>
+                  <td className="px-4 py-2 text-[#0d1117]">{e.label}</td>
+                  <td className="px-4 py-2"><div className="flex items-center gap-1.5 text-[#656d78]">{ti[e.type] ?? <FileText size={11} className="text-[#9ca3af]" />}{e.type}</div></td>
+                  <td className="px-4 py-2 text-[#9ca3af]">{e.uploadedFilename ? "uploaded" : "synthetic"}</td>
+                  <td className={`px-4 py-2 font-medium capitalize ${superseded ? "text-[#9ca3af]" : sc[e.verdict]}`}>
+                    {e.verdict}{superseded && <span className="normal-case font-normal"> · superseded</span>}
+                  </td>
+                  <td className="pr-4 py-2">
+                    <button onClick={() => setViewing(e)} title="View the validator's finding"
+                      className="text-[#c8cbd0] hover:text-[#2d6aad] transition-colors">
+                      <Eye size={11} />
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </MicroTable>
 
@@ -1268,44 +1364,60 @@ function EvidenceViewer({ item, run, onClose }: { item: EvidenceItem; run: Vesse
 
 // ── UPLOAD ────────────────────────────────────────────────────────────────────
 
-function UploadControl({ vessel, run, dispatch, getToken }: {
+function UploadControl({ vessel, run, dispatch, getToken, actionId, onActionChange }: {
   vessel: Vessel;
   run: VesselRun;
   dispatch: React.Dispatch<import("./state").Action>;
   getToken: () => Promise<string | null>;
+  /** Which action the document is being filed against. Owned by the caller so
+   *  stage 4 can point this at a specific overdue item. */
+  actionId: string;
+  onActionChange: (id: string) => void;
 }) {
   const fileRef = useRef<HTMLInputElement>(null);
-  const [actionId, setActionId] = useState(run.actions[0]?.id ?? "");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<{ verdict: string; reason: string } | null>(null);
 
   const action = run.actions.find(a => a.id === actionId);
   const requirement = action ? run.requirements.find(r => r.id === action.requirementId) : undefined;
+
+  /** Ids elsewhere are hash-derived and unique; these are not, so make them so. */
+  function evidenceId(name: string): string {
+    const stem = name.slice(0, 4).toUpperCase().replace(/[^A-Z0-9]/g, "X");
+    const taken = new Set(run.evidence.map(e => e.id));
+    let id = `EV-${stem}`;
+    for (let n = 2; taken.has(id); n++) id = `EV-${stem}${n}`;
+    return id;
+  }
 
   async function onFile(file: File) {
     if (!action || !requirement) { setError("Pick an action to file this against."); return; }
     setBusy(true);
     setError(null);
+    setResult(null);
     try {
       const verdict = await validateUpload(
         { vessel, actionText: action.action, sourceId: requirement.sourceId, file },
         getToken,
       );
+      const reason = verdict.concerns.length > 0
+        ? `${verdict.reason} Concerns: ${verdict.concerns.join("; ")}`
+        : verdict.reason;
       dispatch({
         type: "upload",
         vesselId: vessel.id,
         item: {
-          id: `EV-${file.name.slice(0, 4).toUpperCase().replace(/[^A-Z0-9]/g, "X")}`,
+          id: evidenceId(file.name),
           actionId: action.id,
           label: file.name,
           type: requirement.evidenceType,
           verdict: verdict.verdict,
-          reason: verdict.concerns.length > 0
-            ? `${verdict.reason} Concerns: ${verdict.concerns.join("; ")}`
-            : verdict.reason,
+          reason,
           uploadedFilename: file.name,
         },
       });
+      setResult({ verdict: verdict.verdict, reason });
     } catch (err) {
       setError(err instanceof RunError ? err.message : "Validation failed.");
     } finally {
@@ -1316,12 +1428,14 @@ function UploadControl({ vessel, run, dispatch, getToken }: {
 
   if (run.actions.length === 0) return null;
 
+  const rc: Record<string, string> = { accepted: "text-emerald-700", rejected: "text-red-600", pending: "text-amber-700" };
+
   return (
     <div className="border border-[#e2e4e9] rounded-lg p-3 bg-white space-y-2">
       <div className="flex items-center gap-2">
         <select
           value={actionId}
-          onChange={e => setActionId(e.target.value)}
+          onChange={e => { onActionChange(e.target.value); setResult(null); }}
           className="flex-1 min-w-0 text-[11px] px-2 py-1.5 rounded border border-[#e2e4e9] outline-none focus:border-[#2d6aad] text-[#0d1117] bg-white">
           {run.actions.map(a => (
             <option key={a.id} value={a.id}>{a.id} — {a.action.slice(0, 70)}</option>
@@ -1341,6 +1455,12 @@ function UploadControl({ vessel, run, dispatch, getToken }: {
           onChange={e => { const f = e.target.files?.[0]; if (f) void onFile(f); }}
         />
       </div>
+      {result && (
+        <p className="text-[11px] leading-relaxed">
+          <span className={`font-medium capitalize ${rc[result.verdict]}`}>{result.verdict}</span>
+          <span className="text-[#656d78]"> — {result.reason}</span>
+        </p>
+      )}
       <p className="text-[10px] text-[#9ca3af] leading-relaxed">
         PDF, PNG, JPEG or WebP, up to {Math.round(MAX_UPLOAD_BYTES / 1_000_000)} MB. The document is read by the
         validator and judged against the linked obligation. Do not upload real crew, certificate or commercially

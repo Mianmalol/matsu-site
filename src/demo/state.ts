@@ -23,6 +23,7 @@
 //  decisions attached to the evidence it superseded.
 // ═══════════════════════════════════════════════════════════════════════════
 
+import { buildApprovals, recomputeVesselRun } from '../../shared/assemble.js'
 import type {
   AgentEvent,
   ApprovalState,
@@ -188,14 +189,17 @@ export function project(canonical: FleetRun | null, overlay: Overlay) {
 
     const evidence = [...base.evidence, ...uploaded]
 
-    const approvals = base.approvals.map(a => {
+    // Rebuild the queue rather than patching the seeded one, so a document
+    // uploaded now reaches the DPA the same way a seeded item did. Approval ids
+    // are derived from evidence ids, so decisions already taken still match.
+    const approvals = buildApprovals(evidence, base.actions).map(a => {
       const decision = overlay.decisions[a.id]
       return decision ?
           { ...a, state: decision.state, note: decision.note, decidedAt: decision.decidedAt }
         : a
     })
 
-    return { ...base, evidence, approvals }
+    return recomputeVesselRun({ ...base, evidence, approvals })
   })
 
   // Re-runs produce their own vessel entries; keep any that canonical lacks.
