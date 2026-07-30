@@ -27,9 +27,9 @@
 import { readFileSync, existsSync, readdirSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { CORPUS_BY_ID, CORPUS_VERSION, appliesTo } from '../shared/corpus'
-import { FLEET_BY_ID } from '../shared/fleet'
-import { corpusHash } from './corpus-hash'
+import { CORPUS_BY_ID, CORPUS_VERSION, appliesTo } from '../shared/corpus.js'
+import { FLEET_BY_ID } from '../shared/fleet.js'
+import { corpusHash } from './corpus-hash.js'
 
 const HERE = fileURLToPath(new URL('.', import.meta.url))
 const ROOT = join(HERE, '..')

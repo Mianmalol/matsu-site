@@ -37,21 +37,21 @@ import {
   ArrowLeft, Bell, Settings, Search, BarChart2,
   CheckCircle2, FileText, Camera, Video, Eye, Stamp,
   Upload, RotateCw, X,
-} from "./icons";
+} from "./icons.js";
 import { AccountButton } from "@/auth/AuthGate";
-import { CORPUS, CORPUS_BY_ID, CORPUS_VERSION, CURRENT_THROUGH, applicableRecords } from "../../shared/corpus";
-import { FLEET, OPERATOR, typeLabel } from "../../shared/fleet";
-import { STAGE_LABELS } from "../../shared/assemble";
+import { CORPUS, CORPUS_BY_ID, CORPUS_VERSION, CURRENT_THROUGH, applicableRecords } from "../../shared/corpus.js";
+import { FLEET, OPERATOR, typeLabel } from "../../shared/fleet.js";
+import { STAGE_LABELS } from "../../shared/assemble.js";
 import type {
   AgentEvent, ApprovalItem, ComplianceAction, EvidenceItem,
   Requirement, StageStatus, Vessel, VesselRun,
-} from "../../shared/types";
+} from "../../shared/types.js";
 import canonicalJson from "../data/canonicalRun.json";
 import {
   eventKey, loadOverlay, project, reducer, saveOverlay,
   type Overlay, type Projection,
-} from "./state";
-import { RunError, runVessel, validateUpload, MAX_UPLOAD_BYTES } from "./runner";
+} from "./state.js";
+import { RunError, runVessel, validateUpload, MAX_UPLOAD_BYTES } from "./runner.js";
 
 // ── STAGE TEMPLATES ───────────────────────────────────────────────────────────
 

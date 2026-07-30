@@ -29,7 +29,7 @@ import type {
   EvidenceItem,
   FleetRun,
   VesselRun,
-} from '../../shared/types'
+} from '../../shared/types.js'
 
 export interface Settings {
   dpaEmail: boolean

@@ -30,13 +30,13 @@ import {
   runEvidence,
   runRequirements,
   runScan,
-} from '../api/_lib/stages'
-import { MODEL_ID } from '../api/_lib/model'
-import { CORPUS, CORPUS_VERSION, applicableRecords } from '../shared/corpus'
-import { FLEET } from '../shared/fleet'
-import { buildApprovals, buildEvents, buildVesselRun } from '../shared/assemble'
-import { corpusHash } from './corpus-hash'
-import type { AgentEvent, FleetRun, VesselRun } from '../shared/types'
+} from '../api/_lib/stages.js'
+import { MODEL_ID } from '../api/_lib/model.js'
+import { CORPUS, CORPUS_VERSION, applicableRecords } from '../shared/corpus.js'
+import { FLEET } from '../shared/fleet.js'
+import { buildApprovals, buildEvents, buildVesselRun } from '../shared/assemble.js'
+import { corpusHash } from './corpus-hash.js'
+import type { AgentEvent, FleetRun, VesselRun } from '../shared/types.js'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const OUT = join(HERE, '..', 'src', 'data', 'canonicalRun.json')

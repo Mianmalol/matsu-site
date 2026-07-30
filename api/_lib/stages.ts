@@ -28,30 +28,30 @@ import {
   amendedSince,
   applicableRecords,
   instrumentsInForce,
-} from '../../shared/corpus'
+} from '../../shared/corpus.js'
 import type {
   ComplianceAction,
   EvidenceItem,
   Requirement,
   ScanResult,
   Vessel,
-} from '../../shared/types'
+} from '../../shared/types.js'
 import {
   type GuardReport,
   acceptActions,
   acceptEvidence,
   acceptRequirements,
   emptyReport,
-} from './guard'
-import { CALL_TIMEOUT_MS, MAX_OUTPUT_TOKENS, MODEL, abortAfter } from './model'
+} from './guard.js'
+import { CALL_TIMEOUT_MS, MAX_OUTPUT_TOKENS, MODEL, abortAfter } from './model.js'
 import {
   actionsSchema,
   assignmentSchema,
   evidenceSchema,
   requirementsSchema,
   scanSchema,
-} from './schemas'
-import type { AssignmentOutput } from './schemas'
+} from './schemas.js'
+import type { AssignmentOutput } from './schemas.js'
 
 /** The hull's own facts, phrased for a prompt. */
 export function vesselBrief(v: Vessel): string {

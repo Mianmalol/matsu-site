@@ -8,7 +8,7 @@
 // a side effect of asking for a hash.
 
 import { createHash } from 'node:crypto'
-import { CORPUS } from '../shared/corpus'
+import { CORPUS } from '../shared/corpus.js'
 
 export function corpusHash(): string {
   return createHash('sha256').update(JSON.stringify(CORPUS)).digest('hex').slice(0, 12)

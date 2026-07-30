@@ -27,7 +27,7 @@
 //  infers it.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import type { CorpusRecord, Vessel } from './types'
+import type { CorpusRecord, Vessel } from './types.js'
 
 /** Bumped whenever records change. Committed runs record the version they used. */
 export const CORPUS_VERSION = '2026.07.1'

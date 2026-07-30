@@ -22,11 +22,11 @@
 
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { z } from 'zod'
-import { FLEET_BY_ID } from '../../shared/fleet'
-import type { ComplianceAction, Requirement } from '../../shared/types'
-import { HttpError, fail, rateLimit, requirePost, requireUser } from '../_lib/auth'
-import { LIMITS } from '../_lib/guard'
-import { runActions, runAssignment, runEvidence, runRequirements } from '../_lib/stages'
+import { FLEET_BY_ID } from '../../shared/fleet.js'
+import type { ComplianceAction, Requirement } from '../../shared/types.js'
+import { HttpError, fail, rateLimit, requirePost, requireUser } from '../_lib/auth.js'
+import { LIMITS } from '../_lib/guard.js'
+import { runActions, runAssignment, runEvidence, runRequirements } from '../_lib/stages.js'
 
 export const config = { maxDuration: 60 }
 

@@ -16,8 +16,8 @@
 //  server treats it as untrusted and re-validates it. See api/_lib/guard.ts.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import { applicableRecords, CORPUS } from '../../shared/corpus'
-import { buildApprovals, buildEvents, buildVesselRun } from '../../shared/assemble'
+import { applicableRecords, CORPUS } from '../../shared/corpus.js'
+import { buildApprovals, buildEvents, buildVesselRun } from '../../shared/assemble.js'
 import type {
   AgentEvent,
   ComplianceAction,
@@ -26,7 +26,7 @@ import type {
   ScanResult,
   Vessel,
   VesselRun,
-} from '../../shared/types'
+} from '../../shared/types.js'
 
 export type TokenFn = () => Promise<string | null>
 

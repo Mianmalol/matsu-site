@@ -25,12 +25,12 @@
 import { generateObject } from 'ai'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { z } from 'zod'
-import { CORPUS_BY_ID } from '../../shared/corpus'
-import { FLEET_BY_ID } from '../../shared/fleet'
-import { HttpError, fail, rateLimit, requirePost, requireUser } from '../_lib/auth'
-import { LIMITS } from '../_lib/guard'
-import { CALL_TIMEOUT_MS, MAX_OUTPUT_TOKENS, MODEL, abortAfter } from '../_lib/model'
-import { uploadVerdictSchema } from '../_lib/schemas'
+import { CORPUS_BY_ID } from '../../shared/corpus.js'
+import { FLEET_BY_ID } from '../../shared/fleet.js'
+import { HttpError, fail, rateLimit, requirePost, requireUser } from '../_lib/auth.js'
+import { LIMITS } from '../_lib/guard.js'
+import { CALL_TIMEOUT_MS, MAX_OUTPUT_TOKENS, MODEL, abortAfter } from '../_lib/model.js'
+import { uploadVerdictSchema } from '../_lib/schemas.js'
 
 export const config = { maxDuration: 60 }
 

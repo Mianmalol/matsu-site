@@ -21,7 +21,7 @@ import type {
   StageStatus,
   Vessel,
   VesselRun,
-} from './types'
+} from './types.js'
 
 /** Stage titles, kept in one place so the sidebar, dashboard and detail agree. */
 export const STAGE_LABELS: Record<number, { label: string; short: string }> = {

@@ -25,7 +25,7 @@
 //    · Meridian is the plain case — a mid-life box boat with nothing exotic.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import type { Vessel } from './types'
+import type { Vessel } from './types.js'
 
 /** The invented carrier. */
 export const OPERATOR = 'Matsu Lines'

@@ -11,9 +11,9 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { fail, rateLimit, requirePost, requireUser } from '../_lib/auth'
-import { LIMITS } from '../_lib/guard'
-import { runScan } from '../_lib/stages'
+import { fail, rateLimit, requirePost, requireUser } from '../_lib/auth.js'
+import { LIMITS } from '../_lib/guard.js'
+import { runScan } from '../_lib/stages.js'
 
 export const config = { maxDuration: 60 }
 
